@@ -23,7 +23,9 @@ public class MainFx extends Application{
         
         h1.getChildren().addAll(btn1);
         
-        Scene sc = new Scene(h1,600,400);
+        MainPanel main = new MainPanel();
+        
+        Scene sc = new Scene(main);
         fen.setScene(sc);
         fen.setTitle("Application");
         fen.show(); 
