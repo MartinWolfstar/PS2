@@ -18,16 +18,11 @@ public class MainFx extends Application{
     @Override
     public void start (Stage fen){
         
-        HBox h1 = new HBox();
-        Button btn1 = new Button("First");
-        
-        h1.getChildren().addAll(btn1);
-        
         MainPanel main = new MainPanel();
         
-        Scene sc = new Scene(main);
+        Scene sc = new Scene(main, 500, 400);
         fen.setScene(sc);
-        fen.setTitle("Application");
+        fen.setTitle("Application Tréllis");
         fen.show(); 
         
     }
