@@ -24,9 +24,8 @@ public class BarreOutilshaut extends HBox{
         this.zoomIn = new Button("Zoom *2");
         this.zoomOut = new Button("Zoom /2");
         
-        this.getChildren().add(this.couleur);
-        this.getChildren().add(this.zoomIn);
-        this.getChildren().add(this.zoomOut);
+        this.getChildren().addAll(this.couleur,this.zoomIn,this.zoomOut);
+        OutilsFx.setSimpleBorder(this, Color.BLACK, 2);
         
     }
 }

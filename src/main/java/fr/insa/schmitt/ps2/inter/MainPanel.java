@@ -14,11 +14,17 @@ public class MainPanel extends BorderPane {
 
     
     private BarreOutilshaut BarreOutilshaut;
+    private BarreOutilsGauche BarreOutilsGauche;
+    private ZoneDessin dessin;
     
     public MainPanel() {
         this.BarreOutilshaut = new BarreOutilshaut();
+        this.BarreOutilsGauche = new BarreOutilsGauche();
+        this.dessin = new ZoneDessin();
         
         this.setTop(this.BarreOutilshaut);
+        this.setLeft(this.BarreOutilsGauche);
+        this.setCenter(this.dessin);
     }
     
 }
