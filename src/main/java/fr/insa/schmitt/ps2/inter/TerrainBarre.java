@@ -71,18 +71,18 @@ public class TerrainBarre {
         
         //BarreOutilsGauche bar = new BarreOutilsGauche();
         
-        this.rotater = new Button("rotater");
+        this.rotater = new Button("tourner");
         this.agrandir = new Button("agrandir");
-        this.creerPivot = new Button("creerPivot");
-        this.insererNoeud = new Button("insererNoeud");
+        this.creerPivot = new Button("creer ivot");
+        this.insererNoeud = new Button("inserer Noeud");
         this.angle = new Button("angle");
-        this.ajouterForce = new Button("ajouterForce");
-        this.modifierForce = new Button("modifierForce");
-        this.agrandirBarre = new Button("agrandirBarre");
-        this.mesurerBarre = new Button("mesurerBarre");
-        this.uniformiserBarreTaille = new Button("uniformiserBarreTaille");
-        this.defForme = new Button("defForme");
-        this.defCouleur = new Button("defCouleur");
+        this.ajouterForce = new Button("ajouter Force");
+        this.modifierForce = new Button("modifier Force");
+        this.agrandirBarre = new Button("agrandir Barre");
+        this.mesurerBarre = new Button("mesurer Barre");
+        this.uniformiserBarreTaille = new Button("uniformiser taille");
+        this.defForme = new Button("def Forme");
+        this.defCouleur = new Button("def Couleur");
          
         ssContainer1.getChildren().addAll(rotater,agrandir);
         ssContainer2.getChildren().addAll(creerPivot,insererNoeud,angle);
