@@ -28,7 +28,7 @@ public class MainPanel extends BorderPane {
         
         //this.setTop(ruban.get());
         this.setTop(this.BarreOutilshaut);
-        this.setLeft(this.BarreOutilsGauche);
+        //this.setLeft(this.BarreOutilsGauche);
         //this.setCenter(this.dessin);
         //this.setTop(menuBar);
     }
