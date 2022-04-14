@@ -57,7 +57,7 @@ public class MenuHaut extends MenuBar{
 
             @Override
             public void handle(ActionEvent event) {
-                
+                System.out.println("help Clicked.");
             }
         });
         
@@ -68,7 +68,7 @@ public class MenuHaut extends MenuBar{
 
             @Override
             public void handle(ActionEvent event) {
-                
+                System.out.println("edit Clicked.");
             }
         });
     }

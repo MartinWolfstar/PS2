@@ -5,12 +5,16 @@
 package fr.insa.schmitt.ps2.inter;
 
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 /**
  *
  * @author schmi
  */
 public class ZoneDessin extends Pane {
     
-    
+    public ZoneDessin() {
+        OutilsFx.setSimpleBorder(this, Color.RED, 2);
+        
+    }
 
 }

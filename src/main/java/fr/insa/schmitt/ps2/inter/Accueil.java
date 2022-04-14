@@ -79,12 +79,33 @@ public class Accueil {
         //BarreOutilsGauche bar = new BarreOutilsGauche();
         
         this.play = new BoutonIcon("icon/play.png",32,32);
+        this.play.setText("play");
+        this.play.setContentDisplay(ContentDisplay.TOP);
+        
         this.stop = new BoutonIcon("icon/pause.png",32,32);
+        this.stop.setText("pause");
+        this.stop.setContentDisplay(ContentDisplay.TOP);
+        
         this.retour = new BoutonIcon("icon/retour.png",32,32);
+        this.retour.setText("retour");
+        this.retour.setContentDisplay(ContentDisplay.TOP);
+        
         this.avance = new BoutonIcon("icon/avance.png",32,32);
+        this.avance.setText("suivant");
+        this.avance.setContentDisplay(ContentDisplay.TOP);
+        
         this.sauv = new BoutonIcon("icon/sauv.png",32,32);
+        this.sauv.setText("sauvgarder");
+        this.sauv.setContentDisplay(ContentDisplay.TOP);
+        
         this.select = new BoutonIcon("icon/selec.png",32,32);
+        this.select.setText("selectioner");
+        this.select.setContentDisplay(ContentDisplay.TOP);
+        
         this.delete = new BoutonIcon("icon/delete.png",32,32);
+        this.delete.setText("supprimer");
+        this.delete.setContentDisplay(ContentDisplay.TOP);
+        
         
         buildDirectionMenuButton();
 
@@ -113,10 +134,8 @@ public class Accueil {
      */
     private void buildDirectionMenuButton() {
 
-        //Create button and set text.
         this.direction = new SplitMenuButton();
         this.direction.setText("direction");
-
         //Set alignment of button to text. This puts btn text below the image icon.
         this.direction.setContentDisplay(ContentDisplay.TOP);
 
@@ -124,7 +143,7 @@ public class Accueil {
         //preserve the ratio and enable smoothing in the Image constructor.
         String imgPath = "icon/play.png";
         Image clipboard = new Image(this.getClass().getResourceAsStream(imgPath),
-                24.0, 24.0, true, true);
+                32, 32, true, true);
 
         //Create an ImageView for showing image.
         ImageView imageView = new ImageView(clipboard);
