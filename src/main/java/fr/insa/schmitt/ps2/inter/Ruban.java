@@ -30,12 +30,12 @@ public class Ruban extends TabPane{
 
     private void buildTabs() {
 
-        Acceuil acceuil = new Acceuil();
+        Accueil accueil = new Accueil();
         ZoneConstBarre zoneConstBarre = new ZoneConstBarre();
         TrellisBarre trellis = new TrellisBarre();
         TerrainBarre terrain = new TerrainBarre();
 
-        ruban.getTabs().addAll(acceuil.get(), zoneConstBarre.get(), trellis.get(), terrain.get());
-        //ruban.getTabs().addAll(acceuil.get());
+        ruban.getTabs().addAll(accueil.get(), zoneConstBarre.get(), trellis.get(), terrain.get());
+        //ruban.getTabs().addAll(accueil.get());
     }
 }
