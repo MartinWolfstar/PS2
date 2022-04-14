@@ -17,17 +17,20 @@ public class MainPanel extends BorderPane {
     private BarreOutilsGauche BarreOutilsGauche;
     private ZoneDessin dessin;
     private MenuHaut menuBar; 
+    private Ruban ruban;
     
     public MainPanel() {
         this.BarreOutilshaut = new BarreOutilshaut();
         this.BarreOutilsGauche = new BarreOutilsGauche();
         this.dessin = new ZoneDessin();
         this.menuBar = new MenuHaut();
+        this.ruban = new Ruban();
         
-        this.setBottom(this.BarreOutilshaut);
+        //this.setTop(ruban.get());
+        this.setTop(this.BarreOutilshaut);
         this.setLeft(this.BarreOutilsGauche);
-        this.setCenter(this.dessin);
-        this.setTop(menuBar);
+        //this.setCenter(this.dessin);
+        //this.setTop(menuBar);
     }
     
 }

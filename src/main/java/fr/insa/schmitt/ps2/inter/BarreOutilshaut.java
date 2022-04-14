@@ -6,26 +6,30 @@ package fr.insa.schmitt.ps2.inter;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 /**
  *
  * @author schmi
  */
-public class BarreOutilshaut extends HBox{
+public class BarreOutilshaut extends VBox{
     
     private ColorPicker couleur;
     private Button zoomIn;
     private Button zoomOut;
+    private MenuHaut menuBar; 
+    private Ruban ruban;
     
     public BarreOutilshaut() {
-        this.couleur = new ColorPicker(Color.BLACK);
+        /*this.couleur = new ColorPicker(Color.BLACK);
         this.zoomIn = new Button("Zoom *2");
-        this.zoomOut = new Button("Zoom /2");
+        this.zoomOut = new Button("Zoom /2");*/
+        this.menuBar = new MenuHaut();
+        this.ruban = new Ruban();
          
-        this.getChildren().addAll(this.couleur,this.zoomIn,this.zoomOut);
-        OutilsFx.setSimpleBorder(this, Color.BLACK, 2);
+        this.getChildren().addAll(menuBar,ruban.get());
+        //OutilsFx.setSimpleBorder(this, Color.BLACK, 2);
         
     }
 }
