@@ -7,10 +7,13 @@ package fr.insa.schmitt.ps2.inter;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.KeyCombination;
+import javafx.stage.Stage;
 /**
  *
  * @author schmi
@@ -21,25 +24,40 @@ public class MenuHaut extends MenuBar{
     private Menu filesMenu;
     private Menu editMenu;
     private Menu helpMenu;
+    
     private MenuItem newItem;
     private MenuItem openFilesItem;
     private MenuItem exitItem;
+    private MenuItem edit1Item;
+    private MenuItem edit2Item;
+    private MenuItem helpItem;
+    private MenuItem aproposItem;
     
     
     public MenuHaut() {
         this.menuBar = new MenuBar();
+        
         this.filesMenu = new Menu("File");
         this.editMenu = new Menu("Edit");
         this.helpMenu = new Menu("Help");
+        
         this.newItem = new MenuItem("New");
         this.openFilesItem = new MenuItem("Open File");
         this.exitItem = new MenuItem("Exit");
         
+        this.edit1Item = new MenuItem("edit1");
+        this.edit2Item = new MenuItem("edit2");
+        
+        this.helpItem = new MenuItem("Help me!!!");
+        this.aproposItem = new MenuItem("à propos...");
+        
         filesMenu.getItems().addAll(newItem, openFilesItem, exitItem);
+        editMenu.getItems().addAll(edit1Item,edit2Item);
+        helpMenu.getItems().addAll(helpItem,aproposItem);
         this.getMenus().addAll(filesMenu, editMenu, helpMenu);
         
         
-        //EXIT item:
+        //Files item:
         exitItem.setAccelerator(KeyCombination.keyCombination("Ctrl+X"));
 
         exitItem.setOnAction(new EventHandler<ActionEvent>() {
@@ -49,11 +67,33 @@ public class MenuHaut extends MenuBar{
                 System.exit(0);
             }
         });
+        newItem.setAccelerator(KeyCombination.keyCombination("Ctrl+N"));
+
+        newItem.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                Stage nouveau = new Stage();
+                nouveau.setTitle("Nouveau");
+                Scene sc = new Scene(new MainPanel(), 1000, 700);
+                nouveau.setScene(sc);
+                nouveau.show();
+            }
+        });
+        openFilesItem.setAccelerator(KeyCombination.keyCombination("Ctrl+O"));
+
+        openFilesItem.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("open Clicked.");
+            }
+        });
         
         //HELP item:
-        helpMenu.setAccelerator(KeyCombination.keyCombination("Ctrl+H"));
+        helpItem.setAccelerator(KeyCombination.keyCombination("Ctrl+H"));
         
-        helpMenu.setOnAction(new EventHandler<ActionEvent>() {
+        helpItem.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
@@ -61,14 +101,38 @@ public class MenuHaut extends MenuBar{
             }
         });
         
-        //Edit item:
-        editMenu.setAccelerator(KeyCombination.keyCombination("Ctrl+E"));
-        
-        editMenu.setOnAction(new EventHandler<ActionEvent>() {
+        aproposItem.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("edit Clicked.");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("A propos");
+                alert.setHeaderText(null);
+                alert.setContentText("Application Tréllis\n"
+                        + "blablabla\n");
+
+                alert.showAndWait();
+            }
+        });
+        
+        
+        //Edit item:
+        edit1Item.setAccelerator(KeyCombination.keyCombination("Ctrl+E"));
+        
+        edit1Item.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("edit1 Clicked.");
+            }
+        });
+        edit2Item.setAccelerator(KeyCombination.keyCombination("Ctrl+F"));
+        
+        edit2Item.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("edit2 Clicked.");
             }
         });
     }
