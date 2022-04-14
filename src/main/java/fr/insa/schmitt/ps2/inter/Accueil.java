@@ -4,9 +4,13 @@
  */
 package fr.insa.schmitt.ps2.inter;
 
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.Tab;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -29,6 +33,7 @@ public class Accueil {
    private Button select;
    private Action action;
    private Button delete;
+   private SplitMenuButton direction;
 
     /**
      * Default Constructor.
@@ -80,6 +85,8 @@ public class Accueil {
         this.sauv = new BoutonIcon("icon/sauv.png",32,32);
         this.select = new BoutonIcon("icon/selec.png",32,32);
         this.delete = new BoutonIcon("icon/delete.png",32,32);
+        
+        buildDirectionMenuButton();
 
         
         /*this.stop = new Button("stop");
@@ -93,10 +100,93 @@ public class Accueil {
         ssContainer3.getChildren().addAll(sauv,select);
         container.getChildren().addAll(ssContainer1,ssContainer2,ssContainer3);*/
         //container.getChildren().add(play);
-        container.getChildren().addAll(play,stop,retour,avance,sauv,select,delete);
+        container.getChildren().addAll(play,stop,retour,avance,sauv,select,delete,direction);
         
         //Add Container.
         tab.setContent(container);
+        
+        
+    }
+
+    /**
+     * Creating a SplitMenuButton.
+     */
+    private void buildDirectionMenuButton() {
+
+        //Create button and set text.
+        this.direction = new SplitMenuButton();
+        this.direction.setText("direction");
+
+        //Set alignment of button to text. This puts btn text below the image icon.
+        this.direction.setContentDisplay(ContentDisplay.TOP);
+
+        //Retrieve and set image of clipboard. I will set image size to 24x24,
+        //preserve the ratio and enable smoothing in the Image constructor.
+        String imgPath = "icon/play.png";
+        Image clipboard = new Image(this.getClass().getResourceAsStream(imgPath),
+                24.0, 24.0, true, true);
+
+        //Create an ImageView for showing image.
+        ImageView imageView = new ImageView(clipboard);
+
+        //Set the gap b/n graphic and text. Assign the ImageView to the button.
+        this.direction.setGraphicTextGap(5.0);
+        this.direction.setGraphic(imageView);
+
+        //haut Menu Item
+        MenuItem haut = new MenuItem("haut");
+        haut.setOnAction(new EventHandler() {
+
+            @Override
+            public void handle(Event event) {
+                System.out.println("haut clicked.");
+            }
+
+        });
+
+        //bas Menu Item
+        MenuItem bas = new MenuItem("bas");
+        bas.setOnAction(new EventHandler() {
+
+            @Override
+            public void handle(Event event) {
+                System.out.println("bas clicked.");
+            }
+
+        });
+
+        //droite Menu Item
+        MenuItem droite = new MenuItem("droite");
+        droite.setOnAction(new EventHandler() {
+
+            @Override
+            public void handle(Event event) {
+                System.out.println("droite clicked.");
+            }
+
+        });
+        
+        //gauche Menu Item
+        MenuItem gauche = new MenuItem("gauche");
+        gauche.setOnAction(new EventHandler() {
+
+            @Override
+            public void handle(Event event) {
+                System.out.println("gauche clicked.");
+            }
+
+        });
+
+        //Add all MenuItems to the MenuSplitButton's menu options.
+        this.direction.getItems().addAll(haut,bas,droite,gauche);
+
+        //Set the click event of the Button itself. 
+        this.direction.setOnAction(new EventHandler() {
+            @Override
+            public void handle(Event arg0) {
+                System.out.println("center Clicked.");
+            }
+        });
 
     }
 
