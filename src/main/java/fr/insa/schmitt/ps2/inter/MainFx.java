@@ -20,7 +20,7 @@ public class MainFx extends Application{
         
         MainPanel main = new MainPanel();
         
-        Scene sc = new Scene(main, 500, 400);
+        Scene sc = new Scene(main, 1000, 700);
         fen.setScene(sc);
         fen.setTitle("Application Tréllis");
         fen.show(); 

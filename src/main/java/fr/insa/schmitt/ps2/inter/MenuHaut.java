@@ -5,16 +5,13 @@
 package fr.insa.schmitt.ps2.inter;
 
 
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.KeyCombination;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
+import javafx.scene.control.Hyperlink;
 /**
  *
  * @author schmi
@@ -42,9 +39,10 @@ public class MenuHaut extends MenuBar{
         filesMenu.getItems().addAll(newItem, openFilesItem, exitItem);
         this.getMenus().addAll(filesMenu, editMenu, helpMenu);
         
+        
+        //EXIT item:
         exitItem.setAccelerator(KeyCombination.keyCombination("Ctrl+X"));
 
-        // When user click on the Exit item.
         exitItem.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -52,9 +50,29 @@ public class MenuHaut extends MenuBar{
                 System.exit(0);
             }
         });
+        
+        //HELP item:
+        helpMenu.setAccelerator(KeyCombination.keyCombination("Ctrl+H"));
+        
+        helpMenu.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                
+            }
+        });
+        
+        //Edit item:
+        editMenu.setAccelerator(KeyCombination.keyCombination("Ctrl+E"));
+        
+        editMenu.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                
+            }
+        });
     }
-
     
-
     
 }

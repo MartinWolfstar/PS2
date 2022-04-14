@@ -4,6 +4,7 @@
  */
 package fr.insa.schmitt.ps2.inter;
 
+import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.HBox;
 /**
@@ -11,57 +12,33 @@ import javafx.scene.layout.HBox;
  * @author schmi
  */
 public class ZoneConstBarre {
+    
     private Tab tab;
+    private Button ajouter;
+    private Button modifier;
 
-    /**
-     * Default Constructor.
-     */
     public ZoneConstBarre() {
         tab = new Tab("Zone Constructible");
         buildTab();
     }
 
-    /**
-     * get. Returns an instance of the Home Tab. This will be added to the 
-     * TabPane in the RibbonBar class.
-     * @return 
-     */
     public Tab get() {
         return this.tab;
     }
 
-    /**
-     * buildTab. Helper method to build the Home Tab UI.
-     */
     private void buildTab() {
 
         //Do not allow tab to close.
         tab.setClosable(false);
 
-        //The container holds all toolbar sections specific to a Tab.
         HBox container = new HBox();
-
-        //Set ID (for CSS styles)
-        container.setId("container");
-
-        //Set preferred height.
         container.setPrefHeight(90);
-
-        //Put spacing b/n each toolbar block
         container.setSpacing(5);
 
-        /*//Add the Actions Ribbon Component
-        Actions actions = new Actions();
-        container.getChildren().add(actions.get());
+        this.ajouter = new BoutonIcon("icon/play.png",32,32);
+        this.modifier = new BoutonIcon("icon/pause.png",32,32);
 
-        //Add the Clipboard Ribbon Component.
-        Clipboard clipboard = new Clipboard();
-        container.getChildren().add(clipboard.get());
-
-        //Add the Fonts Ribbon Component.
-        Font font = new Font();
-        container.getChildren().add(font.get());*/
-
+        container.getChildren().addAll(ajouter,modifier);
         //Add Container.
         tab.setContent(container);
 
