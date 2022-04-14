@@ -4,10 +4,12 @@
  */
 package fr.insa.schmitt.ps2.inter;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 /**
  *
  * @author schmi
@@ -33,7 +35,7 @@ public class TrellisBarre {
      * Default Constructor.
      */
     public TrellisBarre() {
-        tab = new Tab("Terrain");
+        tab = new Tab("Trellis");
         buildTab();
     }
 
@@ -54,26 +56,33 @@ public class TrellisBarre {
         //Do not allow tab to close.
         tab.setClosable(false);
 
-        HBox container = new HBox();
-        container.setPrefHeight(5);
-        container.setSpacing(8);
+        VBox container = new VBox();
+        container.setAlignment(Pos.CENTER);
+        
+        HBox scontainer = new HBox();
+        scontainer.setAlignment(Pos.CENTER);
+        scontainer.setSpacing(8);
         
         VBox ssContainer1 = new VBox();
-        ssContainer1.setSpacing(6);
+        ssContainer1.setSpacing(3);
         VBox ssContainer2 = new VBox();
-        ssContainer2.setSpacing(6);
+        ssContainer2.setSpacing(3);
         VBox ssContainer3 = new VBox();
-        ssContainer3.setSpacing(6);
+        ssContainer3.setSpacing(3);
         VBox ssContainer4 = new VBox();
-        ssContainer4.setSpacing(6);
+        ssContainer4.setSpacing(3);
         VBox ssContainer5 = new VBox();
-        ssContainer5.setSpacing(6);
+        ssContainer5.setSpacing(3);
+        VBox ssContainer6 = new VBox();
+        ssContainer6.setSpacing(3);
+        VBox ssContainer7 = new VBox();
+        ssContainer7.setSpacing(3);
         
         //BarreOutilsGauche bar = new BarreOutilsGauche();
         
         this.rotater = new Button("tourner");
         this.agrandir = new Button("agrandir");
-        this.creerPivot = new Button("creer ivot");
+        this.creerPivot = new Button("creer Pivot");
         this.insererNoeud = new Button("inserer Noeud");
         this.angle = new Button("angle");
         this.ajouterForce = new Button("ajouter Force");
@@ -85,12 +94,25 @@ public class TrellisBarre {
         this.defCouleur = new Button("def Couleur");
          
         ssContainer1.getChildren().addAll(rotater,agrandir);
-        ssContainer2.getChildren().addAll(creerPivot,insererNoeud,angle);
+        OutilsFx.setSimpleBorder(ssContainer1, Color.GRAY, 2);
+        ssContainer2.getChildren().addAll(creerPivot,insererNoeud);
+        OutilsFx.setSimpleBorder(ssContainer2, Color.GRAY, 2);
         ssContainer3.getChildren().addAll(ajouterForce,modifierForce);
-        ssContainer4.getChildren().addAll(agrandirBarre,mesurerBarre,uniformiserBarreTaille);
+        OutilsFx.setSimpleBorder(ssContainer3, Color.GRAY, 2);
+        ssContainer4.getChildren().addAll(agrandirBarre,mesurerBarre);
+        OutilsFx.setSimpleBorder(ssContainer4, Color.GRAY, 2);
         ssContainer5.getChildren().addAll(defForme,defCouleur);
-        container.getChildren().addAll(ssContainer1,ssContainer2,ssContainer3,ssContainer4,ssContainer5);
+        OutilsFx.setSimpleBorder(ssContainer5, Color.GRAY, 2);
+        ssContainer6.getChildren().addAll(angle);
+        OutilsFx.setSimpleBorder(ssContainer6, Color.GRAY, 2);
+        ssContainer7.getChildren().addAll(uniformiserBarreTaille);
+        OutilsFx.setSimpleBorder(ssContainer7, Color.GRAY, 2);
+        
+        
+        scontainer.getChildren().addAll(ssContainer1,ssContainer2,ssContainer6,ssContainer3,ssContainer4,ssContainer7,ssContainer5);
         //container.getChildren().add(play);
+        
+        container.getChildren().add(scontainer);
         
         //Add Container.
         tab.setContent(container);

@@ -6,6 +6,7 @@ package fr.insa.schmitt.ps2.inter;
 
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ContentDisplay;
@@ -62,8 +63,9 @@ public class Accueil {
 
         //The container holds all toolbar sections specific to a Tab.
         HBox container = new HBox();
-        container.setPrefHeight(10);
-        container.setSpacing(6);
+        container.setPrefHeight(70);
+        container.setSpacing(10);
+        container.setAlignment(Pos.CENTER);
         
         VBox ssContainer1 = new VBox();
         ssContainer1.setSpacing(6);
@@ -141,7 +143,7 @@ public class Accueil {
 
         //Retrieve and set image of clipboard. I will set image size to 24x24,
         //preserve the ratio and enable smoothing in the Image constructor.
-        String imgPath = "icon/play.png";
+        String imgPath = "icon/distance.png";
         Image clipboard = new Image(this.getClass().getResourceAsStream(imgPath),
                 32, 32, true, true);
 

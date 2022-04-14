@@ -33,7 +33,7 @@ public class BarreOutilsGauche extends VBox{
         this.bSegment.setToggleGroup(gBoutons);
         
         this.getChildren().addAll(this.bSelect,this.bPoint,this.bSegment,this.bLabel);
-        OutilsFx.setSimpleBorder(this, Color.BLACK, 2);
+        OutilsFx.setSimpleBorder(this, Color.GRAY, 2);
         
     }
 }

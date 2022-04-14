@@ -4,6 +4,7 @@
  */
 package fr.insa.schmitt.ps2.inter;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Tab;
@@ -20,7 +21,7 @@ public class TerrainBarre {
     private Button defAppui;
 
     public TerrainBarre() {
-        tab = new Tab("Trellis");
+        tab = new Tab("Terrain");
         buildTab();
     }
 
@@ -34,14 +35,14 @@ public class TerrainBarre {
         tab.setClosable(false);
 
         HBox container = new HBox();
-        container.setPrefHeight(90);
-        container.setSpacing(5);
+        container.setAlignment(Pos.CENTER);
+        container.setSpacing(8);
 
-        this.ajouter = new BoutonIcon("icon/play.png",32,32);
-        this.ajouter.setText("aujouter");
+        this.ajouter = new BoutonIcon("icon/ajouter.png",32,32);
+        this.ajouter.setText("ajouter");
         this.ajouter.setContentDisplay(ContentDisplay.TOP);
         
-        this.modifier = new BoutonIcon("icon/pause.png",32,32);
+        this.modifier = new BoutonIcon("icon/modifier.png",32,32);
         this.modifier.setText("modifier");
         this.modifier.setContentDisplay(ContentDisplay.TOP);
         
