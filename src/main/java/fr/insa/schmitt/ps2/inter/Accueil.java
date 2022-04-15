@@ -143,7 +143,7 @@ public class Accueil {
 
         //Retrieve and set image of clipboard. I will set image size to 24x24,
         //preserve the ratio and enable smoothing in the Image constructor.
-        String imgPath = "icon/distance.png";
+        String imgPath = "icon/deplacer.png";
         Image clipboard = new Image(this.getClass().getResourceAsStream(imgPath),
                 32, 32, true, true);
 
