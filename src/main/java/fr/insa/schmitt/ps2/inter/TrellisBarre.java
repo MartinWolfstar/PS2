@@ -5,11 +5,17 @@
 package fr.insa.schmitt.ps2.inter;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.Tab;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -30,8 +36,8 @@ public class TrellisBarre {
     private Button agrandirBarre;
     private Button mesurerBarre;
     private Button uniformiserBarreTaille;
-    private Button defForme;
-    private Button defCouleur;
+    private SplitMenuButton defForme;
+    private ColorPicker defCouleur;
     
 
     /**
@@ -236,7 +242,7 @@ public class TrellisBarre {
         });
     }
     private void buildDefFormeButton(){
-        this.defForme = new Button("def Forme");
+        /*this.defForme = new Button("def Forme");
         
         defForme.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -244,10 +250,61 @@ public class TrellisBarre {
             public void handle(ActionEvent event) {
                 System.out.println("defForme Clicked.");
             }
+        });*/
+        
+        this.defForme = new SplitMenuButton();
+        this.defForme.setText("forme barre");
+
+        //forme4 Menu Item
+        MenuItem forme4 = new MenuItem("forme4");
+        forme4.setOnAction(new EventHandler() {
+
+            @Override
+            public void handle(Event event) {
+                System.out.println("forme4 clicked.");
+            }
+
         });
+
+        //forme3 Menu Item
+        MenuItem forme3 = new MenuItem("forme3");
+        forme3.setOnAction(new EventHandler() {
+
+            @Override
+            public void handle(Event event) {
+                System.out.println("forme3 clicked.");
+            }
+
+        });
+
+        //forme2 Menu Item
+        MenuItem forme2 = new MenuItem("forme2");
+        forme2.setOnAction(new EventHandler() {
+
+            @Override
+            public void handle(Event event) {
+                System.out.println("forme2 clicked.");
+            }
+
+        });
+        
+        //forme1 Menu Item
+        MenuItem forme1 = new MenuItem("forme1");
+        forme1.setOnAction(new EventHandler() {
+
+            @Override
+            public void handle(Event event) {
+                System.out.println("forme1 clicked.");
+            }
+
+        });
+
+        //Add all MenuItems to the MenuSplitButton's menu options.
+        this.defForme.getItems().addAll(forme1,forme2,forme3,forme4);
+
     }
     private void buildDefCouleurButton(){
-        this.defCouleur = new Button("def Couleur");
+        this.defCouleur = new ColorPicker(Color.BLACK);
         
         defCouleur.setOnAction(new EventHandler<ActionEvent>() {
 
