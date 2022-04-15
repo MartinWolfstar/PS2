@@ -33,7 +33,9 @@ public class MenuHaut extends MenuBar{
     private MenuItem helpItem;
     private MenuItem aproposItem;
 
-    
+    /**
+     * Default Constructor.
+     */
     public MenuHaut() {
         this.menuBar = new MenuBar();
 

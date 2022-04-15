@@ -4,7 +4,11 @@
  */
 package fr.insa.schmitt.ps2.inter;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
@@ -20,11 +24,15 @@ public class BarreOutilsGauche extends VBox{
     private ToggleButton bPoint;
     private ToggleButton bSegment;
     private Label bLabel;
+    private TextArea textArea;
     
     public BarreOutilsGauche() {
-        this.bSelect = new ToggleButton("select");
-        this.bPoint = new ToggleButton("point");
-        this.bSegment = new ToggleButton("segment");
+
+        buildTextArea();
+        buildSelecButton();
+        buildPointButton();
+        buildSegmentButton();
+        
         this.bLabel = new Label("ps: la zone ici est encore à faire");
         
         ToggleGroup gBoutons = new ToggleGroup();
@@ -32,8 +40,46 @@ public class BarreOutilsGauche extends VBox{
         this.bPoint.setToggleGroup(gBoutons);
         this.bSegment.setToggleGroup(gBoutons);
         
-        this.getChildren().addAll(this.bSelect,this.bPoint,this.bSegment,this.bLabel);
+        this.getChildren().addAll(new Label("Search something:"),textArea,this.bSelect,this.bPoint,this.bSegment,this.bLabel);
         OutilsFx.setSimpleBorder(this, Color.GRAY, 2);
         
     }
+    private void buildTextArea(){
+        this.textArea = new TextArea();
+        textArea.setMaxSize(200,40);
+    }
+    private void buildSelecButton(){
+        this.bSelect = new ToggleButton("select");
+        
+        bSelect.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("select Clicked.");
+            }
+        });
+    }
+    private void buildPointButton(){
+        this.bPoint = new ToggleButton("point");
+        
+        bPoint.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("bPoint Clicked.");
+            }
+        });
+    }
+    private void buildSegmentButton(){
+        this.bSegment = new ToggleButton("segment");
+        
+        bSegment.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("bSegment Clicked.");
+            }
+        });
+    }
+    
 }

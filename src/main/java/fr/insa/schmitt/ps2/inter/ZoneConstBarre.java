@@ -4,6 +4,8 @@
  */
 package fr.insa.schmitt.ps2.inter;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
@@ -33,21 +35,44 @@ public class ZoneConstBarre {
         //Do not allow tab to close.
         tab.setClosable(false);
 
+        //Create Box
         HBox container = new HBox();
         container.setAlignment(Pos.CENTER);
         container.setSpacing(8);
 
-        this.ajouter = new BoutonIcon("icon/ajouter.png",32,32);
-        this.ajouter.setText("ajouter");
-        this.ajouter.setContentDisplay(ContentDisplay.TOP);
-        
-        this.modifier = new BoutonIcon("icon/modifier.png",32,32);
-        this.modifier.setText("modifier");
-        this.modifier.setContentDisplay(ContentDisplay.TOP);
+        //CreateButton
+        buildAjouterButton();
+        buildModifierButton();
 
         container.getChildren().addAll(ajouter,modifier);
         //Add Container.
         tab.setContent(container);
 
+    }
+    private void buildAjouterButton(){
+        this.ajouter = new BoutonIcon("icon/ajouter.png",32,32);
+        this.ajouter.setText("ajouter");
+        this.ajouter.setContentDisplay(ContentDisplay.TOP);
+        
+        ajouter.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("ajouter Clicked.");
+            }
+        });
+    }
+    private void buildModifierButton(){
+        this.modifier = new BoutonIcon("icon/modifier.png",32,32);
+        this.modifier.setText("modifier");
+        this.modifier.setContentDisplay(ContentDisplay.TOP);
+        
+        modifier.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("modifier Clicked.");
+            }
+        });
     }
 }

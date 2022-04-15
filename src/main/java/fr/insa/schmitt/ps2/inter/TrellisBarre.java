@@ -4,8 +4,11 @@
  */
 package fr.insa.schmitt.ps2.inter;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -56,6 +59,7 @@ public class TrellisBarre {
         //Do not allow tab to close.
         tab.setClosable(false);
 
+        //Create all Box
         VBox container = new VBox();
         container.setAlignment(Pos.CENTER);
         
@@ -78,21 +82,23 @@ public class TrellisBarre {
         VBox ssContainer7 = new VBox();
         ssContainer7.setSpacing(3);
         
-        //BarreOutilsGauche bar = new BarreOutilsGauche();
-        
-        this.rotater = new Button("tourner");
-        this.agrandir = new Button("agrandir");
-        this.creerPivot = new Button("creer Pivot");
-        this.insererNoeud = new Button("inserer Noeud");
-        this.angle = new Button("angle");
-        this.ajouterForce = new Button("ajouter Force");
-        this.modifierForce = new Button("modifier Force");
-        this.agrandirBarre = new Button("agrandir Barre");
-        this.mesurerBarre = new Button("mesurer Barre");
-        this.uniformiserBarreTaille = new Button("uniformiser taille");
-        this.defForme = new Button("def Forme");
-        this.defCouleur = new Button("def Couleur");
+
+        //Create all Button
+        buildRotButton();
+        buildAgrandirButton();
+        buildCPButton();
+        buildINButton();
+        buildAngleButton();
+        buildAFButton();
+        buildMFButton();
+        buildABButton();
+        buildMBButton();
+        buildUTButton();
+        buildDefFormeButton();
+        buildDefCouleurButton();
+
          
+        //Add all Things
         ssContainer1.getChildren().addAll(rotater,agrandir);
         OutilsFx.setSimpleBorder(ssContainer1, Color.GRAY, 2);
         ssContainer2.getChildren().addAll(creerPivot,insererNoeud);
@@ -117,5 +123,138 @@ public class TrellisBarre {
         //Add Container.
         tab.setContent(container);
 
+    }
+    
+    private void buildRotButton(){
+        this.rotater = new Button("tourner");
+        
+        rotater.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("rot Clicked.");
+            }
+        });
+    }
+    private void buildAgrandirButton(){
+        this.agrandir = new Button("agrandir");
+        
+        agrandir.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("ag Clicked.");
+            }
+        });
+    }
+    private void buildCPButton(){
+        this.creerPivot = new Button("creer Pivot");
+        
+        creerPivot.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("CP Clicked.");
+            }
+        });
+    }
+    private void buildINButton(){
+        this.insererNoeud = new Button("inserer Noeud");
+        
+        insererNoeud.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("IN Clicked.");
+            }
+        });
+    }
+    private void buildAngleButton(){
+        this.angle = new Button("angle");
+        
+        angle.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("angle Clicked.");
+            }
+        });
+    }
+    private void buildAFButton(){
+        this.ajouterForce = new Button("ajouter Force");
+        
+        ajouterForce.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("ajouterForce Clicked.");
+            }
+        });
+    }
+    private void buildMFButton(){
+        this.modifierForce = new Button("modifier Force");
+        
+        modifierForce.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("modifierForce Clicked.");
+            }
+        });
+    }
+    private void buildABButton(){
+        this.agrandirBarre = new Button("agrandir Barre");
+        
+        agrandirBarre.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("agrandirBarre Clicked.");
+            }
+        });
+    }
+    private void buildMBButton(){
+        this.mesurerBarre = new Button("mesurer Barre");
+        
+        mesurerBarre.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("mesurerBarre Clicked.");
+            }
+        });
+    }
+    private void buildUTButton(){
+        this.uniformiserBarreTaille = new Button("uniformiser taille");
+        
+        uniformiserBarreTaille.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("uniformiserBarreTaille Clicked.");
+            }
+        });
+    }
+    private void buildDefFormeButton(){
+        this.defForme = new Button("def Forme");
+        
+        defForme.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("defForme Clicked.");
+            }
+        });
+    }
+    private void buildDefCouleurButton(){
+        this.defCouleur = new Button("def Couleur");
+        
+        defCouleur.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("defCouleur Clicked.");
+            }
+        });
     }
 }

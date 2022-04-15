@@ -4,6 +4,7 @@
  */
 package fr.insa.schmitt.ps2.inter;
 
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -15,6 +16,7 @@ import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.Tab;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -45,8 +47,7 @@ public class Accueil {
     }
 
     /**
-     * get. Returns an instance of the Home Tab. This will be added to the 
-     * TabPane in the RibbonBar class.
+     * get. Returns an instance of the Home Tab.
      * @return 
      */
     public Tab get() {
@@ -54,83 +55,132 @@ public class Accueil {
     }
 
     /**
-     * buildTab. Helper method to build the Home Tab UI.
+     * buildTab.
      */
     private void buildTab() {
 
         //Do not allow tab to close.
         tab.setClosable(false);
 
-        //The container holds all toolbar sections specific to a Tab.
+        //Create Box
         HBox container = new HBox();
         container.setPrefHeight(70);
         container.setSpacing(10);
         container.setAlignment(Pos.CENTER);
         
-        VBox ssContainer1 = new VBox();
-        ssContainer1.setSpacing(6);
-        VBox ssContainer2 = new VBox();
-        ssContainer2.setSpacing(6);
-        VBox ssContainer3 = new VBox();
-        ssContainer3.setSpacing(6);
+        //Create Button
+        buildPlayButton();
+        buildStopButton();
+        buildRetourButton();
+        buildAvanceButton();
+        buildSauvButton();
+        buildSelecButton();
+        buildDeleteButton();
+        buildDirectionMenuButton();
+        
+        //Add Button
+        container.getChildren().addAll(play,stop,retour,avance,sauv,select,delete,direction);
+        
+        //Add Container.
+        tab.setContent(container); 
+    }
 
-        //Add the Actions Ribbon Component
-        //this.action = new Action();
-        //container.getChildren().add(action.get());
-        
-        //BarreOutilsGauche bar = new BarreOutilsGauche();
-        
+    /**
+     * Creating Button.
+     */
+    
+    private void buildPlayButton(){
         this.play = new BoutonIcon("icon/play.png",32,32);
         this.play.setText("play");
         this.play.setContentDisplay(ContentDisplay.TOP);
         
+        play.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("play Clicked.");
+            }
+        });
+    }
+    private void buildStopButton(){
         this.stop = new BoutonIcon("icon/pause.png",32,32);
         this.stop.setText("pause");
         this.stop.setContentDisplay(ContentDisplay.TOP);
         
+        stop.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("stop Clicked.");
+            }
+        });
+    }
+    private void buildRetourButton(){
         this.retour = new BoutonIcon("icon/retour.png",32,32);
         this.retour.setText("retour");
         this.retour.setContentDisplay(ContentDisplay.TOP);
         
+        retour.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("retour Clicked.");
+            }
+        });
+    }
+    private void buildAvanceButton(){
         this.avance = new BoutonIcon("icon/avance.png",32,32);
         this.avance.setText("suivant");
         this.avance.setContentDisplay(ContentDisplay.TOP);
         
+        avance.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("avance Clicked.");
+            }
+        });
+    }
+    private void buildSauvButton(){
         this.sauv = new BoutonIcon("icon/sauv.png",32,32);
         this.sauv.setText("sauvgarder");
         this.sauv.setContentDisplay(ContentDisplay.TOP);
         
+        sauv.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("sauv Clicked.");
+            }
+        });
+    }
+    private void buildSelecButton(){
         this.select = new BoutonIcon("icon/selec.png",32,32);
         this.select.setText("selectioner");
         this.select.setContentDisplay(ContentDisplay.TOP);
         
+        select.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("select Clicked.");
+            }
+        });
+    }
+    private void buildDeleteButton(){
         this.delete = new BoutonIcon("icon/delete.png",32,32);
         this.delete.setText("supprimer");
         this.delete.setContentDisplay(ContentDisplay.TOP);
         
-        
-        buildDirectionMenuButton();
+        delete.setOnAction(new EventHandler<ActionEvent>() {
 
-        
-        /*this.stop = new Button("stop");
-        this.retour = new Button("retour");
-        this.avance = new Button("avance");
-        this.sauv = new Button("sauv");
-        this.select = new Button("selec");*/
-         
-        /*ssContainer1.getChildren().addAll(play,stop);
-        ssContainer2.getChildren().addAll(retour,avance);
-        ssContainer3.getChildren().addAll(sauv,select);
-        container.getChildren().addAll(ssContainer1,ssContainer2,ssContainer3);*/
-        //container.getChildren().add(play);
-        container.getChildren().addAll(play,stop,retour,avance,sauv,select,delete,direction);
-        
-        //Add Container.
-        tab.setContent(container);
-        
-        
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("delete Clicked.");
+            }
+        });
     }
-
+    
     /**
      * Creating a SplitMenuButton.
      */
