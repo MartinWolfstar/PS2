@@ -13,7 +13,7 @@ import javafx.scene.paint.Color;
 public class ZoneDessin extends Pane {
     
     public ZoneDessin() {
-        OutilsFx.setSimpleBorder(this, Color.RED, 2);
+        OutilsFx.setSimpleBorder(this, Color.BLUE, 2);
         
     }
 
