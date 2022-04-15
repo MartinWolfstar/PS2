@@ -32,30 +32,26 @@ public class MenuHaut extends MenuBar{
     private MenuItem edit2Item;
     private MenuItem helpItem;
     private MenuItem aproposItem;
-    
+
     
     public MenuHaut() {
         this.menuBar = new MenuBar();
+
+        buildFiles();
+        buildEdit();
+        buildHelp();
+        this.getMenus().addAll(filesMenu, editMenu, helpMenu);
         
+        
+    }
+    private void buildFiles() {
+            
         this.filesMenu = new Menu("File");
-        this.editMenu = new Menu("Edit");
-        this.helpMenu = new Menu("Help");
-        
         this.newItem = new MenuItem("New");
         this.openFilesItem = new MenuItem("Open File");
         this.exitItem = new MenuItem("Exit");
-        
-        this.edit1Item = new MenuItem("edit1");
-        this.edit2Item = new MenuItem("edit2");
-        
-        this.helpItem = new MenuItem("Help me!!!");
-        this.aproposItem = new MenuItem("à propos...");
-        
+            
         filesMenu.getItems().addAll(newItem, openFilesItem, exitItem);
-        editMenu.getItems().addAll(edit1Item,edit2Item);
-        helpMenu.getItems().addAll(helpItem,aproposItem);
-        this.getMenus().addAll(filesMenu, editMenu, helpMenu);
-        
         
         //Files item:
         exitItem.setAccelerator(KeyCombination.keyCombination("Ctrl+X"));
@@ -89,6 +85,41 @@ public class MenuHaut extends MenuBar{
                 System.out.println("open Clicked.");
             }
         });
+    }
+    private void buildEdit() {
+        
+        this.editMenu = new Menu("Edit");
+        this.edit1Item = new MenuItem("edit1");
+        this.edit2Item = new MenuItem("edit2");
+        editMenu.getItems().addAll(edit1Item,edit2Item);
+        
+        //Edit item:
+        edit1Item.setAccelerator(KeyCombination.keyCombination("Ctrl+E"));
+        
+        edit1Item.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("edit1 Clicked.");
+            }
+        });
+        edit2Item.setAccelerator(KeyCombination.keyCombination("Ctrl+F"));
+        
+        edit2Item.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("edit2 Clicked.");
+            }
+        });
+        
+    }
+    private void buildHelp() {
+        this.helpMenu = new Menu("Help");
+        
+        this.helpItem = new MenuItem("Help me!!!");
+        this.aproposItem = new MenuItem("à propos...");
+        helpMenu.getItems().addAll(helpItem,aproposItem);
         
         //HELP item:
         helpItem.setAccelerator(KeyCombination.keyCombination("Ctrl+H"));
@@ -114,28 +145,5 @@ public class MenuHaut extends MenuBar{
                 alert.showAndWait();
             }
         });
-        
-        
-        //Edit item:
-        edit1Item.setAccelerator(KeyCombination.keyCombination("Ctrl+E"));
-        
-        edit1Item.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("edit1 Clicked.");
-            }
-        });
-        edit2Item.setAccelerator(KeyCombination.keyCombination("Ctrl+F"));
-        
-        edit2Item.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("edit2 Clicked.");
-            }
-        });
     }
-    
-    
 }
