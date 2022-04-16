@@ -6,6 +6,7 @@ package fr.insa.schmitt.ps2.inter;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -20,9 +21,7 @@ import javafx.scene.paint.Color;
  */
 public class BarreOutilsGauche extends VBox{
     
-    private ToggleButton bSelect;
-    private ToggleButton bPoint;
-    private ToggleButton bSegment;
+    private Button bSelect;
     private Label bLabel;
     private TextArea textArea;
     
@@ -30,17 +29,12 @@ public class BarreOutilsGauche extends VBox{
 
         buildTextArea();
         buildSelecButton();
-        buildPointButton();
-        buildSegmentButton();
         
         this.bLabel = new Label("ps: la zone ici est encore à faire");
         
-        ToggleGroup gBoutons = new ToggleGroup();
-        this.bSelect.setToggleGroup(gBoutons);
-        this.bPoint.setToggleGroup(gBoutons);
-        this.bSegment.setToggleGroup(gBoutons);
+        bSelect.setMaxWidth(Double.MAX_VALUE);
         
-        this.getChildren().addAll(new Label("Search something:"),textArea,this.bSelect,this.bPoint,this.bSegment,this.bLabel);
+        this.getChildren().addAll(new Label("Search something:"),textArea,this.bSelect,this.bLabel);
         OutilsFx.setSimpleBorder(this, Color.GRAY, 2);
         
     }
@@ -49,37 +43,33 @@ public class BarreOutilsGauche extends VBox{
         textArea.setMaxSize(200,40);
     }
     private void buildSelecButton(){
-        this.bSelect = new ToggleButton("select");
+        this.bSelect = new Button("entrer");
         
         bSelect.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("select Clicked.");
+                System.out.println("entrer Clicked.");
+                String commande = textArea.getText();
+                defCommande(commande);
+                
             }
         });
+    } 
+    private void defCommande(String commande){
+        if (commande.equalsIgnoreCase("rule1")) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("rule 1");
+            alert.setHeaderText(null);
+            alert.setContentText("Do not talk about");
+            alert.showAndWait();
+        }
+        if (commande.equalsIgnoreCase("rule2")) {
+             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("rule 2");
+            alert.setHeaderText(null);
+            alert.setContentText("Do NOT talk about");
+            alert.showAndWait();
+        }
     }
-    private void buildPointButton(){
-        this.bPoint = new ToggleButton("point");
-        
-        bPoint.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("bPoint Clicked.");
-            }
-        });
-    }
-    private void buildSegmentButton(){
-        this.bSegment = new ToggleButton("segment");
-        
-        bSegment.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("bSegment Clicked.");
-            }
-        });
-    }
-    
 }

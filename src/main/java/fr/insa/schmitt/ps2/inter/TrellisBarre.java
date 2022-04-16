@@ -102,7 +102,23 @@ public class TrellisBarre {
         buildUTButton();
         buildDefFormeButton();
         buildDefCouleurButton();
+        
+        //Esthetique
+        agrandir.setMaxWidth(Double.MAX_VALUE);
+        rotater.setMaxWidth(Double.MAX_VALUE);
+        creerPivot.setMaxWidth(Double.MAX_VALUE);
+        insererNoeud.setMaxWidth(Double.MAX_VALUE);
+        angle.setMaxWidth(Double.MAX_VALUE);
+        ajouterForce.setMaxWidth(Double.MAX_VALUE);
+        modifierForce.setMaxWidth(Double.MAX_VALUE);
+        agrandirBarre.setMaxWidth(Double.MAX_VALUE);
+        mesurerBarre.setMaxWidth(Double.MAX_VALUE);
+        uniformiserBarreTaille.setMaxWidth(Double.MAX_VALUE);
+        defForme.setMaxWidth(Double.MAX_VALUE);
+        defCouleur.setMaxWidth(Double.MAX_VALUE);
 
+        angle.setAlignment(Pos.CENTER);
+        uniformiserBarreTaille.setAlignment(Pos.CENTER);
          
         //Add all Things
         ssContainer1.getChildren().addAll(rotater,agrandir);

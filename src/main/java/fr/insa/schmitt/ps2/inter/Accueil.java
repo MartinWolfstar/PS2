@@ -14,6 +14,8 @@ import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.Tab;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
@@ -28,8 +30,8 @@ public class Accueil {
     
    private Tab tab;
    private ColorPicker couleur;
-   private Button play;
-   private Button stop;
+   private ToggleButton play;
+   private ToggleButton stop;
    private Button retour;
    private Button avance;
    private Button sauv;
@@ -78,6 +80,11 @@ public class Accueil {
         buildDeleteButton();
         buildDirectionMenuButton();
         
+        //Add to ToggleGroup
+        ToggleGroup toggle1 = new ToggleGroup();
+        this.play.setToggleGroup(toggle1);
+        this.stop.setToggleGroup(toggle1);
+        
         //Add Button
         container.getChildren().addAll(play,stop,retour,avance,sauv,select,delete,direction);
         
@@ -90,7 +97,7 @@ public class Accueil {
      */
     
     private void buildPlayButton(){
-        this.play = new BoutonIcon("icon/play.png",32,32);
+        /*this.play = new BoutonIcon("icon/play.png",32,32);
         this.play.setText("play");
         this.play.setContentDisplay(ContentDisplay.TOP);
         
@@ -100,12 +107,53 @@ public class Accueil {
             public void handle(ActionEvent event) {
                 System.out.println("play Clicked.");
             }
+        });*/
+        
+        this.play = new ToggleButton();
+        this.play.setText("play");
+        //Set alignment of button to text. This puts btn text below the image icon.
+        this.play.setContentDisplay(ContentDisplay.TOP);
+
+        //Retrieve and set image of clipboard. I will set image size to 24x24,
+        //preserve the ratio and enable smoothing in the Image constructor.
+        String imgPath = "icon/play.png";
+        Image clipboard = new Image(this.getClass().getResourceAsStream(imgPath),
+                32, 32, true, true);
+
+        //Create an ImageView for showing image.
+        ImageView imageView = new ImageView(clipboard);
+
+        //Set the gap b/n graphic and text. Assign the ImageView to the button.
+        this.play.setGraphicTextGap(5.0);
+        this.play.setGraphic(imageView);
+        
+        play.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("play Clicked.");
+            }
         });
+        
     }
     private void buildStopButton(){
-        this.stop = new BoutonIcon("icon/pause.png",32,32);
-        this.stop.setText("pause");
+        this.stop = new ToggleButton();
+        this.stop.setText("stop");
+        //Set alignment of button to text. This puts btn text below the image icon.
         this.stop.setContentDisplay(ContentDisplay.TOP);
+
+        //Retrieve and set image of clipboard. I will set image size to 24x24,
+        //preserve the ratio and enable smoothing in the Image constructor.
+        String imgPath = "icon/pause.png";
+        Image clipboard = new Image(this.getClass().getResourceAsStream(imgPath),
+                32, 32, true, true);
+
+        //Create an ImageView for showing image.
+        ImageView imageView = new ImageView(clipboard);
+
+        //Set the gap b/n graphic and text. Assign the ImageView to the button.
+        this.stop.setGraphicTextGap(5.0);
+        this.stop.setGraphic(imageView);
         
         stop.setOnAction(new EventHandler<ActionEvent>() {
 
