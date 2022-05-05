@@ -36,6 +36,7 @@ public class TrellisBarre {
     private Button agrandirBarre;
     private Button mesurerBarre;
     private Button uniformiserBarreTaille;
+    private Button ajouterBarres;
     private SplitMenuButton defForme;
     private ColorPicker defCouleur;
     
@@ -102,6 +103,7 @@ public class TrellisBarre {
         buildUTButton();
         buildDefFormeButton();
         buildDefCouleurButton();
+        buildAjouterBarresButton();
         
         //Esthetique
         agrandir.setMaxWidth(Double.MAX_VALUE);
@@ -116,6 +118,7 @@ public class TrellisBarre {
         uniformiserBarreTaille.setMaxWidth(Double.MAX_VALUE);
         defForme.setMaxWidth(Double.MAX_VALUE);
         defCouleur.setMaxWidth(Double.MAX_VALUE);
+        ajouterBarres.setMaxWidth(Double.MAX_VALUE);
 
         angle.setAlignment(Pos.CENTER);
         uniformiserBarreTaille.setAlignment(Pos.CENTER);
@@ -133,7 +136,7 @@ public class TrellisBarre {
         OutilsFx.setSimpleBorder(ssContainer5, Color.GRAY, 2);
         ssContainer6.getChildren().addAll(angle);
         OutilsFx.setSimpleBorder(ssContainer6, Color.GRAY, 2);
-        ssContainer7.getChildren().addAll(uniformiserBarreTaille);
+        ssContainer7.getChildren().addAll(uniformiserBarreTaille, ajouterBarres);
         OutilsFx.setSimpleBorder(ssContainer7, Color.GRAY, 2);
         
         
@@ -231,7 +234,7 @@ public class TrellisBarre {
 
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("agrandirBarre Clicked.");
+                System.out.println("agrandirBarres Clicked.");
             }
         });
     }
@@ -327,6 +330,17 @@ public class TrellisBarre {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("defCouleur Clicked.");
+            }
+        });
+    }
+    private void buildAjouterBarresButton(){
+        this.ajouterBarres = new Button("ajouter Barre");
+        
+        ajouterBarres.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("ajouterBarres Clicked.");
             }
         });
     }

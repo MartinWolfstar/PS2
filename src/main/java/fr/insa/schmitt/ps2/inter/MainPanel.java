@@ -15,16 +15,20 @@ public class MainPanel extends BorderPane {
     
     private BarreOutilshaut BarreOutilshaut;
     private BarreOutilsGauche BarreOutilsGauche;
-    private ZoneDessin dessin;
+    private DessinCanvas dessin;
     private MenuHaut menuBar; 
     private Ruban ruban;
+    //private Actionneur actionneur;
+    //private RectangleDessin zoneDessin;
     
     public MainPanel() {
         this.BarreOutilshaut = new BarreOutilshaut();
         this.BarreOutilsGauche = new BarreOutilsGauche();
-        this.dessin = new ZoneDessin();
+        this.dessin = new DessinCanvas();
         this.menuBar = new MenuHaut();
         this.ruban = new Ruban();
+        //this.actionneur = new Actionneur(this);
+
         
         //this.setTop(ruban.get());
         this.setTop(this.BarreOutilshaut);
@@ -32,5 +36,52 @@ public class MainPanel extends BorderPane {
         this.setCenter(this.dessin);
         //this.setTop(menuBar);
     }
-    
+
+    /**
+     * @return the BarreOutilshaut
+     */
+    public BarreOutilshaut getBarreOutilshaut() {
+        return BarreOutilshaut;
+    }
+
+    /**
+     * @return the BarreOutilsGauche
+     */
+    public BarreOutilsGauche getBarreOutilsGauche() {
+        return BarreOutilsGauche;
+    }
+
+    /**
+     * @return the dessin
+     */
+    /*public ZoneDessin getDessin() {
+        return dessin;
+    }*/
+
+    /**
+     * @return the menuBar
+     */
+    public MenuHaut getMenuBar() {
+        return menuBar;
+    }
+
+    /**
+     * @return the ruban
+     */
+    public Ruban getRuban() {
+        return ruban;
+    }
+/*
+    public Actionneur getActionneur() {
+        return actionneur;
+    }
+
+    public RectangleDessin getZoneDessin() {
+        return zoneDessin;
+    }
+
+    public void setZoneDessin(RectangleDessin zoneDessin) {
+        this.zoneDessin = zoneDessin;
+    }
+   */ 
 }

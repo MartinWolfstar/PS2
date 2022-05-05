@@ -10,7 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 /**
- * Ce fichier est inutile pour l'instant
+ * Ce fichier est inutile pour l'instant et le sera
  * @author schmi
  */
 public class Action {
