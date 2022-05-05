@@ -4,8 +4,9 @@
  */
 package fr.insa.schmitt.ps2.objet;
 
-import fr.insa.schmitt.ps2.*;
 import java.lang.Math ;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 /**
  *
@@ -26,82 +27,38 @@ public class Barres extends Trellis{
     public Noeud getNd() {
         return nd;
     }
-
-    /**
-     * @param nd the nd to set
-     */
     public void setNd(Noeud nd) {
         this.nd = nd;
         
     }
-
-    /**
-     * @return the na
-     */
     public Noeud getNa() {
         return na;
     }
-
-    /**
-     * @param na the na to set
-     */
     public void setNa(Noeud na) {
         this.na = na;
         
     }
-
-    /**
-     * @return the identificateur
-     */
     public int getIdentificateur() {
         return identificateur;
     }
-
-    /**
-     * @param identificateur the identificateur to set
-     */
-    public void setIdentificateur(int identificateur) {
+    void setIdentificateur(int identificateur) {
         this.identificateur = identificateur;
     }
-
-    /**
-     * @return the TC
-     */
     public int getTC() {
         return TC;
     }
-
-    /**
-     * @param TC the TC to set
-     */
     public void setTC(int TC) {
         this.TC = TC;
     }
-
-    /**
-     * @return the CM
-     */
     public int getCM() {
         return CM;
     }
-
-    /**
-     * @param CM the CM to set
-     */
     public void setCM(int CM) {
         this.CM = CM;
     }
-
-    /**
-     * @return the prix
-     */
     public int getPrix() {
         return prix;
     }
-
-    /**
-     * @param prix the prix to set
-     */
     public void setPrix(int prix) {
         this.prix = prix;
     }
@@ -129,6 +86,9 @@ public class Barres extends Trellis{
         this.na.getBarresDepart().add(this);
         this.na.getBarresArrivee().add(this);
         this.na.getBarresIncidente().add(this);
+    }
+    private Barres() {
+        this(null, null);
     }
     
     @Override
@@ -161,7 +121,10 @@ public class Barres extends Trellis{
         return angle;
     }
     
-    
+    public void dessine(GraphicsContext context) {
+        context.setStroke(Color.BLACK);
+        context.strokeLine(this.getNd().getPx(), this.getNd().getPy(), this.getNa().getPx(), this.getNa().getPy());
+    }
     
     
     

@@ -17,6 +17,7 @@ public class Trellis {
     private List<Barres> barres;
     private List<Noeud> noeud;
 
+
     /**
      * @return the barres
      */
@@ -51,7 +52,7 @@ public class Trellis {
         this.barres = new ArrayList<Barres>();
 
     }
-    
+
     @Override
     public String toString() {
         return "barres de ce Trellis :" + this.barres + "\n noeuds de ce trellis; " + this.noeud;
