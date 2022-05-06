@@ -155,112 +155,81 @@ public class TrellisBarre {
     private void buildRotButton(){
         this.rotater = new Button("tourner");
         
-        rotater.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("rot Clicked.");
-            }
-            
+        this.rotater.setOnAction((t) ->{
+            this.main.getActionneur().boutonRotater(t);
+            System.out.println("rotater Clicked.");
         });
     }
     private void buildAgrandirButton(){
         this.agrandir = new Button("agrandir");
         
-        agrandir.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("ag Clicked.");
-            }
+        this.agrandir.setOnAction((t) ->{
+            this.main.getActionneur().boutonAgrandir(t);
+            System.out.println("agrandir Clicked.");
         });
     }
     private void buildCPButton(){
         this.creerPivot = new Button("creer Pivot");
         
-        creerPivot.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("CP Clicked.");
-            }
+        this.creerPivot.setOnAction((t) ->{
+            this.main.getActionneur().boutonCreerPivot(t);
+            System.out.println("CP Clicked.");
         });
     }
     private void buildINButton(){
         this.insererNoeud = new Button("inserer Noeud");
         
-        insererNoeud.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("IN Clicked.");
-            }
+        this.insererNoeud.setOnAction((t) ->{
+            this.main.getActionneur().boutonInsererNoeud(t);
+            System.out.println("IN Clicked.");
         });
     }
     private void buildAngleButton(){
         this.angle = new Button("angle");
         
-        angle.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("angle Clicked.");
-            }
+        this.angle.setOnAction((t) ->{
+            this.main.getActionneur().boutonAngle(t);
+            System.out.println("angle Clicked.");
         });
     }
     private void buildAFButton(){
         this.ajouterForce = new Button("ajouter Force");
         
-        ajouterForce.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("ajouterForce Clicked.");
-            }
+        this.ajouterForce.setOnAction((t) ->{
+            this.main.getActionneur().boutonAjouterForce(t);
+            System.out.println("ajouterForce Clicked.");
         });
     }
     private void buildMFButton(){
         this.modifierForce = new Button("modifier Force");
         
-        modifierForce.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("modifierForce Clicked.");
-            }
+        this.modifierForce.setOnAction((t) ->{
+            this.main.getActionneur().boutonModifierForce(t);
+            System.out.println("modifierForce Clicked.");
         });
     }
     private void buildABButton(){
         this.agrandirBarre = new Button("agrandir Barre");
         
-        agrandirBarre.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("agrandirBarres Clicked.");
-            }
+        this.agrandirBarre.setOnAction((t) ->{
+            this.main.getActionneur().boutonAgrandirBarre(t);
+            System.out.println("agrandirBarre Clicked.");
         });
     }
     private void buildMBButton(){
         this.mesurerBarre = new Button("mesurer Barre");
         
-        mesurerBarre.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("mesurerBarre Clicked.");
-            }
+        this.mesurerBarre.setOnAction((t) ->{
+            this.main.getActionneur().boutonMesurerBarre(t);
+            System.out.println("mesurerBarre Clicked.");
         });
     }
     private void buildUTButton(){
         this.uniformiserBarreTaille = new Button("uniformiser taille");
         
-        uniformiserBarreTaille.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("uniformiserBarreTaille Clicked.");
-            }
+        this.uniformiserBarreTaille.setOnAction((t) ->{
+            this.main.getActionneur().boutonUniformiserBarreTaille(t);
+            System.out.println("uniformiserBarreTaille Clicked.");
         });
     }
     private void buildDefFormeButton(){

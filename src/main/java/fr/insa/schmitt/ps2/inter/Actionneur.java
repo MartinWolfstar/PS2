@@ -28,26 +28,28 @@ public class Actionneur {
     }
    
     public void changeEtat(int nouvelEtat){
+        
+        System.out.println(nouvelEtat);
         if (nouvelEtat == 100) {
-            System.out.println("état 100");
+            
         }
         if (nouvelEtat == 200) {
-            System.out.println("état 200");
+            
         }
         if (nouvelEtat == 300) {
-            System.out.println("état 300");
+            
         }
         if (nouvelEtat == 400) {
-            System.out.println("état 400");
+            
         }
         if (nouvelEtat == 500) {
-            System.out.println("état 500");
+            
         }
         if (nouvelEtat == 600) {
-            System.out.println("état 600");
+            
         }
         if (nouvelEtat == 700) {
-            System.out.println("état 700");
+            
         }
     }
 
@@ -59,26 +61,27 @@ public class Actionneur {
         this.vue.redrawAll();
     }
     
+    //bouton provenant d'acceuil:
     void boutonPlay(ActionEvent t){
         this.changeEtat(100);
     }
     void boutonStop(ActionEvent t){
-        this.changeEtat(200);
+        this.changeEtat(110);
     }
     void boutonRetour(ActionEvent t){
-        this.changeEtat(300);
+        this.changeEtat(120);
     }
     void boutonAvance(ActionEvent t){
-        this.changeEtat(400);
+        this.changeEtat(130);
     }
     void boutonSauv(ActionEvent t){
-        this.changeEtat(500);
+        this.changeEtat(140);
     }
     void boutonSelect(ActionEvent t){
-        this.changeEtat(600);
+        this.changeEtat(150);
     }
     void boutonDelete(ActionEvent t){
-        this.changeEtat(700);
+        this.changeEtat(160);
     }
     /*void boutonHaut(ActionEvent t){
         this.changeEtat(10);
@@ -93,5 +96,57 @@ public class Actionneur {
         this.changeEtat(10);
     }*/
     
+    //bouton provenant de ZC:
     
+    void boutonAjouterZC(ActionEvent t){
+        this.changeEtat(200);
+    }
+    void boutonModifierZC(ActionEvent t){
+        this.changeEtat(210);
+    }
+    
+    //bouton provenant de TrellisBarre:
+    
+    void boutonRotater(ActionEvent t){
+        this.changeEtat(300);
+    }
+    void boutonAgrandir(ActionEvent t){
+        this.changeEtat(310);
+    }
+    void boutonCreerPivot(ActionEvent t){
+        this.changeEtat(321);
+    }
+    void boutonInsererNoeud(ActionEvent t){
+        this.changeEtat(322);
+    }
+    void boutonAngle(ActionEvent t){
+        this.changeEtat(323);
+    }
+    void boutonAjouterForce(ActionEvent t){
+        this.changeEtat(330);
+    }
+    void boutonModifierForce(ActionEvent t){
+        this.changeEtat(331);
+    }
+    void boutonAgrandirBarre(ActionEvent t){
+        this.changeEtat(340);
+    }
+    void boutonMesurerBarre(ActionEvent t){
+        this.changeEtat(341);
+    }
+    void boutonUniformiserBarreTaille(ActionEvent t){
+        this.changeEtat(342);
+    }
+    
+    //bouton provenant de TerrainBarre:
+    
+    void boutonAjouterAppui(ActionEvent t){
+        this.changeEtat(400);
+    }
+    void boutonModifierAppui(ActionEvent t){
+        this.changeEtat(410);
+    }
+    void boutonDefAppui(ActionEvent t){
+        this.changeEtat(420);
+    }
 }

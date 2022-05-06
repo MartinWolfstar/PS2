@@ -60,12 +60,16 @@ public class TerrainBarre {
         this.ajouter.setText("ajouter");
         this.ajouter.setContentDisplay(ContentDisplay.TOP);
         
-        ajouter.setOnAction(new EventHandler<ActionEvent>() {
+        /*ajouter.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("ajouter Clicked.");
             }
+        });*/
+        this.ajouter.setOnAction((t) ->{
+            this.main.getActionneur().boutonAjouterAppui(t);
+            System.out.println("ajouter Clicked.");
         });
     }
     private void buildModifierButton(){
@@ -73,12 +77,16 @@ public class TerrainBarre {
         this.modifier.setText("modifier");
         this.modifier.setContentDisplay(ContentDisplay.TOP);
         
-        modifier.setOnAction(new EventHandler<ActionEvent>() {
+        /*modifier.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("modifier Clicked.");
             }
+        });*/
+        this.modifier.setOnAction((t) ->{
+            this.main.getActionneur().boutonModifierAppui(t);
+            System.out.println("modifier Clicked.");
         });
     }
     private void buildDefAppuiButton(){
@@ -86,12 +94,16 @@ public class TerrainBarre {
         this.defAppui.setText("définir appuis");
         this.defAppui.setContentDisplay(ContentDisplay.TOP);
         
-        defAppui.setOnAction(new EventHandler<ActionEvent>() {
+        /*defAppui.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("defAppui Clicked.");
             }
+        });*/
+        this.defAppui.setOnAction((t) ->{
+            this.main.getActionneur().boutonDefAppui(t);
+            System.out.println("defAppui Clicked.");
         });
     }
 }
