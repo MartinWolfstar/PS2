@@ -41,7 +41,7 @@ public class MainPanel extends BorderPane {
         this.setLeft(this.BarreOutilsGauche);
         this.setCenter(this.dessin);
         //this.setTop(menuBar);
-        this.actionneur.changeEtat(150);
+        this.actionneur.changeEtat(000);
     }
 
     public void redrawAll(){
@@ -93,6 +93,13 @@ public class MainPanel extends BorderPane {
      */
     public Groupe getModel() {
         return model;
+    }
+
+    /**
+     * @param model the model to set
+     */
+    public void setModel(Groupe model) {
+        this.model = model;
     }
     
     

@@ -4,6 +4,7 @@
  */
 package fr.insa.schmitt.ps2.inter;
 
+import fr.insa.schmitt.ps2.objet.Groupe;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
@@ -73,6 +74,14 @@ public class BarreOutilsGauche extends VBox{
             alert.setHeaderText(null);
             alert.setContentText("Do NOT talk about");
             alert.showAndWait();
+        }
+        if (commande.equalsIgnoreCase("model0")) {
+            main.setModel(Groupe.groupeTest0());
+            main.redrawAll();
+        }
+        if (commande.equalsIgnoreCase("model1")) {
+            main.setModel(Groupe.groupeTest1());
+            main.redrawAll();
         }
     }
 }

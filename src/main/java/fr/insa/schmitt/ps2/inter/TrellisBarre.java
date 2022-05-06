@@ -10,12 +10,9 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
-import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.Tab;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -304,6 +301,9 @@ public class TrellisBarre {
                 System.out.println("defCouleur Clicked.");
             }
         });
+        this.defCouleur.setOnAction((t) -> {
+            this.main.getActionneur().changeColor(this.defCouleur.getValue());
+        });
     }
     private void buildAjouterBarresButton(){
         this.ajouterBarres = new Button("ajouter Barre");
@@ -314,6 +314,10 @@ public class TrellisBarre {
             public void handle(ActionEvent event) {
                 System.out.println("ajouterBarres Clicked.");
             }
+        });
+        this.ajouterBarres.setOnAction((t) ->{
+            this.main.getActionneur().boutonAjouterBarres(t);
+            System.out.println("ajouterBarres Clicked.");
         });
     }
 }

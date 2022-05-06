@@ -4,13 +4,16 @@
  */
 package fr.insa.schmitt.ps2.inter;
 
+import fr.insa.schmitt.ps2.objet.Barres;
 import fr.insa.schmitt.ps2.objet.Groupe;
+import fr.insa.schmitt.ps2.objet.Noeud;
 import fr.insa.schmitt.ps2.objet.NoeudSimple;
 import fr.insa.schmitt.ps2.objet.Trellis;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.event.ActionEvent; 
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 
 /**
  *
@@ -21,6 +24,7 @@ public class Actionneur {
     private MainPanel main;
     private int etat;
     private List<Trellis> selection;
+    private double[] pos1 = new double[2];
     
     public Actionneur(MainPanel main) {
         this.main = main;
@@ -30,7 +34,8 @@ public class Actionneur {
     public void changeEtat(int nouvelEtat){
         
         etat = nouvelEtat;
-        System.out.println(nouvelEtat);
+        System.out.println(etat);
+        
         if (nouvelEtat == 100) {
             
         }
@@ -46,29 +51,64 @@ public class Actionneur {
         if (nouvelEtat == 500) {
             
         }
-        if (nouvelEtat == 600) {
-            
-        }
-        if (nouvelEtat == 700) {
-            
-        }
     }
 
     void clicDansZoneDessin(MouseEvent t) {
-        if (this.etat == 150){
+        if (this.etat == 322){
+            
+            //création Noeud
             double px = t.getX();
             double py =t.getY();
             Groupe model = this.main.getModel();
             model.add(new NoeudSimple(px,py));
-            this.main.redrawAll();  
+            this.main.redrawAll(); 
+            
         }else if (this.etat == 100){
+           
+            //play
             System.out.println(main.getModel());
-            this.changeEtat(150);
+            this.changeEtat(350);
+            
+        }else if (this.etat == 150){
+            // selection
+            Noeud pclic = new NoeudSimple(t.getX(),t.getY());
+            Trellis proche = this.main.getModel().plusProche(pclic, Double.MAX_VALUE);
+            if (proche != null) {
+                if (t.isShiftDown()) {
+                    this.getSelection().add(proche);
+                } else if (t.isControlDown()) {
+                    if (this.getSelection().contains(proche)) {
+                        this.getSelection().remove(proche);
+                    } else {
+                        this.getSelection().add(proche);
+                    }
+                } else {
+                    this.getSelection().clear();
+                    this.getSelection().add(proche);
+                }
+                this.activeBoutonsSuivantSelection();
+                this.main.redrawAll();
+            }
+                
+        }else if (this.etat == 343){
+            //creer segment
+            this.pos1[0] = t.getX();
+            this.pos1[1] = t.getY();
+            this.changeEtat(344);
+        }else if (this.etat == 344){
+            //creer segment.2
+            double px2 = t.getX();
+            double py2 = t.getY();
+            this.main.getModel().add(new Barres (new NoeudSimple(this.pos1[0],this.pos1[1]),new NoeudSimple(px2,py2)));
+            this.main.redrawAll();
+            this.changeEtat(343);
+            
         }else{
-            System.out.println("clic");
+            System.out.println("clic"); 
         }
         
     }
+
     
     //bouton provenant d'acceuil:
     void boutonPlay(ActionEvent t){
@@ -146,6 +186,10 @@ public class Actionneur {
     void boutonUniformiserBarreTaille(ActionEvent t){
         this.changeEtat(342);
     }
+    void boutonAjouterBarres(ActionEvent t){
+        this.changeEtat(343);
+        //état 344: ajouter barre 2
+    }
     
     //bouton provenant de TerrainBarre:
     
@@ -157,5 +201,25 @@ public class Actionneur {
     }
     void boutonDefAppui(ActionEvent t){
         this.changeEtat(420);
+    }
+    
+    private void activeBoutonsSuivantSelection(){
+        
+    }
+
+    /**
+     * @return the selection
+     */
+    public List<Trellis> getSelection() {
+        return selection;
+    }
+    
+    void changeColor(Color value){
+        if(this.etat == 150 && this.selection.size() > 0){
+            for(Trellis t : this.selection){
+                t.changeCouleur(value);
+            }
+            this.main.redrawAll();
+        }
     }
 }

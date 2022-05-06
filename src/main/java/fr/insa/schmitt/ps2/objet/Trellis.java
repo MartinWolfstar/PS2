@@ -8,6 +8,7 @@ import fr.insa.schmitt.ps2.*;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 /**
  *
@@ -17,6 +18,7 @@ public abstract class Trellis {
     
     private List<Barres> barres;
     private List<Noeud> noeud;
+    public static Color COULEUR_SELECTION = Color.RED;
     /**
      * null si aucun vide
      */
@@ -142,4 +144,7 @@ public abstract class Trellis {
     public abstract double distanceNoeud(Noeud p);
     
     public abstract void dessine(GraphicsContext context);
+    public abstract void dessineSelection(GraphicsContext context);
+    public abstract void changeCouleur(Color value);
+    
 }

@@ -8,6 +8,7 @@ import fr.insa.schmitt.ps2.Lire;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 /**
  *
@@ -76,7 +77,7 @@ public class Groupe extends Trellis{
         return res + ")";
     }
     
-    public static Groupe groupeTest(){
+    public static Groupe groupeTest0(){
         NoeudSimple p1 = new NoeudSimple(100, 300);
         NoeudSimple p2 = new NoeudSimple(100, 100);
         NoeudSimple p3 = new NoeudSimple(300, 300);
@@ -96,9 +97,13 @@ public class Groupe extends Trellis{
         res.add(triangle);
         return res;
     }
+    public static Groupe groupeTest1(){
+        Groupe res = new Groupe();
+        return res;
+    }
     
     public static void test1() {
-        System.out.println("goupe test: \n" + Groupe.groupeTest());
+        System.out.println("goupe test: \n" + Groupe.groupeTest0());
     }
     
     public static void testMenu() {
@@ -287,10 +292,45 @@ public class Groupe extends Trellis{
             return dist;
         }
     }
+    
+    public Trellis plusProche(Noeud p, double distMax) {
+        if (this.contient.isEmpty()) {
+            return null;
+        } else {
+            Trellis fmin = this.contient.get(0);
+            double min = fmin.distanceNoeud(p);
+            for (int i = 1; i < this.contient.size(); i++) {
+                Trellis fcur = this.contient.get(i);
+                double cur = fcur.distanceNoeud(p);
+                if (cur < min) {
+                    min = cur;
+                    fmin = fcur;
+                }
+            }
+            if (min <= distMax) {
+                return fmin;
+            } else {
+                return null;
+            }
+        }
+    }
+    
     @Override
     public void dessine(GraphicsContext context) {
         for (Trellis t : this.contient) {
             t.dessine(context);
+        }
+    }
+    @Override
+    public void dessineSelection(GraphicsContext context) {
+        for (Trellis t : this.contient) {
+            t.dessineSelection(context);
+        }
+    }
+    @Override
+    public void changeCouleur(Color value) {
+        for (Trellis t : this.contient) {
+            t.changeCouleur(value);
         }
     }
 

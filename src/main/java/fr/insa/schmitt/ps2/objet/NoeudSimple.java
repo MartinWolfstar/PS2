@@ -5,6 +5,7 @@
 package fr.insa.schmitt.ps2.objet;
 
 import fr.insa.schmitt.ps2.*;
+import javafx.scene.canvas.GraphicsContext;
 
 /**
  *
@@ -55,5 +56,11 @@ public class NoeudSimple extends Noeud{
         double dy = this.getPy() - p.getPy();
         return Math.sqrt(dx*dx+dy*dy);
 
+    }
+    
+    @Override
+    public void dessineSelection(GraphicsContext context) {
+        context.setFill(Trellis.COULEUR_SELECTION);
+        context.fillOval(this.getPx()-RAYON_IN_DRAW, this.getPy()-RAYON_IN_DRAW, 2*RAYON_IN_DRAW, 2*RAYON_IN_DRAW);
     }
 }

@@ -4,7 +4,6 @@
  */
 package fr.insa.schmitt.ps2.objet;
 
-import fr.insa.schmitt.ps2.Lire;
 import java.lang.Math ;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -169,6 +168,11 @@ public class Barres extends Forme{
                     y1 + up * (y2 - y1));
             return p4.distanceNoeud(p);
         }
+    }
+    @Override
+    public void dessineSelection(GraphicsContext context) {
+        context.setStroke(Trellis.COULEUR_SELECTION);
+        context.strokeLine(this.getNd().getPx(), this.getNd().getPy(), this.getNa().getPx(), this.getNa().getPy());
     }
     
 }

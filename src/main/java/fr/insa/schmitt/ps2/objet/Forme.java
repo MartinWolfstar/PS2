@@ -18,7 +18,8 @@ public abstract class Forme extends Trellis{
         this.couleur = couleur;
     }
     public Forme() {
-        this.couleur = Color.BLACK;
+        this.couleur = Color.TEAL;
+        //turquoise,tan,mint,mauve
     }
 
     public Color getCouleur() {
@@ -27,5 +28,10 @@ public abstract class Forme extends Trellis{
 
     public void setCouleur(Color couleur) {
         this.couleur = couleur;
+    }
+    
+    @Override
+    public void changeCouleur(Color value) {
+        this.setCouleur(value);
     }
 }
