@@ -4,6 +4,7 @@
  */
 package fr.insa.schmitt.ps2.objet;
 
+import fr.insa.schmitt.ps2.Lire;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
@@ -13,7 +14,7 @@ import javafx.scene.paint.Color;
  *
  * @author schmi
  */
-public abstract class Noeud extends Trellis{ 
+public abstract class Noeud extends Forme{ 
     
     private int identificateur;
     private double px;
@@ -31,7 +32,7 @@ public abstract class Noeud extends Trellis{
     public int getIdentificateur() {
         return identificateur;
     }
- void setIdentificateur(int identificateur) {
+    public void setIdentificateur(int identificateur) {
         this.identificateur = identificateur;
     }
     public double getPx() {
@@ -75,8 +76,9 @@ public abstract class Noeud extends Trellis{
         this.barresIncidente = barresIncidente;
     }
     
-    public Noeud (double vx, double vy, int id, Vecteur2D v2d){
+    public Noeud (double vx, double vy, int id, Vecteur2D v2d, Color couleur){
         
+        super(couleur);
         this.px = px;
         this.py = py;
         this.identificateur = id;
@@ -106,7 +108,7 @@ public abstract class Noeud extends Trellis{
     }
     
     public void dessine(GraphicsContext context) {
-        context.setFill(Color.BLACK);
+        context.setFill(this.getCouleur());
         context.fillOval(this.px-RAYON_IN_DRAW, this.py-RAYON_IN_DRAW, 2*RAYON_IN_DRAW, 2*RAYON_IN_DRAW);
     }
 

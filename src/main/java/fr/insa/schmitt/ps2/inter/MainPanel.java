@@ -4,6 +4,7 @@
  */
 package fr.insa.schmitt.ps2.inter;
 
+import fr.insa.schmitt.ps2.objet.Groupe;
 import javafx.scene.layout.BorderPane;
 
 /**
@@ -18,16 +19,21 @@ public class MainPanel extends BorderPane {
     private DessinCanvas dessin;
     private MenuHaut menuBar; 
     private Ruban ruban;
-    //private Actionneur actionneur;
-    //private RectangleDessin zoneDessin;
+    
+    private Groupe model;
+    private Actionneur actionneur;
     
     public MainPanel() {
+        this(new Groupe());
+    }
+    public MainPanel(Groupe model) {
+        this.model = model;
         this.BarreOutilshaut = new BarreOutilshaut();
         this.BarreOutilsGauche = new BarreOutilsGauche();
-        this.dessin = new DessinCanvas();
+        this.dessin = new DessinCanvas(this);
         this.menuBar = new MenuHaut();
         this.ruban = new Ruban();
-        //this.actionneur = new Actionneur(this);
+        this.actionneur = new Actionneur(this);
 
         
         //this.setTop(ruban.get());
@@ -35,8 +41,14 @@ public class MainPanel extends BorderPane {
         this.setLeft(this.BarreOutilsGauche);
         this.setCenter(this.dessin);
         //this.setTop(menuBar);
+        this.actionneur.changeEtat(100);
     }
 
+    public void redrawAll(){
+        this.dessin.redrawAll();
+    }
+    
+    
     /**
      * @return the BarreOutilshaut
      */
@@ -71,17 +83,17 @@ public class MainPanel extends BorderPane {
     public Ruban getRuban() {
         return ruban;
     }
-/*
+
     public Actionneur getActionneur() {
         return actionneur;
     }
 
-    public RectangleDessin getZoneDessin() {
-        return zoneDessin;
+    /**
+     * @return the model
+     */
+    public Groupe getModel() {
+        return model;
     }
-
-    public void setZoneDessin(RectangleDessin zoneDessin) {
-        this.zoneDessin = zoneDessin;
-    }
-   */ 
+    
+    
 }

@@ -4,10 +4,10 @@
  */
 package fr.insa.schmitt.ps2.inter;
 
+import fr.insa.schmitt.ps2.objet.Groupe;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 
 /**
  *
@@ -15,9 +15,11 @@ import javafx.scene.paint.Color;
  */
 public class DessinCanvas extends Pane{
     
+    private MainPanel main;
     private Canvas realCanvas;
     
-    public DessinCanvas(){
+    public DessinCanvas(MainPanel main){
+        this.main = main;
         this.realCanvas = new Canvas(this.getWidth(), this.getHeight());
         this.getChildren().add(this.realCanvas);
         //System.out.println("w = " + this.getWidth() + "h = " + this.getHeight());
@@ -31,12 +33,20 @@ public class DessinCanvas extends Pane{
             //System.out.println("w = " + this.realCanvas.getWidth() + "h = " + this.realCanvas.getHeight());
             this.redrawAll();
         });
+        this.realCanvas.setOnMouseClicked(t ->{
+            Actionneur actionneur = this.main.getActionneur();
+            actionneur.clicDansZoneDessin(t);
+        });
+        
         this.redrawAll();
     }
     
     public void redrawAll(){
         GraphicsContext context = this.realCanvas.getGraphicsContext2D();
-        context.setFill(Color.LIGHTGRAY);
-        context.fillRect(0,0, this.realCanvas.getWidth(), this.realCanvas.getHeight());        
+        //context.setFill(Color.LIGHTGRAY);
+        //context.fillRect(0,0, this.realCanvas.getWidth(), this.realCanvas.getHeight());        
+        Groupe model = this.main.getModel();
+        model.dessine(context);
     }
+    
 }

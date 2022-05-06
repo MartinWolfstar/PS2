@@ -4,6 +4,7 @@
  */
 package fr.insa.schmitt.ps2.objet;
 
+import fr.insa.schmitt.ps2.Lire;
 import java.lang.Math ;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -12,7 +13,7 @@ import javafx.scene.paint.Color;
  *
  * @author schmi
  */
-public class Barres extends Trellis{
+public class Barres extends Forme{
     
     private Noeud nd;
     private Noeud na;
@@ -75,8 +76,9 @@ public class Barres extends Trellis{
         this.na.getBarresArrivee().add(this);
         this.na.getBarresIncidente().add(this);
     }
-    public Barres (Noeud ndepart, Noeud narrive, int id, int cout, int tractionMax, int compressionMax){
+    public Barres (Noeud ndepart, Noeud narrive, int id, int cout, int tractionMax, int compressionMax, Color couleur){
         
+        super(couleur);
         this.CM = compressionMax;
         this.TC = tractionMax;
         this.identificateur = id ;
@@ -122,10 +124,51 @@ public class Barres extends Trellis{
     }
     
     public void dessine(GraphicsContext context) {
-        context.setStroke(Color.BLACK);
+        context.setStroke(this.getCouleur());
         context.strokeLine(this.getNd().getPx(), this.getNd().getPy(), this.getNa().getPx(), this.getNa().getPy());
     }
     
-    
+    public static Barres demandeBarres() {
+        System.out.println("point debut :");
+        NoeudSimple deb = NoeudSimple.demandeNoeud();
+        System.out.println("point fin :");
+        NoeudSimple fin = NoeudSimple.demandeNoeud();
+        return new Barres(deb,fin);
+        
+    }
+
+    @Override
+    public double maxX() {
+        return Math.max(this.getNd().getPx(), this.getNa().getPx());
+    }
+    public double minX() {
+        return Math.min(this.getNd().getPx(), this.getNa().getPx());
+    }
+    public double maxY() {
+        return Math.max(this.getNd().getPy(), this.getNa().getPy());
+    }
+    public double minY() {
+        return Math.min(this.getNd().getPy(), this.getNa().getPy());
+    }
+    @Override
+    public double distanceNoeud(Noeud p) {
+        double x1 = this.nd.getPx();
+        double y1 = this.nd.getPy();
+        double x2 = this.na.getPx();
+        double y2 = this.na.getPy();
+        double x3 = p.getPx();
+        double y3 = p.getPy();
+        double up = ((x3 - x1) * (x2 - x1) + (y3 - y1) * (y2 - y1))
+                / (Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+        if (up < 0) {
+            return this.nd.distanceNoeud(p);
+        } else if (up > 1) {
+            return this.na.distanceNoeud(p);
+        } else {
+            Noeud p4 = new NoeudSimple(x1 + up * (x2 - x1),
+                    y1 + up * (y2 - y1));
+            return p4.distanceNoeud(p);
+        }
+    }
     
 }

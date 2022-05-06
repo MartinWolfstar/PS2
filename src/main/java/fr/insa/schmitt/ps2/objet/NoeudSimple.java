@@ -23,5 +23,37 @@ public class NoeudSimple extends Noeud{
     public String toString() {
         return "(" + this.getPx() + "," + this.getPy() + ")" + " id:" + getIdentificateur() + " force:" + getForce() + " inconnu :" + nbrInconnu;
     }
+    public static NoeudSimple demandeNoeud() {
+        System.out.println("abscisse :");
+        double px = Lire.d();
+        System.out.println("ordonné :");
+        double py = Lire.d();
+        return new NoeudSimple(px,py);
+        
+    }
+
+    @Override
+    public double maxX() {
+        return this.getPx();
+    }
+    @Override
+    public double maxY() {
+        return this.getPy();
+    }
+    @Override
+    public double minX() {
+        return this.getPx();
+    }
+    @Override
+    public double minY() {
+        return this.getPy();
+    }
     
+    @Override
+    public double distanceNoeud(Noeud p) {
+        double dx = this.getPx() - p.getPx();
+        double dy = this.getPy() - p.getPy();
+        return Math.sqrt(dx*dx+dy*dy);
+
+    }
 }

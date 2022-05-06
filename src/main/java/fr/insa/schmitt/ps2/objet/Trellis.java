@@ -7,15 +7,20 @@ package fr.insa.schmitt.ps2.objet;
 import fr.insa.schmitt.ps2.*;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.canvas.GraphicsContext;
 
 /**
  *
  * @author schmi
  */
-public class Trellis {
+public abstract class Trellis {
     
     private List<Barres> barres;
     private List<Noeud> noeud;
+    /**
+     * null si aucun vide
+     */
+    private Groupe groupe;
 
 
     /**
@@ -114,4 +119,27 @@ public class Trellis {
         b.setIdentificateur(idnew);
         barres.add(b);
     }
+
+    /**
+     * @return the groupe
+     */
+    public Groupe getGroupe() {
+        return groupe;
+    }
+
+    /**
+     * @param groupe the groupe to set
+     * il est pas en public!
+     */
+    void setGroupe(Groupe groupe) {
+        this.groupe = groupe;
+    }
+    
+    public abstract double maxX();
+    public abstract double minX();
+    public abstract double maxY();
+    public abstract double minY();
+    public abstract double distanceNoeud(Noeud p);
+    
+    public abstract void dessine(GraphicsContext context);
 }

@@ -4,10 +4,9 @@
  */
 package fr.insa.schmitt.ps2.inter;
 
+import fr.insa.schmitt.ps2.objet.Groupe;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 /**
@@ -18,7 +17,7 @@ public class MainFx extends Application{
     @Override
     public void start (Stage fen){
         
-        MainPanel main = new MainPanel();
+        MainPanel main = new MainPanel(Groupe.groupeTest());
         
         Scene sc = new Scene(main, 1000, 700);
         fen.setScene(sc);
