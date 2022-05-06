@@ -40,11 +40,13 @@ public class TrellisBarre {
     private SplitMenuButton defForme;
     private ColorPicker defCouleur;
     
-
+    private MainPanel main;
+    
     /**
      * Default Constructor.
      */
-    public TrellisBarre() {
+    public TrellisBarre(MainPanel main) {
+        this.main = main;
         tab = new Tab("Trellis");
         buildTab();
     }
@@ -159,6 +161,7 @@ public class TrellisBarre {
             public void handle(ActionEvent event) {
                 System.out.println("rot Clicked.");
             }
+            
         });
     }
     private void buildAgrandirButton(){

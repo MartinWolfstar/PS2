@@ -25,7 +25,10 @@ public class BarreOutilsGauche extends VBox{
     private Label bLabel;
     private TextArea textArea;
     
-    public BarreOutilsGauche() {
+    private MainPanel main;
+    
+    public BarreOutilsGauche(MainPanel main) {
+        this.main = main;
 
         buildTextArea();
         buildSelecButton();

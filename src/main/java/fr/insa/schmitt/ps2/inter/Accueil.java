@@ -18,9 +18,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 /**
  *
@@ -39,11 +37,14 @@ public class Accueil {
    private Action action;
    private Button delete;
    private SplitMenuButton direction;
+   
+   private MainPanel main;
 
     /**
      * Default Constructor.
      */
-    public Accueil() {
+    public Accueil(MainPanel main) {
+        this.main = main;
         tab = new Tab("accueil");
         buildTab();
     }
@@ -97,83 +98,74 @@ public class Accueil {
      */
     
     private void buildPlayButton(){
-        /*this.play = new BoutonIcon("icon/play.png",32,32);
-        this.play.setText("play");
-        this.play.setContentDisplay(ContentDisplay.TOP);
-        
-        play.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("play Clicked.");
-            }
-        });*/
         
         this.play = new ToggleButton();
         this.play.setText("play");
-        //Set alignment of button to text. This puts btn text below the image icon.
         this.play.setContentDisplay(ContentDisplay.TOP);
 
-        //Retrieve and set image of clipboard. I will set image size to 24x24,
-        //preserve the ratio and enable smoothing in the Image constructor.
         String imgPath = "icon/play.png";
         Image clipboard = new Image(this.getClass().getResourceAsStream(imgPath),
                 32, 32, true, true);
 
-        //Create an ImageView for showing image.
         ImageView imageView = new ImageView(clipboard);
 
-        //Set the gap b/n graphic and text. Assign the ImageView to the button.
         this.play.setGraphicTextGap(5.0);
         this.play.setGraphic(imageView);
         
-        play.setOnAction(new EventHandler<ActionEvent>() {
+        /*play.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("play Clicked.");
             }
+        });*/ 
+        
+        this.play.setOnAction((t) ->{
+            this.main.getActionneur().boutonPlay(t);
+            System.out.println("play Clicked.");
         });
         
     }
     private void buildStopButton(){
         this.stop = new ToggleButton();
         this.stop.setText("stop");
-        //Set alignment of button to text. This puts btn text below the image icon.
         this.stop.setContentDisplay(ContentDisplay.TOP);
-
-        //Retrieve and set image of clipboard. I will set image size to 24x24,
-        //preserve the ratio and enable smoothing in the Image constructor.
         String imgPath = "icon/pause.png";
         Image clipboard = new Image(this.getClass().getResourceAsStream(imgPath),
                 32, 32, true, true);
-
-        //Create an ImageView for showing image.
         ImageView imageView = new ImageView(clipboard);
-
-        //Set the gap b/n graphic and text. Assign the ImageView to the button.
         this.stop.setGraphicTextGap(5.0);
         this.stop.setGraphic(imageView);
         
-        stop.setOnAction(new EventHandler<ActionEvent>() {
+        /*stop.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("stop Clicked.");
             }
+        });*/
+        
+        this.stop.setOnAction((t) ->{
+            this.main.getActionneur().boutonStop(t);
+            System.out.println("stop Clicked.");
         });
+        
     }
     private void buildRetourButton(){
         this.retour = new BoutonIcon("icon/retour.png",32,32);
         this.retour.setText("retour");
         this.retour.setContentDisplay(ContentDisplay.TOP);
         
-        retour.setOnAction(new EventHandler<ActionEvent>() {
+        /*retour.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("retour Clicked.");
             }
+        });*/
+        this.retour.setOnAction((t) ->{
+            this.main.getActionneur().boutonRetour(t);
+            System.out.println("retour Clicked.");
         });
     }
     private void buildAvanceButton(){
@@ -181,25 +173,34 @@ public class Accueil {
         this.avance.setText("suivant");
         this.avance.setContentDisplay(ContentDisplay.TOP);
         
-        avance.setOnAction(new EventHandler<ActionEvent>() {
+        /*avance.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("avance Clicked.");
             }
+        });*/
+        this.avance.setOnAction((t) ->{
+            this.main.getActionneur().boutonAvance(t);
+            System.out.println("avance Clicked.");
         });
+        
     }
     private void buildSauvButton(){
         this.sauv = new BoutonIcon("icon/sauv.png",32,32);
         this.sauv.setText("sauvgarder");
         this.sauv.setContentDisplay(ContentDisplay.TOP);
         
-        sauv.setOnAction(new EventHandler<ActionEvent>() {
+        /*sauv.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("sauv Clicked.");
             }
+        });*/
+        this.sauv.setOnAction((t) ->{
+            this.main.getActionneur().boutonSauv(t);
+            System.out.println("sauv Clicked.");
         });
     }
     private void buildSelecButton(){
@@ -207,12 +208,16 @@ public class Accueil {
         this.select.setText("selectioner");
         this.select.setContentDisplay(ContentDisplay.TOP);
         
-        select.setOnAction(new EventHandler<ActionEvent>() {
+        /*select.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("select Clicked.");
             }
+        });*/
+        this.select.setOnAction((t) ->{
+            this.main.getActionneur().boutonSelect(t);
+            System.out.println("select Clicked.");
         });
     }
     private void buildDeleteButton(){
@@ -220,12 +225,16 @@ public class Accueil {
         this.delete.setText("supprimer");
         this.delete.setContentDisplay(ContentDisplay.TOP);
         
-        delete.setOnAction(new EventHandler<ActionEvent>() {
+        /*delete.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("delete Clicked.");
             }
+        });*/
+        this.delete.setOnAction((t) ->{
+            this.main.getActionneur().boutonDelete(t);
+            System.out.println("delete Clicked.");
         });
     }
     
@@ -262,6 +271,10 @@ public class Accueil {
             }
 
         });
+        /*this.direction.haut.setOnAction((t) ->{
+            this.main.getActionneur().boutonHaut(t);
+            System.out.println("haut Clicked.");
+        });*/
 
         //bas Menu Item
         MenuItem bas = new MenuItem("bas");
@@ -273,6 +286,10 @@ public class Accueil {
             }
 
         });
+        /*this.play.setOnAction((t) ->{
+            this.main.getActionneur().boutonBas(t);
+            System.out.println("bas Clicked.");
+        });*/
 
         //droite Menu Item
         MenuItem droite = new MenuItem("droite");
@@ -284,6 +301,10 @@ public class Accueil {
             }
 
         });
+        /*this.play.setOnAction((t) ->{
+            this.main.getActionneur().boutonDroite(t);
+            System.out.println("droite Clicked.");
+        });*/
         
         //gauche Menu Item
         MenuItem gauche = new MenuItem("gauche");
@@ -295,6 +316,10 @@ public class Accueil {
             }
 
         });
+        /*this.play.setOnAction((t) ->{
+            this.main.getActionneur().boutonGauche(t);
+            System.out.println("gauche Clicked.");
+        });*/
 
         //Add all MenuItems to the MenuSplitButton's menu options.
         this.direction.getItems().addAll(haut,bas,droite,gauche);

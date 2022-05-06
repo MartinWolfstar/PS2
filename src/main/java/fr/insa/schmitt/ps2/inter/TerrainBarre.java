@@ -21,8 +21,11 @@ public class TerrainBarre {
     private Button ajouter;
     private Button modifier;
     private Button defAppui;
+    
+       private MainPanel main;
 
-    public TerrainBarre() {
+    public TerrainBarre(MainPanel main) {
+        this.main = main;
         tab = new Tab("Terrain");
         buildTab();
     }

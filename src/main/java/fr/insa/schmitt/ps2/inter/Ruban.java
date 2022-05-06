@@ -13,9 +13,11 @@ import javafx.scene.control.TabPane;
 public class Ruban extends TabPane{
     
     private TabPane ruban;
+    private MainPanel main;
 
-    public Ruban() {
+    public Ruban(MainPanel main) {
 
+        this.main = main;
         ruban = new TabPane();
         buildTabs();
     }
@@ -30,10 +32,10 @@ public class Ruban extends TabPane{
 
     private void buildTabs() {
 
-        Accueil accueil = new Accueil();
-        ZoneConstBarre zoneConstBarre = new ZoneConstBarre();
-        TrellisBarre trellis = new TrellisBarre();
-        TerrainBarre terrain = new TerrainBarre();
+        Accueil accueil = new Accueil(main);
+        ZoneConstBarre zoneConstBarre = new ZoneConstBarre(main);
+        TrellisBarre trellis = new TrellisBarre(main);
+        TerrainBarre terrain = new TerrainBarre(main);
 
         ruban.getTabs().addAll(accueil.get(), zoneConstBarre.get(), trellis.get(), terrain.get());
         //ruban.getTabs().addAll(accueil.get());

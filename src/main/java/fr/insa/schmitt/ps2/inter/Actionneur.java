@@ -9,6 +9,7 @@ import fr.insa.schmitt.ps2.objet.NoeudSimple;
 import fr.insa.schmitt.ps2.objet.Trellis;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -28,19 +29,25 @@ public class Actionneur {
    
     public void changeEtat(int nouvelEtat){
         if (nouvelEtat == 100) {
-            
+            System.out.println("état 100");
         }
         if (nouvelEtat == 200) {
-            
+            System.out.println("état 200");
         }
         if (nouvelEtat == 300) {
-            
+            System.out.println("état 300");
         }
         if (nouvelEtat == 400) {
-            
+            System.out.println("état 400");
         }
         if (nouvelEtat == 500) {
-            
+            System.out.println("état 500");
+        }
+        if (nouvelEtat == 600) {
+            System.out.println("état 600");
+        }
+        if (nouvelEtat == 700) {
+            System.out.println("état 700");
         }
     }
 
@@ -51,5 +58,40 @@ public class Actionneur {
         model.add(new NoeudSimple(px,py));
         this.vue.redrawAll();
     }
+    
+    void boutonPlay(ActionEvent t){
+        this.changeEtat(100);
+    }
+    void boutonStop(ActionEvent t){
+        this.changeEtat(200);
+    }
+    void boutonRetour(ActionEvent t){
+        this.changeEtat(300);
+    }
+    void boutonAvance(ActionEvent t){
+        this.changeEtat(400);
+    }
+    void boutonSauv(ActionEvent t){
+        this.changeEtat(500);
+    }
+    void boutonSelect(ActionEvent t){
+        this.changeEtat(600);
+    }
+    void boutonDelete(ActionEvent t){
+        this.changeEtat(700);
+    }
+    /*void boutonHaut(ActionEvent t){
+        this.changeEtat(10);
+    }
+    void boutonBas(ActionEvent t){
+        this.changeEtat(10);
+    }
+    void boutonDroite(ActionEvent t){
+        this.changeEtat(10);
+    }
+    void boutonGauche(ActionEvent t){
+        this.changeEtat(10);
+    }*/
+    
     
 }

@@ -21,12 +21,15 @@ public class BarreOutilshaut extends VBox{
     private MenuHaut menuBar; 
     private Ruban ruban;
     
-    public BarreOutilshaut() {
+    private MainPanel main;
+    
+    public BarreOutilshaut(MainPanel main) {
+        this.main = main;
         /*this.couleur = new ColorPicker(Color.BLACK);
         this.zoomIn = new Button("Zoom *2");
         this.zoomOut = new Button("Zoom /2");*/
         this.menuBar = new MenuHaut();
-        this.ruban = new Ruban();
+        this.ruban = new Ruban(main);
          
         this.getChildren().addAll(menuBar,ruban.get());
         //OutilsFx.setSimpleBorder(this, Color.BLACK, 2);

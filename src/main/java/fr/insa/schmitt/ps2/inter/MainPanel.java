@@ -28,11 +28,11 @@ public class MainPanel extends BorderPane {
     }
     public MainPanel(Groupe model) {
         this.model = model;
-        this.BarreOutilshaut = new BarreOutilshaut();
-        this.BarreOutilsGauche = new BarreOutilsGauche();
+        this.BarreOutilshaut = new BarreOutilshaut(this);
+        this.BarreOutilsGauche = new BarreOutilsGauche(this);
         this.dessin = new DessinCanvas(this);
         this.menuBar = new MenuHaut();
-        this.ruban = new Ruban();
+        this.ruban = new Ruban(this);
         this.actionneur = new Actionneur(this);
 
         

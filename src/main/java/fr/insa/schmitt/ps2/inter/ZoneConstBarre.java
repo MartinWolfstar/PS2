@@ -20,8 +20,11 @@ public class ZoneConstBarre {
     private Tab tab;
     private Button ajouter;
     private Button modifier;
+    
+       private MainPanel main;
 
-    public ZoneConstBarre() {
+    public ZoneConstBarre(MainPanel main) {
+        this.main = main;
         tab = new Tab("Zone Constructible");
         buildTab();
     }
