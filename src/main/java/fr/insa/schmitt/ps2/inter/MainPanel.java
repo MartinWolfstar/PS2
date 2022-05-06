@@ -41,7 +41,7 @@ public class MainPanel extends BorderPane {
         this.setLeft(this.BarreOutilsGauche);
         this.setCenter(this.dessin);
         //this.setTop(menuBar);
-        this.actionneur.changeEtat(100);
+        this.actionneur.changeEtat(150);
     }
 
     public void redrawAll(){

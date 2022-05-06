@@ -9,7 +9,7 @@ import fr.insa.schmitt.ps2.objet.NoeudSimple;
 import fr.insa.schmitt.ps2.objet.Trellis;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.event.ActionEvent;
+import javafx.event.ActionEvent; 
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -18,17 +18,18 @@ import javafx.scene.input.MouseEvent;
  */
 public class Actionneur {
     
-    private MainPanel vue;
+    private MainPanel main;
     private int etat;
     private List<Trellis> selection;
     
-    public Actionneur(MainPanel vue) {
-        this.vue = vue;
+    public Actionneur(MainPanel main) {
+        this.main = main;
         this.selection = new ArrayList<>();
     }
    
     public void changeEtat(int nouvelEtat){
         
+        etat = nouvelEtat;
         System.out.println(nouvelEtat);
         if (nouvelEtat == 100) {
             
@@ -54,11 +55,19 @@ public class Actionneur {
     }
 
     void clicDansZoneDessin(MouseEvent t) {
-        double px = t.getX();
-        double py =t.getY();
-        Groupe model = this.vue.getModel();
-        model.add(new NoeudSimple(px,py));
-        this.vue.redrawAll();
+        if (this.etat == 150){
+            double px = t.getX();
+            double py =t.getY();
+            Groupe model = this.main.getModel();
+            model.add(new NoeudSimple(px,py));
+            this.main.redrawAll();  
+        }else if (this.etat == 100){
+            System.out.println(main.getModel());
+            this.changeEtat(150);
+        }else{
+            System.out.println("clic");
+        }
+        
     }
     
     //bouton provenant d'acceuil:
