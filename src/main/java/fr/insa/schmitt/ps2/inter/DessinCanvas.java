@@ -50,7 +50,7 @@ public class DessinCanvas extends Pane{
         Groupe model = this.main.getModel();
         model.dessine(context);
         //on dessine autrement les objets selectionés:
-        //CA FAIT PLANTER ET JSP POURQUOI!!! donc pour l'instant les objets selectionné ne changent pas de couleur.
+        //CA FAIT PLANTER ET JSP POURQUOI!!! donc pour l'instant les objets selectionnés ne changent pas de couleur.
         /*List<Trellis> select = this.main.getActionneur().getSelection();
         if (! select.isEmpty()){
             for (Trellis t: select){
