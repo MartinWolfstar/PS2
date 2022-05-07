@@ -84,4 +84,11 @@ public class BarreOutilsGauche extends VBox{
             main.redrawAll();
         }
     }
+
+    /**
+     * @param bLabel the bLabel to set
+     */
+    public void setbLabel(Label bLabel) {
+        this.bLabel = bLabel;
+    }
 }

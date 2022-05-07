@@ -4,6 +4,8 @@
  */
 package fr.insa.schmitt.ps2.objet;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.lang.Math ;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -65,6 +67,19 @@ public class Barres extends Forme{
     
     public Barres (Noeud ndepart, Noeud narrive){
         
+        this.CM = 0;
+        this.TC = 0;
+        this.identificateur = -1;
+        this.prix = 0;
+        this.na = narrive;
+        this.nd = ndepart;
+        this.na.getBarresDepart().add(this);
+        this.na.getBarresArrivee().add(this);
+        this.na.getBarresIncidente().add(this);
+    }
+    public Barres (Noeud ndepart, Noeud narrive, Color couleur){
+        
+        super(couleur);
         this.CM = 0;
         this.TC = 0;
         this.identificateur = -1;
@@ -175,4 +190,16 @@ public class Barres extends Forme{
         context.strokeLine(this.getNd().getPx(), this.getNd().getPy(), this.getNa().getPx(), this.getNa().getPy());
     }
     
-}
+    @Override
+    public void save(Writer w, Numeroteur<Trellis> num) throws IOException {
+        if (!num.objExiste(this)) {
+            int id = num.add(this);
+            this.nd.save(w, num);
+            this.na.save(w, num);
+            w.append("Segment;" + id + ";" +
+                    num.getIndex(this.nd) + ";" + num.getIndex(this.na) +
+                    ";" + Forme.saveColor(this.getCouleur())+"\n");
+        }
+    }
+    
+} 

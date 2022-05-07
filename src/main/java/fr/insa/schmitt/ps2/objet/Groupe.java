@@ -5,6 +5,8 @@
 package fr.insa.schmitt.ps2.objet;
 
 import fr.insa.schmitt.ps2.Lire;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
@@ -334,5 +336,19 @@ public class Groupe extends Trellis{
         }
     }
 
+    @Override
+    public void save(Writer w, Numeroteur<Trellis> num) throws IOException {
+        if (!num.objExiste(this)) {
+            int id = num.add(this);
+            for (Trellis f : this.contient) {
+                f.save(w, num);
+            }
+            w.append("Groupe;" + id);
+            for (Trellis t : this.contient) {
+                w.append(";" + num.getIndex(t));
+            }
+            w.append("\n");
+        }
+    }
     
 }

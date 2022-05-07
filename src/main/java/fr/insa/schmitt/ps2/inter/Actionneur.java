@@ -9,11 +9,17 @@ import fr.insa.schmitt.ps2.objet.Groupe;
 import fr.insa.schmitt.ps2.objet.Noeud;
 import fr.insa.schmitt.ps2.objet.NoeudSimple;
 import fr.insa.schmitt.ps2.objet.Trellis;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.event.ActionEvent; 
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 /**
  *
@@ -207,6 +213,83 @@ public class Actionneur {
         
     }
 
+    //bouton provenant du menu:
+    
+    void boutonNewItem(ActionEvent t){
+        Stage nouveau = new Stage();
+        nouveau.setTitle("Nouveau");
+        Scene sc = new Scene(new MainPanel(nouveau), 1000, 700);
+        nouveau.setScene(sc);
+        nouveau.show();
+    }
+    void boutonExitItem(ActionEvent t){
+        System.exit(0);
+    }
+    void boutonOpenFilesItem(ActionEvent t){
+        FileChooser chooser = new FileChooser();
+        File f = chooser.showOpenDialog(this.main.getInStage());
+        if (f != null) {
+            try {
+                Trellis lue = Trellis.lecture(f);
+                Groupe glu = (Groupe) lue;
+                Stage nouveau = new Stage();
+                nouveau.setTitle(f.getName());
+                Scene sc = new Scene(new MainPanel(nouveau, f, glu), 800, 600);
+                nouveau.setScene(sc);
+                nouveau.show();
+            } catch (Exception ex) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur");
+                alert.setHeaderText("Problème durant la sauvegarde");
+                alert.setContentText(ex.getLocalizedMessage());
+
+                alert.showAndWait();
+            } finally {
+                this.changeEtat(20);
+            }
+        }
+    }
+    void boutonSaveItem(ActionEvent t){
+        if (this.main.getCurFile() == null) {
+            this.boutonSaveAsItem(t);
+        } else {
+            this.realSave(this.main.getCurFile());
+        }
+    }
+    void boutonSaveAsItem(ActionEvent t){
+        FileChooser chooser = new FileChooser();
+        File f = chooser.showSaveDialog(this.main.getInStage());
+        if (f != null) {
+            this.realSave(f);
+        }
+    }
+    private void realSave(File f) {
+        try {
+            this.main.getModel().sauvegarde(f);
+            this.main.setCurFile(f);
+            this.main.getInStage().setTitle(f.getName());
+        } catch (IOException ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Problème durant la sauvegarde");
+            alert.setContentText(ex.getLocalizedMessage());
+
+            alert.showAndWait();
+        } finally {
+            this.changeEtat(20);
+        }
+    }
+    void MiseAJour(ActionEvent t) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Mise à jour indisponible");
+                alert.setHeaderText(null);
+                alert.setContentText("Application Tréllis\n"
+                        + "Ce bouton sera disponible dans une prochaine mise à jour\n");
+
+                alert.showAndWait();
+    }
+    
+    
     /**
      * @return the selection
      */

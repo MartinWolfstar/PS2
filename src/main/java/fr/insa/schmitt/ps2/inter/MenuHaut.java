@@ -27,16 +27,20 @@ public class MenuHaut extends MenuBar{
     
     private MenuItem newItem;
     private MenuItem openFilesItem;
+    private MenuItem saveItem;
+    private MenuItem saveAsItem;
     private MenuItem exitItem;
     private MenuItem edit1Item;
     private MenuItem edit2Item;
     private MenuItem helpItem;
     private MenuItem aproposItem;
+    private MainPanel main;
 
     /**
      * Default Constructor.
      */
-    public MenuHaut() {
+    public MenuHaut(MainPanel main) {
+        this.main = main;
         this.menuBar = new MenuBar();
 
         buildFiles();
@@ -50,42 +54,37 @@ public class MenuHaut extends MenuBar{
             
         this.filesMenu = new Menu("File");
         this.newItem = new MenuItem("New");
+        this.saveItem = new MenuItem("Save");
+        this.saveAsItem = new MenuItem("Save as");
         this.openFilesItem = new MenuItem("Open File");
         this.exitItem = new MenuItem("Exit");
             
-        filesMenu.getItems().addAll(newItem, openFilesItem, exitItem);
+        filesMenu.getItems().addAll(newItem, openFilesItem, saveItem, saveAsItem, exitItem);
         
         //Files item:
         exitItem.setAccelerator(KeyCombination.keyCombination("Ctrl+X"));
-
-        exitItem.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                System.exit(0);
-            }
+        this.exitItem.setOnAction((t) ->{
+            this.main.getActionneur().boutonExitItem(t);
         });
+        
         newItem.setAccelerator(KeyCombination.keyCombination("Ctrl+N"));
-
-        newItem.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                Stage nouveau = new Stage();
-                nouveau.setTitle("Nouveau");
-                Scene sc = new Scene(new MainPanel(), 1000, 700);
-                nouveau.setScene(sc);
-                nouveau.show();
-            }
+        this.newItem.setOnAction((t) ->{
+            this.main.getActionneur().boutonNewItem(t);
         });
+        
         openFilesItem.setAccelerator(KeyCombination.keyCombination("Ctrl+O"));
-
-        openFilesItem.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("open Clicked.");
-            }
+        this.openFilesItem.setOnAction((t) ->{
+            this.main.getActionneur().boutonOpenFilesItem(t);
+        });
+        
+        saveItem.setAccelerator(KeyCombination.keyCombination("Ctrl+S"));
+        this.saveItem.setOnAction((t) ->{
+            this.main.getActionneur().boutonSaveItem(t);
+        });
+        
+        saveAsItem.setAccelerator(KeyCombination.keyCombination("Ctrl+A"));
+        this.saveAsItem.setOnAction((t) ->{
+            this.main.getActionneur().boutonSaveAsItem(t);
         });
     }
     private void buildEdit() {
@@ -97,22 +96,14 @@ public class MenuHaut extends MenuBar{
         
         //Edit item:
         edit1Item.setAccelerator(KeyCombination.keyCombination("Ctrl+E"));
-        
-        edit1Item.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("edit1 Clicked.");
-            }
+        this.edit1Item.setOnAction((t) ->{
+            this.main.getActionneur().MiseAJour(t);
+            System.out.println("edit1 Clicked.");
         });
         edit2Item.setAccelerator(KeyCombination.keyCombination("Ctrl+F"));
-        
-        edit2Item.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("edit2 Clicked.");
-            }
+        this.edit2Item.setOnAction((t) ->{
+            this.main.getActionneur().MiseAJour(t);
+            System.out.println("edit2 Clicked.");
         });
         
     }
@@ -135,7 +126,7 @@ public class MenuHaut extends MenuBar{
         });
         
         aproposItem.setOnAction(new EventHandler<ActionEvent>() {
-
+        
             @Override
             public void handle(ActionEvent event) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);

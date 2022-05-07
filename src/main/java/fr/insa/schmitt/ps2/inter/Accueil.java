@@ -34,7 +34,6 @@ public class Accueil {
    private Button avance;
    private Button sauv;
    private Button select;
-   private Action action;
    private Button delete;
    private SplitMenuButton direction;
    
@@ -198,8 +197,12 @@ public class Accueil {
                 System.out.println("sauv Clicked.");
             }
         });*/
-        this.sauv.setOnAction((t) ->{
+        /*this.sauv.setOnAction((t) ->{
             this.main.getActionneur().boutonSauv(t);
+            System.out.println("sauv Clicked.");
+        });*/
+        this.sauv.setOnAction((t) ->{
+            this.main.getActionneur().boutonSaveItem(t);
             System.out.println("sauv Clicked.");
         });
     }

@@ -6,6 +6,8 @@ package fr.insa.schmitt.ps2.objet;
 
 import fr.insa.schmitt.ps2.*;
 import static fr.insa.schmitt.ps2.objet.Noeud.RAYON_IN_DRAW;
+import java.io.IOException;
+import java.io.Writer;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
@@ -61,5 +63,14 @@ public class NoeudAppuiSimple extends NoeudAppui {
     public void dessineSelection(GraphicsContext context) {
         context.setFill(Trellis.COULEUR_SELECTION);
         context.fillOval(this.getPx()-RAYON_IN_DRAW, this.getPy()-RAYON_IN_DRAW, 2*RAYON_IN_DRAW, 2*RAYON_IN_DRAW);
+    }
+    
+    @Override
+    public void save(Writer w, Numeroteur<Trellis> num)throws IOException{
+        if(! num.objExiste(this)){
+            int id = num.add(this);
+            w.append("NoeudAppuiSimple;"+id+";"+this.getPx()+";"+this.getPy()+
+                    ";" + Forme.saveColor(this.getCouleur()) + "\n");
+        }
     }
 }

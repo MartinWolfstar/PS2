@@ -56,16 +56,10 @@ public class ZoneConstBarre {
         this.ajouter = new BoutonIcon("icon/ajouter.png",32,32);
         this.ajouter.setText("ajouter");
         this.ajouter.setContentDisplay(ContentDisplay.TOP);
-        
-        /*ajouter.setOnAction(new EventHandler<ActionEvent>() {
 
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("ajouter Clicked.");
-            }
-        });*/
         this.ajouter.setOnAction((t) ->{
-            this.main.getActionneur().boutonAjouterZC(t);
+            //this.main.getActionneur().boutonAjouterZC(t);
+            this.main.getActionneur().MiseAJour(t);
             System.out.println("ajouter Clicked.");
         });
     }
@@ -73,16 +67,10 @@ public class ZoneConstBarre {
         this.modifier = new BoutonIcon("icon/modifier.png",32,32);
         this.modifier.setText("modifier");
         this.modifier.setContentDisplay(ContentDisplay.TOP);
-        
-        /*modifier.setOnAction(new EventHandler<ActionEvent>() {
 
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("modifier Clicked.");
-            }
-        });*/
         this.modifier.setOnAction((t) ->{
-            this.main.getActionneur().boutonModifierZC(t);
+            //this.main.getActionneur().boutonModifierZC(t);
+            this.main.getActionneur().MiseAJour(t);
             System.out.println("modifier Clicked.");
         });
     }

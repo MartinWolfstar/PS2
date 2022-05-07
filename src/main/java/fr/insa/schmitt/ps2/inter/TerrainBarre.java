@@ -59,16 +59,10 @@ public class TerrainBarre {
         this.ajouter = new BoutonIcon("icon/ajouter.png",32,32);
         this.ajouter.setText("ajouter");
         this.ajouter.setContentDisplay(ContentDisplay.TOP);
-        
-        /*ajouter.setOnAction(new EventHandler<ActionEvent>() {
 
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("ajouter Clicked.");
-            }
-        });*/
         this.ajouter.setOnAction((t) ->{
-            this.main.getActionneur().boutonAjouterAppui(t);
+            //this.main.getActionneur().boutonAjouterAppui(t);
+            this.main.getActionneur().MiseAJour(t);
             System.out.println("ajouter Clicked.");
         });
     }
@@ -76,16 +70,10 @@ public class TerrainBarre {
         this.modifier = new BoutonIcon("icon/modifier.png",32,32);
         this.modifier.setText("modifier");
         this.modifier.setContentDisplay(ContentDisplay.TOP);
-        
-        /*modifier.setOnAction(new EventHandler<ActionEvent>() {
 
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("modifier Clicked.");
-            }
-        });*/
         this.modifier.setOnAction((t) ->{
-            this.main.getActionneur().boutonModifierAppui(t);
+            //this.main.getActionneur().boutonModifierAppui(t);
+            this.main.getActionneur().MiseAJour(t);
             System.out.println("modifier Clicked.");
         });
     }
@@ -93,16 +81,10 @@ public class TerrainBarre {
         this.defAppui = new BoutonIcon("icon/pause.png",32,32);
         this.defAppui.setText("définir appuis");
         this.defAppui.setContentDisplay(ContentDisplay.TOP);
-        
-        /*defAppui.setOnAction(new EventHandler<ActionEvent>() {
 
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("defAppui Clicked.");
-            }
-        });*/
         this.defAppui.setOnAction((t) ->{
-            this.main.getActionneur().boutonDefAppui(t);
+            //this.main.getActionneur().boutonDefAppui(t);
+            this.main.getActionneur().MiseAJour(t);
             System.out.println("defAppui Clicked.");
         });
     }

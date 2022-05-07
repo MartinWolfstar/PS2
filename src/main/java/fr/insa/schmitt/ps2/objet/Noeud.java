@@ -87,6 +87,15 @@ public abstract class Noeud extends Forme{
         this.barresArrivee = new ArrayList<Barres>();
         this.barresIncidente = new ArrayList<Barres>();
     }
+    public Noeud (double vx, double vy, Color couleur){
+        
+        super(couleur);
+        this.px = px;
+        this.py = py;
+        this.barresDepart = new ArrayList<Barres>();
+        this.barresArrivee = new ArrayList<Barres>();
+        this.barresIncidente = new ArrayList<Barres>();
+    }
     public Noeud (double px, double py){
         
         this.px = px;

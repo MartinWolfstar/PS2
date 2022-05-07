@@ -17,34 +17,47 @@ public class Numeroteur<T> {
     private HashMap<T, Integer> tmap;
     private int nbr;
     
+    public Numeroteur (int nbr){
+        
+        this.map = new HashMap<Integer, T>();
+        this.tmap = new HashMap<T, Integer>();
+        this.nbr = nbr;  
+    }
     public Numeroteur (){
-        
-        map = new HashMap<Integer, T>();
-        tmap = new HashMap<T, Integer>();
-        nbr = 0;
-        
+        this(0);
     }
     
     public T getObject(int n){
-        return getMap().get(n);
+        return this.getMap().get(n);
     }
 
     public int getIndex(T N){
-        return getTmap().get(N);       
+        return this.getTmap().get(N);       
     }
 
-    public void add(T N){
-        getTmap().put(N, nbr);
-        getMap().put(nbr, N);
-        nbr +=1;
+    public int add(T N){
+        if(this.tmap.containsKey(N)){
+            throw new Error("Object" + N + "déjà dans le numéroteur");
+        }
+        this.tmap.put(N, nbr);
+        this.map.put(nbr, N);
+        this.nbr +=1;
+        return this.nbr - 1;
     }
 
-    public void getOrAdd(T N){
+    public boolean objExiste(T N){
+        return this.tmap.containsKey(N);
+    }
+    public boolean idExist(int id) {
+        return this.map.containsKey(id);
+    }
+    
+    public int getOrAdd(T N){
         
-        if (getTmap().get(N) == null){
-            this.add(N);
+        if (this.objExiste(N)){
+            return this.tmap.get(N);
         }else{
-            this.getIndex(N);
+            return this.add(N);
         }
     }
 
@@ -61,4 +74,11 @@ public class Numeroteur<T> {
         return tmap;
     }
     
+    public void associe(int id,T N) {
+        if (this.idExist(id)) {
+            throw new Error("identificateur existant");
+        }
+        this.map.put(id, N);
+        this.tmap.put(N, id);
+    }
 }

@@ -28,7 +28,7 @@ public class BarreOutilshaut extends VBox{
         /*this.couleur = new ColorPicker(Color.BLACK);
         this.zoomIn = new Button("Zoom *2");
         this.zoomOut = new Button("Zoom /2");*/
-        this.menuBar = new MenuHaut();
+        this.menuBar = new MenuHaut(main);
         this.ruban = new Ruban(main);
          
         this.getChildren().addAll(menuBar,ruban.get());

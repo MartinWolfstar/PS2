@@ -17,7 +17,7 @@ public class MainFx extends Application{
     @Override
     public void start (Stage fen){
         
-        MainPanel main = new MainPanel(Groupe.groupeTest1());
+        MainPanel main = new MainPanel(fen, Groupe.groupeTest1());
         
         Scene sc = new Scene(main, 1000, 700);
         fen.setScene(sc);

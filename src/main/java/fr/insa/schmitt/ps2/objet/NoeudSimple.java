@@ -5,7 +5,10 @@
 package fr.insa.schmitt.ps2.objet;
 
 import fr.insa.schmitt.ps2.*;
+import java.io.IOException;
+import java.io.Writer;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 /**
  *
@@ -18,6 +21,10 @@ public class NoeudSimple extends Noeud{
     
     public NoeudSimple (double px, double py){ 
         super(px,py);
+        this.nbrInconnu = 0;
+    }
+    public NoeudSimple (double px, double py, Color couleur){ 
+        super(px,py,couleur);
         this.nbrInconnu = 0;
     }
     @Override
@@ -62,5 +69,14 @@ public class NoeudSimple extends Noeud{
     public void dessineSelection(GraphicsContext context) {
         context.setFill(Trellis.COULEUR_SELECTION);
         context.fillOval(this.getPx()-RAYON_IN_DRAW, this.getPy()-RAYON_IN_DRAW, 2*RAYON_IN_DRAW, 2*RAYON_IN_DRAW);
+    }
+    
+    @Override
+    public void save(Writer w, Numeroteur<Trellis> num)throws IOException{
+        if(! num.objExiste(this)){
+            int id = num.add(this);
+            w.append("NoeudSimple;"+id+";"+this.getPx()+";"+this.getPy()+
+                    ";" + Forme.saveColor(this.getCouleur()) + "\n");
+        }
     }
 }
