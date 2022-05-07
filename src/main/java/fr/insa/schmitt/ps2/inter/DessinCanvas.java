@@ -10,6 +10,9 @@ import java.util.List;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.transform.Affine;
+import javafx.scene.transform.Transform;
 
 /**
  *
@@ -19,6 +22,7 @@ public class DessinCanvas extends Pane{
     
     private MainPanel main;
     private Canvas realCanvas;
+    private RectangleVue zoneVue;
     
     public DessinCanvas(MainPanel main){
         this.main = main;
@@ -43,12 +47,36 @@ public class DessinCanvas extends Pane{
         this.redrawAll();
     }
     
+    public void concatenateTransform(Transform trans) {
+        Transform oldTrans = this.realCanvas.getGraphicsContext2D().getTransform();
+        Transform newTrans = oldTrans.createConcatenation(trans);
+        this.setTransform(newTrans);
+    }
+
+    public void setTransform(Transform trans) {
+        this.realCanvas.getGraphicsContext2D().setTransform(new Affine(trans));
+    }
+
+    public Transform getTransform() {
+        return this.realCanvas.getGraphicsContext2D().getTransform();
+    }
+    
     public void redrawAll(){
         GraphicsContext context = this.realCanvas.getGraphicsContext2D();
-        //context.setFill(Color.LIGHTGRAY);
-        //context.fillRect(0,0, this.realCanvas.getWidth(), this.realCanvas.getHeight());        
+        context.setFill(Color.LIGHTGRAY);
+        context.fillRect(0,0, this.realCanvas.getWidth(), this.realCanvas.getHeight());    
+        
+        //gestion des zooms/:
+        /*context.setTransform(new Affine());
+        context.clearRect(0,0,this.realCanvas.getWidth(),this.realCanvas.getHeight());
+        this.zoneVue.setxMax(this.realCanvas.getWidth());
+        this.zoneVue.setyMax(this.realCanvas.getWidth());
+        Transform curTrans = this.main.getZoneVue().fitTransform(this.zoneVue);
+        this.setTransform(curTrans);*/
+        
         Groupe model = this.main.getModel();
         model.dessine(context);
+        
         //on dessine autrement les objets selectionés:
         //CA FAIT PLANTER ET JSP POURQUOI!!! donc pour l'instant les objets selectionnés ne changent pas de couleur.
         /*List<Trellis> select = this.main.getActionneur().getSelection();

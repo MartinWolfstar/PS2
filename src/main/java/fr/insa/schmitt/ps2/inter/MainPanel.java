@@ -18,7 +18,10 @@ public class MainPanel extends BorderPane {
   
     private BarreOutilshaut BarreOutilshaut;
     private BarreOutilsGauche BarreOutilsGauche;
+    
     private DessinCanvas dessin;
+    private RectangleVue zoneVue;
+    
     private MenuHaut menuBar; 
     private Ruban ruban;
     
@@ -27,6 +30,8 @@ public class MainPanel extends BorderPane {
     
     private Groupe model;
     private Actionneur actionneur;
+    
+    private static double MULT_POUR_FIT_ALL = 1.1;
     
     public MainPanel(Stage inStage) {
         this(inStage, new Groupe());
@@ -39,6 +44,7 @@ public class MainPanel extends BorderPane {
         this.inStage = inStage;
         this.curFile = fromFile;
         this.model = model;
+        this.fitAll();
         this.BarreOutilshaut = new BarreOutilshaut(this);
         this.BarreOutilsGauche = new BarreOutilsGauche(this);
         this.dessin = new DessinCanvas(this);
@@ -57,6 +63,12 @@ public class MainPanel extends BorderPane {
 
     public void redrawAll(){
         this.getDessin().redrawAll();
+    }
+    
+    public void fitAll() {
+        this.zoneVue = new RectangleVue(this.model.minX(),
+                this.model.maxX(), this.model.minY(), this.model.maxY());
+        this.zoneVue = this.getZoneVue().scale(MULT_POUR_FIT_ALL);
     }
     
     
@@ -138,6 +150,13 @@ public class MainPanel extends BorderPane {
      */
     public void setCurFile(File curFile) {
         this.curFile = curFile;
+    }
+
+    /**
+     * @return the zoneVue
+     */
+    public RectangleVue getZoneVue() {
+        return zoneVue;
     }
     
     

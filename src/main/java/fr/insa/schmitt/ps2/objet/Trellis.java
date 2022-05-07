@@ -169,11 +169,14 @@ public abstract class Trellis {
             String line;
             while ((line = bin.readLine()) != null && line.length() != 0) {
                 String[] bouts = line.split(";");
+                //System.out.println(line);
                 if (bouts[0].equals("NoeudSimple")) {
                     int id = Integer.parseInt(bouts[1]);
                     double px = Double.parseDouble(bouts[2]);
+                    //System.out.println(px);
                     double py = Double.parseDouble(bouts[3]);
                     Color col = Forme.parseColor(bouts[4], bouts[5], bouts[6]);
+                    //System.out.println(px + ";" + py + ";" + col);
                     NoeudSimple np = new NoeudSimple(px, py, col);
                     num.associe(id, np);
                     derniere = np;

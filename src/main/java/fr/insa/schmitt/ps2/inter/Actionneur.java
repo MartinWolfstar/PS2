@@ -234,7 +234,7 @@ public class Actionneur {
                 Groupe glu = (Groupe) lue;
                 Stage nouveau = new Stage();
                 nouveau.setTitle(f.getName());
-                Scene sc = new Scene(new MainPanel(nouveau, f, glu), 800, 600);
+                Scene sc = new Scene(new MainPanel(nouveau, f, glu), 1000, 700);
                 nouveau.setScene(sc);
                 nouveau.show();
             } catch (Exception ex) {
@@ -245,7 +245,7 @@ public class Actionneur {
 
                 alert.showAndWait();
             } finally {
-                this.changeEtat(20);
+                this.changeEtat(350);
             }
         }
     }
