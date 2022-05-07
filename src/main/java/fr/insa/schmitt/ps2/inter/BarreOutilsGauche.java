@@ -75,11 +75,11 @@ public class BarreOutilsGauche extends VBox{
             alert.setContentText("Do NOT talk about");
             alert.showAndWait();
         }
-        if (commande.equalsIgnoreCase("model0")) {
+        if (commande.equalsIgnoreCase("/import model0")) {
             main.setModel(Groupe.groupeTest0());
             main.redrawAll();
         }
-        if (commande.equalsIgnoreCase("model1")) {
+        if (commande.equalsIgnoreCase("/import model1")) {
             main.setModel(Groupe.groupeTest1());
             main.redrawAll();
         }

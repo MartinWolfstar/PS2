@@ -110,15 +110,7 @@ public class Accueil {
 
         this.play.setGraphicTextGap(5.0);
         this.play.setGraphic(imageView);
-        
-        /*play.setOnAction(new EventHandler<ActionEvent>() {
 
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("play Clicked.");
-            }
-        });*/ 
-        
         this.play.setOnAction((t) ->{
             this.main.getActionneur().boutonPlay(t);
             System.out.println("play Clicked.");
@@ -135,17 +127,10 @@ public class Accueil {
         ImageView imageView = new ImageView(clipboard);
         this.stop.setGraphicTextGap(5.0);
         this.stop.setGraphic(imageView);
-        
-        /*stop.setOnAction(new EventHandler<ActionEvent>() {
 
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("stop Clicked.");
-            }
-        });*/
-        
         this.stop.setOnAction((t) ->{
-            this.main.getActionneur().boutonStop(t);
+            //this.main.getActionneur().boutonStop(t);
+            this.main.getActionneur().MiseAJour(t);
             System.out.println("stop Clicked.");
         });
         
@@ -154,16 +139,10 @@ public class Accueil {
         this.retour = new BoutonIcon("icon/retour.png",32,32);
         this.retour.setText("retour");
         this.retour.setContentDisplay(ContentDisplay.TOP);
-        
-        /*retour.setOnAction(new EventHandler<ActionEvent>() {
 
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("retour Clicked.");
-            }
-        });*/
         this.retour.setOnAction((t) ->{
-            this.main.getActionneur().boutonRetour(t);
+            //this.main.getActionneur().boutonRetour(t);
+            this.main.getActionneur().MiseAJour(t);
             System.out.println("retour Clicked.");
         });
     }
@@ -171,16 +150,10 @@ public class Accueil {
         this.avance = new BoutonIcon("icon/avance.png",32,32);
         this.avance.setText("suivant");
         this.avance.setContentDisplay(ContentDisplay.TOP);
-        
-        /*avance.setOnAction(new EventHandler<ActionEvent>() {
 
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("avance Clicked.");
-            }
-        });*/
         this.avance.setOnAction((t) ->{
-            this.main.getActionneur().boutonAvance(t);
+            //this.main.getActionneur().boutonAvance(t);
+            this.main.getActionneur().MiseAJour(t);
             System.out.println("avance Clicked.");
         });
         
@@ -189,18 +162,7 @@ public class Accueil {
         this.sauv = new BoutonIcon("icon/sauv.png",32,32);
         this.sauv.setText("sauvgarder");
         this.sauv.setContentDisplay(ContentDisplay.TOP);
-        
-        /*sauv.setOnAction(new EventHandler<ActionEvent>() {
 
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("sauv Clicked.");
-            }
-        });*/
-        /*this.sauv.setOnAction((t) ->{
-            this.main.getActionneur().boutonSauv(t);
-            System.out.println("sauv Clicked.");
-        });*/
         this.sauv.setOnAction((t) ->{
             this.main.getActionneur().boutonSaveItem(t);
             System.out.println("sauv Clicked.");
@@ -210,14 +172,7 @@ public class Accueil {
         this.select = new BoutonIcon("icon/selec.png",32,32);
         this.select.setText("selectioner");
         this.select.setContentDisplay(ContentDisplay.TOP);
-        
-        /*select.setOnAction(new EventHandler<ActionEvent>() {
 
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("select Clicked.");
-            }
-        });*/
         this.select.setOnAction((t) ->{
             this.main.getActionneur().boutonSelect(t);
             System.out.println("select Clicked.");
@@ -227,16 +182,10 @@ public class Accueil {
         this.delete = new BoutonIcon("icon/delete.png",32,32);
         this.delete.setText("supprimer");
         this.delete.setContentDisplay(ContentDisplay.TOP);
-        
-        /*delete.setOnAction(new EventHandler<ActionEvent>() {
 
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("delete Clicked.");
-            }
-        });*/
         this.delete.setOnAction((t) ->{
-            this.main.getActionneur().boutonDelete(t);
+            //this.main.getActionneur().boutonDelete(t);
+            this.main.getActionneur().MiseAJour(t);
             System.out.println("delete Clicked.");
         });
     }

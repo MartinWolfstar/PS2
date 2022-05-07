@@ -153,7 +153,8 @@ public class TrellisBarre {
         this.rotater = new Button("tourner");
         
         this.rotater.setOnAction((t) ->{
-            this.main.getActionneur().boutonRotater(t);
+            //this.main.getActionneur().boutonRotater(t);
+            this.main.getActionneur().MiseAJour(t);
             System.out.println("rotater Clicked.");
         });
     }
@@ -161,7 +162,8 @@ public class TrellisBarre {
         this.agrandir = new Button("agrandir");
         
         this.agrandir.setOnAction((t) ->{
-            this.main.getActionneur().boutonAgrandir(t);
+            //this.main.getActionneur().boutonAgrandir(t);
+            this.main.getActionneur().MiseAJour(t);
             System.out.println("agrandir Clicked.");
         });
     }
@@ -169,7 +171,8 @@ public class TrellisBarre {
         this.creerPivot = new Button("creer Pivot");
         
         this.creerPivot.setOnAction((t) ->{
-            this.main.getActionneur().boutonCreerPivot(t);
+            //this.main.getActionneur().boutonCreerPivot(t);
+            this.main.getActionneur().MiseAJour(t);
             System.out.println("CP Clicked.");
         });
     }
@@ -185,7 +188,8 @@ public class TrellisBarre {
         this.angle = new Button("angle");
         
         this.angle.setOnAction((t) ->{
-            this.main.getActionneur().boutonAngle(t);
+            //this.main.getActionneur().boutonAngle(t);
+            this.main.getActionneur().MiseAJour(t);
             System.out.println("angle Clicked.");
         });
     }
@@ -193,7 +197,8 @@ public class TrellisBarre {
         this.ajouterForce = new Button("ajouter Force");
         
         this.ajouterForce.setOnAction((t) ->{
-            this.main.getActionneur().boutonAjouterForce(t);
+            //this.main.getActionneur().boutonAjouterForce(t);
+            this.main.getActionneur().MiseAJour(t);
             System.out.println("ajouterForce Clicked.");
         });
     }
@@ -201,7 +206,8 @@ public class TrellisBarre {
         this.modifierForce = new Button("modifier Force");
         
         this.modifierForce.setOnAction((t) ->{
-            this.main.getActionneur().boutonModifierForce(t);
+            //this.main.getActionneur().boutonModifierForce(t);
+            this.main.getActionneur().MiseAJour(t);
             System.out.println("modifierForce Clicked.");
         });
     }
@@ -209,7 +215,8 @@ public class TrellisBarre {
         this.agrandirBarre = new Button("agrandir Barre");
         
         this.agrandirBarre.setOnAction((t) ->{
-            this.main.getActionneur().boutonAgrandirBarre(t);
+            //this.main.getActionneur().boutonAgrandirBarre(t);
+            this.main.getActionneur().MiseAJour(t);
             System.out.println("agrandirBarre Clicked.");
         });
     }
@@ -217,7 +224,8 @@ public class TrellisBarre {
         this.mesurerBarre = new Button("mesurer Barre");
         
         this.mesurerBarre.setOnAction((t) ->{
-            this.main.getActionneur().boutonMesurerBarre(t);
+            //this.main.getActionneur().boutonMesurerBarre(t);
+            this.main.getActionneur().MiseAJour(t);
             System.out.println("mesurerBarre Clicked.");
         });
     }
@@ -225,10 +233,14 @@ public class TrellisBarre {
         this.uniformiserBarreTaille = new Button("uniformiser taille");
         
         this.uniformiserBarreTaille.setOnAction((t) ->{
-            this.main.getActionneur().boutonUniformiserBarreTaille(t);
+            //this.main.getActionneur().boutonUniformiserBarreTaille(t);
+            this.main.getActionneur().MiseAJour(t);
             System.out.println("uniformiserBarreTaille Clicked.");
         });
     }
+    
+    //boutons spéciaux
+    
     private void buildDefFormeButton(){
         /*this.defForme = new Button("def Forme");
         
