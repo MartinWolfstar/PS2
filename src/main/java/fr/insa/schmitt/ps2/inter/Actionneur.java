@@ -162,11 +162,17 @@ public class Actionneur {
     
     //bouton provenant de TrellisBarre:
     
-    void boutonRotater(ActionEvent t){
-        this.changeEtat(300);
+    void boutonRetrecir(ActionEvent t){
+        this.main.setZoneVue(this.main.getZoneVue().scale(2));
+        this.main.redrawAll();
     }
     void boutonAgrandir(ActionEvent t){
-        this.changeEtat(310);
+        this.main.setZoneVue(this.main.getZoneVue().scale(0.5));
+        this.main.redrawAll();
+    }
+    void boutonRemplir(ActionEvent t){
+        this.main.fitAll();
+        this.main.redrawAll();
     }
     void boutonCreerPivot(ActionEvent t){
         this.changeEtat(321);

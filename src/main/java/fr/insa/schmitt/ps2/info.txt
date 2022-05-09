@@ -1,5 +1,25 @@
+dans le fichier  Dessin canvas:
+
 la selection a un problème: quand je veux changer la couleur de l'objet selectioner, le programme plante
 
 l'ouverture d'un fichier a un probleme: quand j'ouvre un ficher, les points sont bien crées mais tous les coordonées sont réinitialisés
 
+autre:
+
 il y a des partis du cours du prof
+
+reste à faire:
+
+
+
+
+
+
+
+
+
+
+
+
+
+

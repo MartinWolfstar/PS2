@@ -23,8 +23,9 @@ import javafx.scene.paint.Color;
 public class TrellisBarre {
     
     private Tab tab;
-    private Button rotater;
+    private Button retrecir;
     private Button agrandir;
+    private Button remplir;
     private Button creerPivot;
     private Button insererNoeud;
     private Button angle;
@@ -90,8 +91,9 @@ public class TrellisBarre {
         
 
         //Create all Button
-        buildRotButton();
+        buildRetButton();
         buildAgrandirButton();
+        buildRemplirButton();
         buildCPButton();
         buildINButton();
         buildAngleButton();
@@ -106,7 +108,8 @@ public class TrellisBarre {
         
         //Esthetique
         agrandir.setMaxWidth(Double.MAX_VALUE);
-        rotater.setMaxWidth(Double.MAX_VALUE);
+        retrecir.setMaxWidth(Double.MAX_VALUE);
+        remplir.setMaxWidth(Double.MAX_VALUE);
         creerPivot.setMaxWidth(Double.MAX_VALUE);
         insererNoeud.setMaxWidth(Double.MAX_VALUE);
         angle.setMaxWidth(Double.MAX_VALUE);
@@ -123,7 +126,7 @@ public class TrellisBarre {
         uniformiserBarreTaille.setAlignment(Pos.CENTER);
          
         //Add all Things
-        ssContainer1.getChildren().addAll(rotater,agrandir);
+        ssContainer1.getChildren().addAll(retrecir,agrandir);
         OutilsFx.setSimpleBorder(ssContainer1, Color.GRAY, 2);
         ssContainer2.getChildren().addAll(creerPivot,insererNoeud);
         OutilsFx.setSimpleBorder(ssContainer2, Color.GRAY, 2);
@@ -133,7 +136,7 @@ public class TrellisBarre {
         OutilsFx.setSimpleBorder(ssContainer4, Color.GRAY, 2);
         ssContainer5.getChildren().addAll(defForme,defCouleur);
         OutilsFx.setSimpleBorder(ssContainer5, Color.GRAY, 2);
-        ssContainer6.getChildren().addAll(angle);
+        ssContainer6.getChildren().addAll(angle, remplir);
         OutilsFx.setSimpleBorder(ssContainer6, Color.GRAY, 2);
         ssContainer7.getChildren().addAll(uniformiserBarreTaille, ajouterBarres);
         OutilsFx.setSimpleBorder(ssContainer7, Color.GRAY, 2);
@@ -149,24 +152,34 @@ public class TrellisBarre {
 
     }
     
-    private void buildRotButton(){
-        this.rotater = new Button("tourner");
+    private void buildRetButton(){
+        this.retrecir = new Button("retrecir");
         
-        this.rotater.setOnAction((t) ->{
-            //this.main.getActionneur().boutonRotater(t);
-            this.main.getActionneur().MiseAJour(t);
-            System.out.println("rotater Clicked.");
+        this.retrecir.setOnAction((t) ->{
+            this.main.getActionneur().boutonRetrecir(t);
+            //this.main.getActionneur().MiseAJour(t);
+            System.out.println("retrecir Clicked.");
         });
     }
     private void buildAgrandirButton(){
         this.agrandir = new Button("agrandir");
         
         this.agrandir.setOnAction((t) ->{
-            //this.main.getActionneur().boutonAgrandir(t);
-            this.main.getActionneur().MiseAJour(t);
+            this.main.getActionneur().boutonAgrandir(t);
+            //this.main.getActionneur().MiseAJour(t);
             System.out.println("agrandir Clicked.");
         });
     }
+    private void buildRemplirButton(){
+        this.agrandir = new Button("remplir");
+        
+        this.agrandir.setOnAction((t) ->{
+            this.main.getActionneur().boutonRemplir(t);
+            //this.main.getActionneur().MiseAJour(t);
+            System.out.println("remplir Clicked.");
+        });
+    }
+    
     private void buildCPButton(){
         this.creerPivot = new Button("creer Pivot");
         

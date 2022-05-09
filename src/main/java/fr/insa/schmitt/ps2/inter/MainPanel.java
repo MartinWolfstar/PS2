@@ -66,9 +66,9 @@ public class MainPanel extends BorderPane {
     }
     
     public void fitAll() {
-        this.zoneVue = new RectangleVue(this.model.minX(),
-                this.model.maxX(), this.model.minY(), this.model.maxY());
-        this.zoneVue = this.getZoneVue().scale(MULT_POUR_FIT_ALL);
+        this.setZoneVue(new RectangleVue(this.model.minX(),
+                this.model.maxX(), this.model.minY(), this.model.maxY()));
+        this.setZoneVue(this.getZoneVue().scale(MULT_POUR_FIT_ALL));
     }
     
     
@@ -157,6 +157,13 @@ public class MainPanel extends BorderPane {
      */
     public RectangleVue getZoneVue() {
         return zoneVue;
+    }
+
+    /**
+     * @param zoneVue the zoneVue to set
+     */
+    public void setZoneVue(RectangleVue zoneVue) {
+        this.zoneVue = zoneVue;
     }
     
     
