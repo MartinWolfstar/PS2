@@ -129,27 +129,40 @@ public class Actionneur {
     void boutonAvance(ActionEvent t){
         this.changeEtat(130);
     }
-    void boutonSauv(ActionEvent t){
-        this.changeEtat(140);
-    }
+    
+    //bouton sauv est renvoyé dans les menus
+    
     void boutonSelect(ActionEvent t){
         this.changeEtat(150);
     }
     void boutonDelete(ActionEvent t){
-        this.changeEtat(160);
+        if (this.etat == 150 && this.selection.size() > 0) {
+            this.main.getModel().removeAll(this.selection);
+            this.selection.clear();
+            this.activeBoutonsSuivantSelection();
+            this.main.redrawAll();
+        }
     }
-    /*void boutonHaut(ActionEvent t){
-        this.changeEtat(10);
+    void boutonHaut(ActionEvent t){
+        this.main.setZoneVue(this.main.getZoneVue().translateHaut(0.8));
+        this.main.redrawAll();
     }
     void boutonBas(ActionEvent t){
-        this.changeEtat(10);
+        this.main.setZoneVue(this.main.getZoneVue().translateBas(0.8));
+        this.main.redrawAll();
     }
     void boutonDroite(ActionEvent t){
-        this.changeEtat(10);
+        this.main.setZoneVue(this.main.getZoneVue().translateDroite(0.8));
+        this.main.redrawAll();
     }
     void boutonGauche(ActionEvent t){
-        this.changeEtat(10);
-    }*/
+        this.main.setZoneVue(this.main.getZoneVue().translateGauche(0.8));
+        this.main.redrawAll();
+    }
+    void boutonCentre(ActionEvent t){
+        this.main.fitAll();
+        this.main.redrawAll();
+    }
     
     //bouton provenant de ZC:
     

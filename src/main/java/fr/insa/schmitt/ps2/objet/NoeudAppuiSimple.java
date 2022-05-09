@@ -5,10 +5,10 @@
 package fr.insa.schmitt.ps2.objet;
 
 import fr.insa.schmitt.ps2.*;
-import static fr.insa.schmitt.ps2.objet.Noeud.RAYON_IN_DRAW;
 import java.io.IOException;
 import java.io.Writer;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
 /**
  *
@@ -63,6 +63,7 @@ public class NoeudAppuiSimple extends NoeudAppui {
     public void dessineSelection(GraphicsContext context) {
         context.setFill(Trellis.COULEUR_SELECTION);
         context.fillOval(this.getPx()-RAYON_IN_DRAW, this.getPy()-RAYON_IN_DRAW, 2*RAYON_IN_DRAW, 2*RAYON_IN_DRAW);
+        //context.getIcons().setAll(new Image(getClass().getResource("icon/icons8-robot-50.png").toExternalForm()));
     }
     
     @Override

@@ -4,7 +4,6 @@
  */
 package fr.insa.schmitt.ps2.inter;
 
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -36,6 +35,10 @@ public class Accueil {
    private Button select;
    private Button delete;
    private SplitMenuButton direction;
+   private MenuItem haut;
+   private MenuItem bas;
+   private MenuItem gauche;
+   private MenuItem droite;
    
    private MainPanel main;
 
@@ -184,8 +187,8 @@ public class Accueil {
         this.delete.setContentDisplay(ContentDisplay.TOP);
 
         this.delete.setOnAction((t) ->{
-            //this.main.getActionneur().boutonDelete(t);
-            this.main.getActionneur().MiseAJour(t);
+            this.main.getActionneur().boutonDelete(t);
+            //this.main.getActionneur().MiseAJour(t);
             System.out.println("delete Clicked.");
         });
     }
@@ -213,77 +216,40 @@ public class Accueil {
         this.direction.setGraphicTextGap(5.0);
         this.direction.setGraphic(imageView);
 
-        //haut Menu Item
-        MenuItem haut = new MenuItem("haut");
-        haut.setOnAction(new EventHandler() {
-
-            @Override
-            public void handle(Event event) {
-                System.out.println("haut clicked.");
-            }
-
-        });
-        /*this.direction.haut.setOnAction((t) ->{
+        //Create all MenuItem
+        this.haut = new MenuItem("haut");
+        this.bas = new MenuItem("bas");
+        this.droite = new MenuItem("droite");
+        this.gauche = new MenuItem("gauche");
+        
+        //Add all MenuItems to the MenuSplitButton's menu options.
+        direction.getItems().addAll(haut, bas, droite, gauche);
+        
+        this.haut.setOnAction((t) ->{
             this.main.getActionneur().boutonHaut(t);
             System.out.println("haut Clicked.");
-        });*/
-
-        //bas Menu Item
-        MenuItem bas = new MenuItem("bas");
-        bas.setOnAction(new EventHandler() {
-
-            @Override
-            public void handle(Event event) {
-                System.out.println("bas clicked.");
-            }
-
         });
-        /*this.play.setOnAction((t) ->{
+
+        this.bas.setOnAction((t) ->{
             this.main.getActionneur().boutonBas(t);
             System.out.println("bas Clicked.");
-        });*/
-
-        //droite Menu Item
-        MenuItem droite = new MenuItem("droite");
-        droite.setOnAction(new EventHandler() {
-
-            @Override
-            public void handle(Event event) {
-                System.out.println("droite clicked.");
-            }
-
         });
-        /*this.play.setOnAction((t) ->{
+
+        this.droite.setOnAction((t) ->{
             this.main.getActionneur().boutonDroite(t);
             System.out.println("droite Clicked.");
-        });*/
-        
-        //gauche Menu Item
-        MenuItem gauche = new MenuItem("gauche");
-        gauche.setOnAction(new EventHandler() {
-
-            @Override
-            public void handle(Event event) {
-                System.out.println("gauche clicked.");
-            }
-
         });
-        /*this.play.setOnAction((t) ->{
+        
+        this.gauche.setOnAction((t) ->{
             this.main.getActionneur().boutonGauche(t);
             System.out.println("gauche Clicked.");
-        });*/
-
-        //Add all MenuItems to the MenuSplitButton's menu options.
-        this.direction.getItems().addAll(haut,bas,droite,gauche);
-
-        //Set the click event of the Button itself. 
-        this.direction.setOnAction(new EventHandler() {
-            @Override
-            public void handle(Event arg0) {
-                System.out.println("center Clicked.");
-            }
         });
-
+        
+        this.direction.setOnAction((t) ->{
+            this.main.getActionneur().boutonCentre(t);
+            System.out.println("centre Clicked.");
+        });
+        
     }
 
 }

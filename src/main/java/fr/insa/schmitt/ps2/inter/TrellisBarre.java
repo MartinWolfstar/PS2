@@ -171,9 +171,9 @@ public class TrellisBarre {
         });
     }
     private void buildRemplirButton(){
-        this.agrandir = new Button("remplir");
+        this.remplir = new Button("remplir");
         
-        this.agrandir.setOnAction((t) ->{
+        this.remplir.setOnAction((t) ->{
             this.main.getActionneur().boutonRemplir(t);
             //this.main.getActionneur().MiseAJour(t);
             System.out.println("remplir Clicked.");
