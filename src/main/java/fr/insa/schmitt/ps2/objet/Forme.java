@@ -13,6 +13,7 @@ import javafx.scene.paint.Color;
 public abstract class Forme extends Trellis{
     
     private Color couleur;
+    public static double RAYON_IN_DRAW = 5;
     
     public Forme(Color couleur) {
         this.couleur = couleur;

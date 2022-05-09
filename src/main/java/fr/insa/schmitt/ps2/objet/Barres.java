@@ -4,6 +4,7 @@
  */
 package fr.insa.schmitt.ps2.objet;
 
+import static fr.insa.schmitt.ps2.objet.Noeud.RAYON_IN_DRAW;
 import java.io.IOException;
 import java.io.Writer;
 import java.lang.Math ;
@@ -140,6 +141,9 @@ public class Barres extends Forme{
     public void dessine(GraphicsContext context) {
         context.setStroke(this.getCouleur());
         context.strokeLine(this.getNd().getPx(), this.getNd().getPy(), this.getNa().getPx(), this.getNa().getPy());
+        context.setFill(this.getCouleur());
+        context.fillOval(this.getNd().getPx()-RAYON_IN_DRAW, this.getNd().getPy()-RAYON_IN_DRAW, 1.5*RAYON_IN_DRAW, 1.5*RAYON_IN_DRAW);
+        context.fillOval(this.getNa().getPx()-RAYON_IN_DRAW, this.getNa().getPy()-RAYON_IN_DRAW, 1.5*RAYON_IN_DRAW, 1.5*RAYON_IN_DRAW);
     }
     
     public static Barres demandeBarres() {

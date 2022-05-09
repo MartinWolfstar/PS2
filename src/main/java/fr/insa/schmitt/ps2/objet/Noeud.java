@@ -24,8 +24,6 @@ public abstract class Noeud extends Forme{
     private List<Barres> barresArrivee;
     private List<Barres> barresIncidente;
     
-    public static double RAYON_IN_DRAW = 5;
-    
     /**
      * @return the identificateur
      */
