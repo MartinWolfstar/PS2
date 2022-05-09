@@ -63,7 +63,7 @@ public class NoeudAppuiSimple extends NoeudAppui {
     public void dessineSelection(GraphicsContext context) {
         context.setFill(Trellis.COULEUR_SELECTION);
         context.fillOval(this.getPx()-RAYON_IN_DRAW, this.getPy()-RAYON_IN_DRAW, 2*RAYON_IN_DRAW, 2*RAYON_IN_DRAW);
-        //context.getIcons().setAll(new Image(getClass().getResource("icon/icons8-robot-50.png").toExternalForm()));
+        //context.drawImage(frameimage,0,0,image.getFitWidth()+20,image.getFitHeight()+20);
     }
     
     @Override
