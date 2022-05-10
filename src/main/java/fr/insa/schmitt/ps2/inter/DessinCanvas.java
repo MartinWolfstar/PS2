@@ -47,7 +47,7 @@ public class DessinCanvas extends Pane{
         });
         
         this.redrawAll();
-        System.out.println(zoneVue);
+        //System.out.println(zoneVue);
     }
     
     public void concatenateTransform(Transform trans) {
@@ -76,7 +76,7 @@ public class DessinCanvas extends Pane{
         this.zoneVue.setyMax(this.realCanvas.getHeight());
         Transform curTrans = this.main.getZoneVue().fitTransform(this.zoneVue);
         this.setTransform(curTrans);
-        System.out.println(zoneVue);
+        //System.out.println(zoneVue);
         
         Groupe model = this.main.getModel();
         model.dessine(context);

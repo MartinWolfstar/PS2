@@ -177,7 +177,7 @@ public class Actionneur {
         this.changeEtatSecondaire(1);
     }
     void boutonDelete(ActionEvent t){
-        if (this.etat == 150 && this.selection.size() > 0) {
+        if (((this.etat == 150)||(this.etat == 151)) && !this.selection.isEmpty()) {
             this.main.getModel().removeAll(this.selection);
             this.selection.clear();
             this.activeBoutonsSuivantSelection();
@@ -185,19 +185,19 @@ public class Actionneur {
         }
     }
     void boutonHaut(ActionEvent t){
-        this.main.setZoneVue(this.main.getZoneVue().translateHaut(0.8));
-        this.main.redrawAll();
-    }
-    void boutonBas(ActionEvent t){
         this.main.setZoneVue(this.main.getZoneVue().translateBas(0.8));
         this.main.redrawAll();
     }
+    void boutonBas(ActionEvent t){
+        this.main.setZoneVue(this.main.getZoneVue().translateHaut(0.8));
+        this.main.redrawAll();
+    }
     void boutonDroite(ActionEvent t){
-        this.main.setZoneVue(this.main.getZoneVue().translateDroite(0.8));
+        this.main.setZoneVue(this.main.getZoneVue().translateGauche(0.8));
         this.main.redrawAll();
     }
     void boutonGauche(ActionEvent t){
-        this.main.setZoneVue(this.main.getZoneVue().translateGauche(0.8));
+        this.main.setZoneVue(this.main.getZoneVue().translateDroite(0.8));
         this.main.redrawAll();
     }
     void boutonCentre(ActionEvent t){
