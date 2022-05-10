@@ -61,8 +61,8 @@ public abstract class Trellis {
     
     public Trellis (){
         
-        this.noeud = new ArrayList<Noeud>();
-        this.barres = new ArrayList<Barres>();
+        this.noeud = new ArrayList<>();
+        this.barres = new ArrayList<>();
 
     }
 
@@ -156,14 +156,14 @@ public abstract class Trellis {
     public abstract void save(Writer w, Numeroteur<Trellis> num)throws IOException;
 
     public void sauvegarde(File fout) throws IOException {
-        Numeroteur<Trellis> num = new Numeroteur<Trellis>();
+        Numeroteur<Trellis> num = new Numeroteur<>();
         try (BufferedWriter bout = new BufferedWriter(new FileWriter(fout))) {
             this.save(bout, num);
         }
     }   
     
     public static Trellis lecture(File fin) throws IOException {
-        Numeroteur<Trellis> num = new Numeroteur<Trellis>();
+        Numeroteur<Trellis> num = new Numeroteur<>();
         Trellis derniere = null;
         try (BufferedReader bin = new BufferedReader(new FileReader(fin))) {
             String line;

@@ -27,6 +27,7 @@ public class DessinCanvas extends Pane{
     public DessinCanvas(MainPanel main){
         this.main = main;
         this.realCanvas = new Canvas(this.getWidth(), this.getHeight());
+        this.zoneVue = new RectangleVue(0, 0, this.getWidth(), this.getHeight());
         this.getChildren().add(this.realCanvas);
         //System.out.println("w = " + this.getWidth() + "h = " + this.getHeight());
         this.realCanvas.heightProperty().bind(this.heightProperty());
@@ -63,29 +64,27 @@ public class DessinCanvas extends Pane{
     
     public void redrawAll(){
         GraphicsContext context = this.realCanvas.getGraphicsContext2D();
-        context.setFill(Color.LIGHTGRAY);
-        context.fillRect(0,0, this.realCanvas.getWidth(), this.realCanvas.getHeight());    
+        //context.setFill(Color.LIGHTGRAY);
+        //context.fillRect(0,0, this.realCanvas.getWidth(), this.realCanvas.getHeight());    
         
         //gestion des zooms/:
-        /*context.setTransform(new Affine());
+        context.setTransform(new Affine());
         context.clearRect(0,0,this.realCanvas.getWidth(),this.realCanvas.getHeight());
         this.zoneVue.setxMax(this.realCanvas.getWidth());
-        this.zoneVue.setyMax(this.realCanvas.getWidth());
+        this.zoneVue.setyMax(this.realCanvas.getHeight());
         Transform curTrans = this.main.getZoneVue().fitTransform(this.zoneVue);
-        this.setTransform(curTrans);*/
+        this.setTransform(curTrans);
         
         Groupe model = this.main.getModel();
         model.dessine(context);
         
         //on dessine autrement les objets selectionés:
-        //CA FAIT PLANTER ET JSP POURQUOI!!! donc pour l'instant les objets selectionnés ne changent pas de couleur.
-        /*List<Trellis> select = this.main.getActionneur().getSelection();
-        if (! select.isEmpty()){
+        List<Trellis> select = this.main.getActionneur().getSelection();
+        if (!select.isEmpty()){
             for (Trellis t: select){
                 t.dessineSelection(context);
             }
-        }*/
-        
+        }
         
     }
     

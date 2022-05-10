@@ -5,11 +5,11 @@
 package fr.insa.schmitt.ps2.objet;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  *
  * @author schmi
+ * @param <T>
  */
 public class Numeroteur<T> {
     
@@ -19,8 +19,8 @@ public class Numeroteur<T> {
     
     public Numeroteur (int nbr){
         
-        this.map = new HashMap<Integer, T>();
-        this.tmap = new HashMap<T, Integer>();
+        this.map = new HashMap<>();
+        this.tmap = new HashMap<>();
         this.nbr = nbr;  
     }
     public Numeroteur (){

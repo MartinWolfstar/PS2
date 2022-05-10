@@ -4,7 +4,6 @@
  */
 package fr.insa.schmitt.ps2.objet;
 
-import fr.insa.schmitt.ps2.Lire;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
@@ -74,25 +73,25 @@ public abstract class Noeud extends Forme{
         this.barresIncidente = barresIncidente;
     }
     
-    public Noeud (double vx, double vy, int id, Vecteur2D v2d, Color couleur){
+    public Noeud (double px, double py, int id, Vecteur2D v2d, Color couleur){
         
         super(couleur);
         this.px = px;
         this.py = py;
         this.identificateur = id;
         this.force = v2d;
-        this.barresDepart = new ArrayList<Barres>();
-        this.barresArrivee = new ArrayList<Barres>();
-        this.barresIncidente = new ArrayList<Barres>();
+        this.barresDepart = new ArrayList<>();
+        this.barresArrivee = new ArrayList<>();
+        this.barresIncidente = new ArrayList<>();
     }
-    public Noeud (double vx, double vy, Color couleur){
+    public Noeud (double px, double py, Color couleur){
         
         super(couleur);
         this.px = px;
         this.py = py;
-        this.barresDepart = new ArrayList<Barres>();
-        this.barresArrivee = new ArrayList<Barres>();
-        this.barresIncidente = new ArrayList<Barres>();
+        this.barresDepart = new ArrayList<>();
+        this.barresArrivee = new ArrayList<>();
+        this.barresIncidente = new ArrayList<>();
     }
     public Noeud (double px, double py){
         
@@ -100,9 +99,9 @@ public abstract class Noeud extends Forme{
         this.py = py;
         this.identificateur = -1;
         this.force = new Vecteur2D(0,0);
-        this.barresDepart = new ArrayList<Barres>();
-        this.barresArrivee = new ArrayList<Barres>();
-        this.barresIncidente = new ArrayList<Barres>();
+        this.barresDepart = new ArrayList<>();
+        this.barresArrivee = new ArrayList<>();
+        this.barresIncidente = new ArrayList<>();
     }
     
     public Noeud() {
@@ -114,6 +113,7 @@ public abstract class Noeud extends Forme{
         return "(" + this.px + "," + this.py + ")" + " id:" + identificateur + " force:" + getForce();
     }
     
+    @Override
     public void dessine(GraphicsContext context) {
         context.setFill(this.getCouleur());
         context.fillOval(this.px-RAYON_IN_DRAW, this.py-RAYON_IN_DRAW, 2*RAYON_IN_DRAW, 2*RAYON_IN_DRAW);

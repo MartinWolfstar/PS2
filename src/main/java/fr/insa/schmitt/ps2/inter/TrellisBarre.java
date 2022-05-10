@@ -37,6 +37,9 @@ public class TrellisBarre {
     private Button ajouterBarres;
     private SplitMenuButton defForme;
     private ColorPicker defCouleur;
+    private MenuItem creerBarreSP;
+    private MenuItem creerBarreA1P;
+    private MenuItem creerBarreA2P;
     
     private MainPanel main;
     
@@ -102,7 +105,7 @@ public class TrellisBarre {
         buildABButton();
         buildMBButton();
         buildUTButton();
-        buildDefFormeButton();
+        buildAjouterBarresButton2();
         buildDefCouleurButton();
         buildAjouterBarresButton();
         
@@ -254,66 +257,33 @@ public class TrellisBarre {
     
     //boutons spéciaux
     
-    private void buildDefFormeButton(){
-        /*this.defForme = new Button("def Forme");
-        
-        defForme.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("defForme Clicked.");
-            }
-        });*/
+    private void buildAjouterBarresButton2(){
         
         this.defForme = new SplitMenuButton();
         this.defForme.setText("forme barre");
 
-        //forme4 Menu Item
-        MenuItem forme4 = new MenuItem("forme4");
-        forme4.setOnAction(new EventHandler() {
-
-            @Override
-            public void handle(Event event) {
-                System.out.println("forme4 clicked.");
-            }
-
-        });
-
-        //forme3 Menu Item
-        MenuItem forme3 = new MenuItem("forme3");
-        forme3.setOnAction(new EventHandler() {
-
-            @Override
-            public void handle(Event event) {
-                System.out.println("forme3 clicked.");
-            }
-
-        });
-
-        //forme2 Menu Item
-        MenuItem forme2 = new MenuItem("forme2");
-        forme2.setOnAction(new EventHandler() {
-
-            @Override
-            public void handle(Event event) {
-                System.out.println("forme2 clicked.");
-            }
-
-        });
+        this.creerBarreSP = new MenuItem("creer Barre SP");
+        this.creerBarreA1P = new MenuItem("creer Barre A1P");
+        this.creerBarreA2P = new MenuItem("creer Barre A2P");
         
-        //forme1 Menu Item
-        MenuItem forme1 = new MenuItem("forme1");
-        forme1.setOnAction(new EventHandler() {
-
-            @Override
-            public void handle(Event event) {
-                System.out.println("forme1 clicked.");
-            }
-
-        });
-
         //Add all MenuItems to the MenuSplitButton's menu options.
-        this.defForme.getItems().addAll(forme1,forme2,forme3,forme4);
+        this.defForme.getItems().addAll(creerBarreSP,creerBarreA1P,creerBarreA2P);
+        
+        this.creerBarreSP.setOnAction((t) ->{
+            this.main.getActionneur().creerBarreSP(t);
+            //this.main.getActionneur().MiseAJour(t);
+            System.out.println("creerBarreSP Clicked.");
+        });
+        this.creerBarreA1P.setOnAction((t) ->{
+            this.main.getActionneur().creerBarreA1P(t);
+            //this.main.getActionneur().MiseAJour(t);
+            System.out.println("creerBarreA1P Clicked.");
+        });
+        this.creerBarreA2P.setOnAction((t) ->{
+            this.main.getActionneur().creerBarreA2P(t);
+            //this.main.getActionneur().MiseAJour(t);
+            System.out.println("creerBarreA2P Clicked.");
+        });
 
     }
     private void buildDefCouleurButton(){
@@ -333,13 +303,6 @@ public class TrellisBarre {
     private void buildAjouterBarresButton(){
         this.ajouterBarres = new Button("ajouter Barre");
         
-        ajouterBarres.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("ajouterBarres Clicked.");
-            }
-        });
         this.ajouterBarres.setOnAction((t) ->{
             this.main.getActionneur().boutonAjouterBarres(t);
             System.out.println("ajouterBarres Clicked.");

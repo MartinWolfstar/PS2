@@ -15,12 +15,9 @@ import javafx.stage.Stage;
  */
 public class MainPanel extends BorderPane {
 
-  
+    private Actionneur actionneur;
     private BarreOutilshaut BarreOutilshaut;
     private BarreOutilsGauche BarreOutilsGauche;
-    
-    private DessinCanvas dessin;
-    private RectangleVue zoneVue;
     
     private MenuHaut menuBar; 
     private Ruban ruban;
@@ -29,7 +26,8 @@ public class MainPanel extends BorderPane {
     private File curFile;
     
     private Groupe model;
-    private Actionneur actionneur;
+    private DessinCanvas dessin;
+    private RectangleVue zoneVue;
     
     private static double MULT_POUR_FIT_ALL = 1.1;
     
@@ -42,6 +40,7 @@ public class MainPanel extends BorderPane {
     }
     public MainPanel(Stage inStage,File fromFile, Groupe model) {
         this.inStage = inStage;
+        this.actionneur = new Actionneur(this);
         this.curFile = fromFile;
         this.model = model;
         this.fitAll();
@@ -50,7 +49,6 @@ public class MainPanel extends BorderPane {
         this.dessin = new DessinCanvas(this);
         this.menuBar = new MenuHaut(this);
         this.ruban = new Ruban(this);
-        this.actionneur = new Actionneur(this);
 
         
         //this.setTop(ruban.get());

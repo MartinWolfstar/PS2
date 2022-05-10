@@ -31,6 +31,7 @@ public class Actionneur {
     private int etat;
     private List<Trellis> selection;
     private double[] pos1 = new double[2];
+    private int etatSecondaire;
     
     public Actionneur(MainPanel main) {
         this.main = main;
@@ -57,6 +58,11 @@ public class Actionneur {
         if (nouvelEtat == 500) {
             
         }
+    }
+    
+    public void changeEtatSecondaire(int nouvelEtat){
+        etatSecondaire = nouvelEtat;
+        System.out.println(etatSecondaire);
     }
 
     void clicDansZoneDessin(MouseEvent t) {
@@ -123,6 +129,22 @@ public class Actionneur {
             this.main.redrawAll();
             this.changeEtat(343);
             
+        }else if (this.etat == 345){
+            //creer segment à partie d'un point partie 1
+            Noeud pclic = new NoeudSimple(t.getX(),t.getY());
+            //max value est peut etre trop grand ici
+            Trellis proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);  
+            this.getSelection().clear();
+            this.getSelection().add(proche);
+            this.changeEtat(346);
+            
+        }else if (this.etat == 346){
+
+            //TODO il selectionne un endroit et ça creer la barre
+            
+            this.main.redrawAll();
+            this.changeEtat(345);
+            
         }else{
             System.out.println("clic"); 
         }
@@ -152,6 +174,7 @@ public class Actionneur {
     }
     void boutonSelectPoint(ActionEvent t){
         this.changeEtat(151);
+        this.changeEtatSecondaire(1);
     }
     void boutonDelete(ActionEvent t){
         if (this.etat == 150 && this.selection.size() > 0) {
@@ -231,7 +254,21 @@ public class Actionneur {
     }
     void boutonAjouterBarres(ActionEvent t){
         this.changeEtat(343);
-        //état 344: ajouter barre 2
+        //état 344: ajouter barre partie 2
+    }
+    void creerBarreSP(ActionEvent t){
+        this.changeEtat(343);
+        //état 344: ajouter barre partie 2
+    }
+    void creerBarreA1P(ActionEvent t){
+        this.changeEtat(345);
+        this.changeEtatSecondaire(2);
+        //état 346: ajouter barre partie 2
+    }
+    void creerBarreA2P(ActionEvent t){
+        this.changeEtat(347);
+        this.changeEtatSecondaire(3);
+        //état 348: ajouter barre partie 2
     }
     
     //bouton provenant de TerrainBarre:

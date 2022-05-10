@@ -4,8 +4,6 @@
  */
 package fr.insa.schmitt.ps2.objet;
 
-import fr.insa.schmitt.ps2.*;
-
 /**
  *
  * @author schmi

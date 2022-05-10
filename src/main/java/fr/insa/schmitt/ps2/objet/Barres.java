@@ -7,7 +7,6 @@ package fr.insa.schmitt.ps2.objet;
 import static fr.insa.schmitt.ps2.objet.Noeud.RAYON_IN_DRAW;
 import java.io.IOException;
 import java.io.Writer;
-import java.lang.Math ;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
@@ -138,6 +137,7 @@ public class Barres extends Forme{
         return angle;
     }
     
+    @Override
     public void dessine(GraphicsContext context) {
         context.setStroke(this.getCouleur());
         context.strokeLine(this.getNd().getPx(), this.getNd().getPy(), this.getNa().getPx(), this.getNa().getPy());
@@ -160,12 +160,15 @@ public class Barres extends Forme{
     public double maxX() {
         return Math.max(this.getNd().getPx(), this.getNa().getPx());
     }
+    @Override
     public double minX() {
         return Math.min(this.getNd().getPx(), this.getNa().getPx());
     }
+    @Override
     public double maxY() {
         return Math.max(this.getNd().getPy(), this.getNa().getPy());
     }
+    @Override
     public double minY() {
         return Math.min(this.getNd().getPy(), this.getNa().getPy());
     }
