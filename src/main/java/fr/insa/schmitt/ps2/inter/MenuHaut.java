@@ -82,7 +82,6 @@ public class MenuHaut extends MenuBar{
             this.main.getActionneur().boutonSaveItem(t);
         });
         
-        saveAsItem.setAccelerator(KeyCombination.keyCombination("Ctrl+A"));
         this.saveAsItem.setOnAction((t) ->{
             this.main.getActionneur().boutonSaveAsItem(t);
         });
