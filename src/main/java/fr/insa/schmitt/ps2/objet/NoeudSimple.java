@@ -57,13 +57,7 @@ public class NoeudSimple extends Noeud{
         return this.getPy();
     }
     
-    @Override
-    public double distanceNoeud(Noeud p) {
-        double dx = this.getPx() - p.getPx();
-        double dy = this.getPy() - p.getPy();
-        return Math.sqrt(dx*dx+dy*dy);
-
-    }
+    
     
     @Override
     public void dessineSelection(GraphicsContext context) {

@@ -118,5 +118,13 @@ public abstract class Noeud extends Forme{
         context.setFill(this.getCouleur());
         context.fillOval(this.px-RAYON_IN_DRAW, this.py-RAYON_IN_DRAW, 2*RAYON_IN_DRAW, 2*RAYON_IN_DRAW);
     }
+    
+    @Override
+    public double distanceNoeud(Noeud p) {
+        double dx = this.getPx() - p.getPx();
+        double dy = this.getPy() - p.getPy();
+        return Math.sqrt(dx*dx+dy*dy);
+
+    }
 
 }

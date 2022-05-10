@@ -1,4 +1,4 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -78,6 +78,7 @@ public class Actionneur {
         }else if (this.etat == 150){
             // selection
             Noeud pclic = new NoeudSimple(t.getX(),t.getY());
+            //max value est peut etre trop grand ici
             Trellis proche = this.main.getModel().plusProche(pclic, Double.MAX_VALUE);
             if (proche != null) {
                 if (t.isShiftDown()) {
@@ -96,6 +97,17 @@ public class Actionneur {
                 this.main.redrawAll();
             }
                 
+        }else if (this.etat == 151){
+            // selectionPoint
+            Noeud pclic = new NoeudSimple(t.getX(),t.getY());
+            //max value est peut etre trop grand ici
+            Trellis proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);  
+           
+            this.getSelection().clear();
+            this.getSelection().add(proche);
+            this.activeBoutonsSuivantSelection();
+            this.main.redrawAll();
+                
         }else if (this.etat == 343){
             //creer segment
             this.pos1[0] = t.getX();
@@ -106,6 +118,8 @@ public class Actionneur {
             double px2 = t.getX();
             double py2 = t.getY();
             this.main.getModel().add(new Barres (new NoeudSimple(this.pos1[0],this.pos1[1]),new NoeudSimple(px2,py2)));
+            this.main.getModel().add(new NoeudSimple(this.pos1[0],this.pos1[1]));
+            this.main.getModel().add(new NoeudSimple(px2,py2));
             this.main.redrawAll();
             this.changeEtat(343);
             
@@ -121,6 +135,7 @@ public class Actionneur {
         this.changeEtat(100);
     }
     void boutonStop(ActionEvent t){
+        System.out.println(this.selection);
         this.changeEtat(110);
     }
     void boutonRetour(ActionEvent t){
@@ -134,6 +149,9 @@ public class Actionneur {
     
     void boutonSelect(ActionEvent t){
         this.changeEtat(150);
+    }
+    void boutonSelectPoint(ActionEvent t){
+        this.changeEtat(151);
     }
     void boutonDelete(ActionEvent t){
         if (this.etat == 150 && this.selection.size() > 0) {
@@ -229,7 +247,7 @@ public class Actionneur {
     }
     
     private void activeBoutonsSuivantSelection(){
-        
+        //si on veut désactiver un bouton quand select est activée
     }
 
     //bouton provenant du menu:
@@ -317,7 +335,7 @@ public class Actionneur {
     }
     
     void changeColor(Color value){
-        if(this.etat == 150 && this.selection.size() > 0){
+        if(((this.etat == 150)||(this.etat == 151)) && this.selection.size() > 0){
             for(Trellis t : this.selection){
                 t.changeCouleur(value);
             }

@@ -7,6 +7,7 @@ package fr.insa.schmitt.ps2.objet;
 import fr.insa.schmitt.ps2.Lire;
 import java.io.IOException;
 import java.io.Writer;
+import static java.lang.Double.MAX_VALUE;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
@@ -311,6 +312,43 @@ public class Groupe extends Trellis{
             }
             if (min <= distMax) {
                 return fmin;
+            } else {
+                return null;
+            }
+        }
+    }
+    public Trellis noeudPlusProche(Noeud p, double distMax) {
+        int a = 0;
+        double test = MAX_VALUE;
+        //la il peut y avoir un problème si la liste est vide
+        Trellis NoeudInitial = this.contient.get(0);
+        
+        for (int i = 0; i < this.contient.size(); i++) {
+            if (this.contient.get(i).getClass() == NoeudSimple.class){
+                test = this.contient.get(i).distanceNoeud(p);
+                NoeudInitial = this.contient.get(i);
+                a += 1;
+            }
+        }
+        //
+        System.out.println(a);
+        //
+        if (a == 0) {
+            return null;
+        } else {
+            
+            for (int i = 0; i < this.contient.size(); i++) {
+                if (this.contient.get(i).getClass() == NoeudSimple.class){
+                    Trellis fcur = this.contient.get(i);
+                    double cur = fcur.distanceNoeud(p);
+                    if (cur < test) {
+                        test = cur;
+                        NoeudInitial = fcur;
+                    }
+                }
+            }
+            if (test <= distMax) {
+                return NoeudInitial;
             } else {
                 return null;
             }

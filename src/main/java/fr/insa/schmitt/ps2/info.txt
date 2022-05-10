@@ -4,9 +4,15 @@ la selection a un problème: quand je veux changer la couleur de l'objet selecti
 
 l'ouverture d'un fichier a un probleme: quand j'ouvre un ficher, les points sont bien crées mais tous les coordonées sont réinitialisés
 
+dans le fichier groupe:
+
+il peut y avoir un probleme si le groupe est vide dans la fonction NoeudPlusProche
+
 autre:
 
 il y a des partis du cours du prof
+
+
 
 reste à faire:
 

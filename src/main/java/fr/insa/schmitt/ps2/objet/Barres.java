@@ -141,8 +141,9 @@ public class Barres extends Forme{
     public void dessine(GraphicsContext context) {
         context.setStroke(this.getCouleur());
         context.strokeLine(this.getNd().getPx(), this.getNd().getPy(), this.getNa().getPx(), this.getNa().getPy());
-        context.setFill(this.getCouleur());
+        context.setFill(this.getNd().getCouleur());
         context.fillOval(this.getNd().getPx()-RAYON_IN_DRAW, this.getNd().getPy()-RAYON_IN_DRAW, 1.5*RAYON_IN_DRAW, 1.5*RAYON_IN_DRAW);
+        context.setFill(this.getNa().getCouleur());
         context.fillOval(this.getNa().getPx()-RAYON_IN_DRAW, this.getNa().getPy()-RAYON_IN_DRAW, 1.5*RAYON_IN_DRAW, 1.5*RAYON_IN_DRAW);
     }
     

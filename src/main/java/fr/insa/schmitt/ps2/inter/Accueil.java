@@ -33,6 +33,7 @@ public class Accueil {
    private Button avance;
    private Button sauv;
    private Button select;
+   private Button selectPoint;
    private Button delete;
    private SplitMenuButton direction;
    private MenuItem haut;
@@ -80,6 +81,7 @@ public class Accueil {
         buildAvanceButton();
         buildSauvButton();
         buildSelecButton();
+        buildSelecPButton();
         buildDeleteButton();
         buildDirectionMenuButton();
         
@@ -89,7 +91,7 @@ public class Accueil {
         this.stop.setToggleGroup(toggle1);
         
         //Add Button
-        container.getChildren().addAll(play,stop,retour,avance,sauv,select,delete,direction);
+        container.getChildren().addAll(play,stop,retour,avance,sauv,select,selectPoint,delete,direction);
         
         //Add Container.
         tab.setContent(container); 
@@ -132,8 +134,8 @@ public class Accueil {
         this.stop.setGraphic(imageView);
 
         this.stop.setOnAction((t) ->{
-            //this.main.getActionneur().boutonStop(t);
-            this.main.getActionneur().MiseAJour(t);
+            this.main.getActionneur().boutonStop(t);
+            //this.main.getActionneur().MiseAJour(t);
             System.out.println("stop Clicked.");
         });
         
@@ -179,6 +181,16 @@ public class Accueil {
         this.select.setOnAction((t) ->{
             this.main.getActionneur().boutonSelect(t);
             System.out.println("select Clicked.");
+        });
+    }
+    private void buildSelecPButton(){
+        this.selectPoint = new BoutonIcon("icon/selec.png",32,32);
+        this.selectPoint.setText("selectioner B");
+        this.selectPoint.setContentDisplay(ContentDisplay.TOP);
+
+        this.selectPoint.setOnAction((t) ->{
+            this.main.getActionneur().boutonSelectPoint(t);
+            System.out.println("selectP Clicked.");
         });
     }
     private void buildDeleteButton(){
