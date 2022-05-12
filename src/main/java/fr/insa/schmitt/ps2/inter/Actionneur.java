@@ -4,9 +4,11 @@
  */
 package fr.insa.schmitt.ps2.inter;
 
+import static fr.insa.schmitt.ps2.inter.OutilsFx.Lagrange;
 import fr.insa.schmitt.ps2.objet.Barres;
 import fr.insa.schmitt.ps2.objet.Groupe;
 import fr.insa.schmitt.ps2.objet.Noeud;
+import fr.insa.schmitt.ps2.objet.NoeudAppuiDouble;
 import fr.insa.schmitt.ps2.objet.NoeudSimple;
 import fr.insa.schmitt.ps2.objet.Trellis;
 import java.io.File;
@@ -31,11 +33,16 @@ public class Actionneur {
     private int etat;
     private List<Trellis> selection;
     private double[] pos1 = new double[2];
+    private double[] pos2 = new double[2];
+    private List<Double> pos3x;
+    private List<Double> pos3y;
     private int etatSecondaire;
     
     public Actionneur(MainPanel main) {
         this.main = main;
         this.selection = new ArrayList<>();
+        this.pos3x = new ArrayList<>();
+        this.pos3y = new ArrayList<>();
     }
    
     public void changeEtat(int nouvelEtat){
@@ -66,7 +73,6 @@ public class Actionneur {
     }
 
     void clicDansZoneDessin(MouseEvent t) {
-        System.out.println(t.getX() + ";" + t.getY());
         double px = t.getX();
         double py =t.getY();
         /*px = px + (main.getWidth()/10);
@@ -152,6 +158,37 @@ public class Actionneur {
             
             this.main.redrawAll();
             this.changeEtat(345);
+            
+        }else if (this.etat == 400){
+
+            this.pos1[0] = px;
+            this.pos1[1] = py;
+            this.changeEtat(401);
+            
+        }else if (this.etat == 401){
+
+            this.pos2[0] = px;
+            this.pos2[1] = py;
+            //main.getTerrain().getXi().clear();
+            this.changeEtat(402);
+                    
+        }else if (this.etat == 402){
+
+            if (main.getTerrain().getXi().size() <= 10){
+                this.pos3x.add(px);
+                this.pos3y.add(py);
+                this.main.redrawAll();
+            }
+            
+            
+        }else if (this.etat == 420){
+
+            Groupe model = this.main.getModel();
+            py = Lagrange(px, this.main.getTerrain().getXi(), this.main.getTerrain().getYi());
+            System.out.println(px + ";" + py);
+            model.add(new NoeudAppuiDouble(px,py));
+            this.main.redrawAll(); 
+            
             
         }else{
             System.out.println("clic"); 
@@ -283,6 +320,23 @@ public class Actionneur {
     
     void boutonAjouterAppui(ActionEvent t){
         this.changeEtat(400);
+    }
+    void boutonValider(ActionEvent t){
+        main.getTerrain().RAYON_IN_DRAW = 5;
+        main.getTerrain().getXi().set(0, pos1[0]);
+        main.getTerrain().getYi().set(0, pos1[1]);
+        main.getTerrain().getXi().set(1, pos2[0]);
+        main.getTerrain().getYi().set(1, pos2[1]);
+        
+        if(pos3x.size() != 0){
+            for (int i = 0; i < pos3x.size(); i++){
+                main.getTerrain().getXi().add(pos3x.get(i));
+                main.getTerrain().getYi().add(pos3y.get(i));
+            }
+        }
+        
+        this.changeEtat(150);
+        this.main.redrawAll();
     }
     void boutonModifierAppui(ActionEvent t){
         this.changeEtat(410);

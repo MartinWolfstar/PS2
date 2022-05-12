@@ -5,6 +5,7 @@
 package fr.insa.schmitt.ps2.inter;
 
 import fr.insa.schmitt.ps2.objet.Groupe;
+import fr.insa.schmitt.ps2.objet.Terrain;
 import java.io.File;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -26,6 +27,7 @@ public class MainPanel extends BorderPane {
     private File curFile;
     
     private Groupe model;
+    private Terrain terrain;
     private DessinCanvas dessin;
     private RectangleVue zoneVue;
     
@@ -43,13 +45,13 @@ public class MainPanel extends BorderPane {
         this.actionneur = new Actionneur(this);
         this.curFile = fromFile;
         this.model = model;
+        this.terrain = new Terrain();
         this.fitAll();
         this.BarreOutilshaut = new BarreOutilshaut(this);
         this.BarreOutilsGauche = new BarreOutilsGauche(this);
         this.dessin = new DessinCanvas(this);
         this.menuBar = new MenuHaut(this);
         this.ruban = new Ruban(this);
-
         
         //this.setTop(ruban.get());
         this.setTop(this.BarreOutilshaut);
@@ -162,6 +164,20 @@ public class MainPanel extends BorderPane {
      */
     public void setZoneVue(RectangleVue zoneVue) {
         this.zoneVue = zoneVue;
+    }
+
+    /**
+     * @return the terrain
+     */
+    public Terrain getTerrain() {
+        return terrain;
+    }
+
+    /**
+     * @param terrain the terrain to set
+     */
+    public void setTerrain(Terrain terrain) {
+        this.terrain = terrain;
     }
     
     

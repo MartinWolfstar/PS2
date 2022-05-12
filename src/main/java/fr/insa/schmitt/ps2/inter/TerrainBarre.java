@@ -19,6 +19,7 @@ public class TerrainBarre {
     
     private Tab tab;
     private Button ajouter;
+    private Button valider;
     private Button modifier;
     private Button defAppui;
     
@@ -46,10 +47,11 @@ public class TerrainBarre {
 
         //Create Button
         buildAjouterButton();
+        buildValButton();
         buildModifierButton();
         buildDefAppuiButton();
 
-        container.getChildren().addAll(ajouter,modifier,defAppui);
+        container.getChildren().addAll(ajouter,valider,modifier,defAppui);
         //Add Container.
         tab.setContent(container);
 
@@ -61,9 +63,20 @@ public class TerrainBarre {
         this.ajouter.setContentDisplay(ContentDisplay.TOP);
 
         this.ajouter.setOnAction((t) ->{
-            //this.main.getActionneur().boutonAjouterAppui(t);
-            this.main.getActionneur().MiseAJour(t);
+            this.main.getActionneur().boutonAjouterAppui(t);
+            //this.main.getActionneur().MiseAJour(t);
             System.out.println("ajouter Clicked.");
+        });
+    }
+    private void buildValButton(){
+        this.valider = new BoutonIcon("icon/ajouter.png",32,32);
+        this.valider.setText("valider");
+        this.valider.setContentDisplay(ContentDisplay.TOP);
+
+        this.valider.setOnAction((t) ->{
+            this.main.getActionneur().boutonValider(t);
+            //this.main.getActionneur().MiseAJour(t);
+            System.out.println("valider Clicked.");
         });
     }
     private void buildModifierButton(){
@@ -83,8 +96,8 @@ public class TerrainBarre {
         this.defAppui.setContentDisplay(ContentDisplay.TOP);
 
         this.defAppui.setOnAction((t) ->{
-            //this.main.getActionneur().boutonDefAppui(t);
-            this.main.getActionneur().MiseAJour(t);
+            this.main.getActionneur().boutonDefAppui(t);
+            //this.main.getActionneur().MiseAJour(t);
             System.out.println("defAppui Clicked.");
         });
     }
