@@ -150,6 +150,7 @@ public abstract class Trellis {
     public abstract double distanceNoeud(Noeud p);
     
     public abstract void dessine(GraphicsContext context);
+    //public abstract void afficheResume();
     public abstract void dessineSelection(GraphicsContext context);
     public abstract void changeCouleur(Color value);
     

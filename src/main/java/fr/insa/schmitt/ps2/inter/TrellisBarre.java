@@ -204,8 +204,8 @@ public class TrellisBarre {
         this.angle = new Button("angle");
         
         this.angle.setOnAction((t) ->{
-            //this.main.getActionneur().boutonAngle(t);
-            this.main.getActionneur().MiseAJour(t);
+            this.main.getActionneur().boutonAngle(t);
+            //this.main.getActionneur().MiseAJour(t);
             System.out.println("angle Clicked.");
         });
     }
@@ -240,8 +240,8 @@ public class TrellisBarre {
         this.mesurerBarre = new Button("mesurer Barre");
         
         this.mesurerBarre.setOnAction((t) ->{
-            //this.main.getActionneur().boutonMesurerBarre(t);
-            this.main.getActionneur().MiseAJour(t);
+            this.main.getActionneur().boutonMesurerBarre(t);
+            //this.main.getActionneur().MiseAJour(t);
             System.out.println("mesurerBarre Clicked.");
         });
     }

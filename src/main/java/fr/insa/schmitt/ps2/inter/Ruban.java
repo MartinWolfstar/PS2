@@ -36,8 +36,9 @@ public class Ruban extends TabPane{
         ZoneConstBarre zoneConstBarre = new ZoneConstBarre(main);
         TrellisBarre trellis = new TrellisBarre(main);
         TerrainBarre terrain = new TerrainBarre(main);
-
-        ruban.getTabs().addAll(accueil.get(), zoneConstBarre.get(), trellis.get(), terrain.get());
+        
+        //ruban.getTabs().addAll(accueil.get(), zoneConstBarre.get(), trellis.get(), terrain.get());
+        ruban.getTabs().addAll( terrain.get(), accueil.get(), trellis.get());
         //ruban.getTabs().addAll(accueil.get());
     }
 }

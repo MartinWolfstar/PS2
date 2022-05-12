@@ -7,13 +7,12 @@ package fr.insa.schmitt.ps2.inter;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.KeyCombination;
-import javafx.stage.Stage;
 /**
  *
  * @author schmi
@@ -124,8 +123,19 @@ public class MenuHaut extends MenuBar{
             }
         });
         
+        /*Hyperlink hyperlink = new Hyperlink("page d'aide");
+
+        hyperlink.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                getHostServices().showDocument("https://XXXXXXXXXXXXXX.org");
+            }
+        });*/
+        
         aproposItem.setOnAction(new EventHandler<ActionEvent>() {
         
+            
             @Override
             public void handle(ActionEvent event) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);

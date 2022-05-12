@@ -7,6 +7,7 @@ package fr.insa.schmitt.ps2.objet;
 import static fr.insa.schmitt.ps2.objet.Noeud.RAYON_IN_DRAW;
 import java.io.IOException;
 import java.io.Writer;
+import static java.lang.Math.sqrt;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
@@ -154,6 +155,16 @@ public class Barres extends Forme{
         NoeudSimple fin = NoeudSimple.demandeNoeud();
         return new Barres(deb,fin);
         
+    }
+    public double longeurBarres(){
+        double l = 0;
+        
+        double a =(this.getNa().getPx() - this.getNd().getPx())*(this.getNa().getPx() - this.getNd().getPx());
+        double b = (this.getNa().getPy() - this.getNd().getPy())*(this.getNa().getPy() - this.getNd().getPy());
+        
+        l = sqrt(a + b);
+        
+        return l;
     }
 
     @Override

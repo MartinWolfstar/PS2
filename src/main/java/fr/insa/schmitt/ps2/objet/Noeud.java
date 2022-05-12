@@ -126,5 +126,25 @@ public abstract class Noeud extends Forme{
         return Math.sqrt(dx*dx+dy*dy);
 
     }
+    
+    public double angle(Noeud p1, Noeud p2){
+        
+        double angle;
+        
+        Barres a = new Barres(this,p1);
+        Barres b = new Barres(p1,p2);
+        Barres c = new Barres(this,p2);
+        
+        double la = a.longeurBarres();
+        System.out.println(la);
+        double lb = b.longeurBarres();
+        double lc = c.longeurBarres();
+        
+        double r = lb*lb - la*la - lc*lc;
+        angle = Math.acos(r/(-2)*la*lb);
+        
+        System.out.println(r);
+        return angle;
+    }
 
 }

@@ -373,7 +373,8 @@ public class Groupe extends Trellis{
         } else {
             Barres fmin = this.contientBarres.get(0);
             double min = fmin.distanceNoeud(p);
-            for (int i = 1; i < this.contientNoeud.size(); i++) {
+            for (int i = 1; i < this.contientBarres.size(); i++) {
+                //
                 Barres fcur = this.contientBarres.get(i);
                 double cur = fcur.distanceNoeud(p);
                 if (cur < min) {

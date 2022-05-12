@@ -69,7 +69,7 @@ public class TerrainBarre {
         });
     }
     private void buildValButton(){
-        this.valider = new BoutonIcon("icon/ajouter.png",32,32);
+        this.valider = new BoutonIcon("icon/ok.png",32,32);
         this.valider.setText("valider");
         this.valider.setContentDisplay(ContentDisplay.TOP);
 
@@ -91,7 +91,7 @@ public class TerrainBarre {
         });
     }
     private void buildDefAppuiButton(){
-        this.defAppui = new BoutonIcon("icon/pause.png",32,32);
+        this.defAppui = new BoutonIcon("icon/appui2.png",32,32);
         this.defAppui.setText("définir appuis");
         this.defAppui.setContentDisplay(ContentDisplay.TOP);
 

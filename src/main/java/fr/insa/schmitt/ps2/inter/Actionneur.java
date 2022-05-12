@@ -18,6 +18,7 @@ import java.util.List;
 import javafx.event.ActionEvent; 
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
@@ -35,6 +36,7 @@ public class Actionneur {
     private double[] pos1 = new double[2];
     private double[] pos2 = new double[2];
     private Noeud sauvN;
+    private Noeud sauvN2;
     private Barres sauvB;
     private List<Double> pos3x;
     private List<Double> pos3y;
@@ -132,6 +134,71 @@ public class Actionneur {
             this.activeBoutonsSuivantSelection();
             this.main.redrawAll();
                 
+        }else if (this.etat == 152){
+            // selectionBarres
+            Noeud pclic = new NoeudSimple(t.getX(),t.getY());
+            //max value est peut etre trop grand ici
+            Barres proche = this.main.getModel().barresPlusProche(pclic, Double.MAX_VALUE);  
+           
+            this.getSelection().clear();
+            this.getSelection().add(proche);
+            System.out.println(proche);
+            this.activeBoutonsSuivantSelection();
+            this.main.redrawAll();
+                
+        }else if (this.etat == 323){
+            //mesure de l'angle entre 3 Noeud (le centre est saisi en 2)
+            Noeud pclic = new NoeudSimple(t.getX(),t.getY());
+            //max value est peut etre trop grand ici
+            Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);
+            sauvN = proche;
+            this.changeEtat(324);
+            
+        }else if (this.etat == 324){
+            //mesure de l'angle
+            Noeud pclic = new NoeudSimple(t.getX(),t.getY());
+            //max value est peut etre trop grand ici
+            Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);
+            sauvN2 = proche;
+            this.changeEtat(325);
+            
+        }else if (this.etat == 325){
+            //mesure de l'angle
+            Noeud pclic = new NoeudSimple(t.getX(),t.getY());
+            //max value est peut etre trop grand ici
+            Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);
+            
+            double angle = sauvN2.angle(sauvN,proche);
+            System.out.println(angle);
+            angle = angle * 57.2958;
+
+            System.out.println(angle);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Mesure de l'angle");
+                alert.setHeaderText(null);
+                alert.setContentText("l'angle est de:\n"
+                        + angle + "° \n");
+
+                alert.showAndWait();
+            this.changeEtat(323);
+            
+        }else if (this.etat == 341){
+            //mesurer barres
+            Noeud pclic = new NoeudSimple(t.getX(),t.getY());
+            //max value est peut etre trop grand ici
+            Barres proche = this.main.getModel().barresPlusProche(pclic, Double.MAX_VALUE);
+            double distance = proche.longeurBarres();
+            //System.out.println(distance);
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Mesure de la barre");
+                alert.setHeaderText(null);
+                alert.setContentText("Mesure de la barre:\n"
+                        + distance + "\n");
+
+                alert.showAndWait();
+            
         }else if (this.etat == 343){
             //creer segment
             this.pos1[0] = px;
@@ -317,6 +384,8 @@ public class Actionneur {
     }
     void boutonAngle(ActionEvent t){
         this.changeEtat(323);
+        //324 : angle partie 2
+        //325 : angle partie 3
     }
     void boutonAjouterForce(ActionEvent t){
         this.changeEtat(330);

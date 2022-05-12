@@ -118,6 +118,7 @@ public class Accueil {
 
         this.play.setOnAction((t) ->{
             this.main.getActionneur().boutonPlay(t);
+            this.main.getActionneur().MiseAJour(t);
             System.out.println("play Clicked.");
         });
         
@@ -135,7 +136,7 @@ public class Accueil {
 
         this.stop.setOnAction((t) ->{
             this.main.getActionneur().boutonStop(t);
-            //this.main.getActionneur().MiseAJour(t);
+            this.main.getActionneur().MiseAJour(t);
             System.out.println("stop Clicked.");
         });
         
