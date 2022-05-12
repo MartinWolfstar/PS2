@@ -66,11 +66,19 @@ public class Actionneur {
     }
 
     void clicDansZoneDessin(MouseEvent t) {
+        System.out.println(t.getX() + ";" + t.getY());
+        double px = t.getX();
+        double py =t.getY();
+        /*px = px + (main.getWidth()/10);
+        py = py + (main.getHeight()/10);*/
+        /*px = px -100;
+        py = py -100;*/
+        /*px = px + (main.GetZoneVue().getxMax());
+        py = py + (main.getHeight()/10);*/
+        
         if (this.etat == 322){
             
             //création Noeud
-            double px = t.getX();
-            double py =t.getY();
             Groupe model = this.main.getModel();
             model.add(new NoeudSimple(px,py));
             this.main.redrawAll(); 

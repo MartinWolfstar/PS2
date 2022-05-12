@@ -81,6 +81,7 @@ public class RectangleVue {
      * @return une transformation permettant de représenter entièrement this dans vue
      */
     public Transform fitTransform(RectangleVue vue) {
+        //rectangle qu'on souhaite voir:
         double minX1 = this.xMin;
         double maxX1 = this.xMax;
         double minY1 = this.yMin;
@@ -89,6 +90,7 @@ public class RectangleVue {
         double dy1 = (maxY1 - minY1);
         double cx1 = (maxX1 + minX1) / 2;
         double cy1 = (maxY1 + minY1) / 2;
+        //rectangle qu'on voit
         double minX2 = vue.xMin;
         double minY2 = vue.yMin;
         double maxX2 = vue.xMax;

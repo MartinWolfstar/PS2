@@ -83,6 +83,10 @@ public class BarreOutilsGauche extends VBox{
             main.setModel(Groupe.groupeTest1());
             main.redrawAll();
         }
+        if (commande.equalsIgnoreCase("/import model2")) {
+            main.setModel(Groupe.groupeTest2());
+            main.redrawAll();
+        }
     }
 
     /**

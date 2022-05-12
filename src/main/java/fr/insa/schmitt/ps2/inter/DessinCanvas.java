@@ -28,7 +28,7 @@ public class DessinCanvas extends Pane{
         this.main = main;
         this.realCanvas = new Canvas(this.getWidth(), this.getHeight());
         //this.zoneVue = new RectangleVue(0, 0, this.getWidth(), this.getHeight());
-        this.zoneVue = new RectangleVue(0, this.getWidth(), 0, this.getHeight());
+        this.zoneVue = new RectangleVue(0, 0, this.getWidth(),this.getHeight());
         this.getChildren().add(this.realCanvas);
         //System.out.println("w = " + this.getWidth() + "h = " + this.getHeight());
         this.realCanvas.heightProperty().bind(this.heightProperty());
@@ -90,5 +90,5 @@ public class DessinCanvas extends Pane{
         }
         
     }
-    
+
 }

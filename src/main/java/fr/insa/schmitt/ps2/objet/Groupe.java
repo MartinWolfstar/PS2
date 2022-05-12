@@ -104,6 +104,12 @@ public class Groupe extends Trellis{
         Groupe res = new Groupe();
         return res;
     }
+    public static Groupe groupeTest2(){
+        NoeudSimple p1 = new NoeudSimple(0, 0);
+        Groupe res = new Groupe();
+        res.add(p1);
+        return res;
+    }
     
     public static void test1() {
         System.out.println("goupe test: \n" + Groupe.groupeTest0());
