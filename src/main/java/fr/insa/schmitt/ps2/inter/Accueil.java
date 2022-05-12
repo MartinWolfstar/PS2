@@ -91,7 +91,7 @@ public class Accueil {
         this.stop.setToggleGroup(toggle1);
         
         //Add Button
-        container.getChildren().addAll(play,stop,retour,avance,sauv,select,selectPoint,delete,direction);
+        container.getChildren().addAll(play,stop,retour,avance,sauv,select,delete,direction);
         
         //Add Container.
         tab.setContent(container); 

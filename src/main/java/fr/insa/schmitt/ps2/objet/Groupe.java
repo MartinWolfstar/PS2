@@ -460,6 +460,7 @@ public class Groupe extends Trellis{
             }
             w.append("\n");
         }
+        //rajouter les deux autres listes
     }
     
 }

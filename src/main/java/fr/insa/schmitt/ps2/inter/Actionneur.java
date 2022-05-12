@@ -34,6 +34,8 @@ public class Actionneur {
     private List<Trellis> selection;
     private double[] pos1 = new double[2];
     private double[] pos2 = new double[2];
+    private Noeud sauvN;
+    private Barres sauvB;
     private List<Double> pos3x;
     private List<Double> pos3y;
     private int etatSecondaire;
@@ -132,13 +134,13 @@ public class Actionneur {
                 
         }else if (this.etat == 343){
             //creer segment
-            this.pos1[0] = t.getX();
-            this.pos1[1] = t.getY();
+            this.pos1[0] = px;
+            this.pos1[1] = py;
             this.changeEtat(344);
         }else if (this.etat == 344){
             //creer segment.2
-            double px2 = t.getX();
-            double py2 = t.getY();
+            double px2 = px;
+            double py2 = py;
             this.main.getModel().add(new Barres (new NoeudSimple(this.pos1[0],this.pos1[1]),new NoeudSimple(px2,py2)));
             this.main.getModel().add(new NoeudSimple(this.pos1[0],this.pos1[1]));
             this.main.getModel().add(new NoeudSimple(px2,py2));
@@ -152,17 +154,45 @@ public class Actionneur {
             //creer segment à partie d'un point partie 1
             Noeud pclic = new NoeudSimple(t.getX(),t.getY());
             //max value est peut etre trop grand ici
-            Trellis proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);  
-            this.getSelection().clear();
-            this.getSelection().add(proche);
+            Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);  
+            sauvN = proche;
             this.changeEtat(346);
             
         }else if (this.etat == 346){
 
             //TODO il selectionne un endroit et ça creer la barre
+            double px2 = px;
+            double py2 = py;
+            this.main.getModel().add(new Barres (sauvN,new NoeudSimple(px2,py2)));
+            this.main.getModel().add(new NoeudSimple(px2,py2));
+            this.main.getModel().addB(new Barres (sauvN,new NoeudSimple(px2,py2)));
+            this.main.getModel().addN(new NoeudSimple(px2,py2));
+            this.main.redrawAll();
             
             this.main.redrawAll();
             this.changeEtat(345);
+            
+        }else if (this.etat == 347){
+            //creer segment à partie d'un point partie 1
+            Noeud pclic = new NoeudSimple(t.getX(),t.getY());
+            //max value est peut etre trop grand ici
+            Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);  
+            sauvN = proche;
+            this.changeEtat(348);
+            
+        }else if (this.etat == 348){
+
+            Noeud pclic = new NoeudSimple(t.getX(),t.getY());
+            //max value est peut etre trop grand ici
+            //il selectionne un autre noeud et ça creer la barre
+            Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);
+            
+            this.main.getModel().add(new Barres (sauvN,proche));
+            this.main.getModel().addB(new Barres (sauvN,proche));
+            this.main.redrawAll();
+            
+            this.main.redrawAll();
+            this.changeEtat(347);
             
         }else if (this.etat == 400){
 
@@ -192,6 +222,7 @@ public class Actionneur {
             py = Lagrange(px, this.main.getTerrain().getXi(), this.main.getTerrain().getYi());
             System.out.println(px + ";" + py);
             model.add(new NoeudAppuiDouble(px,py));
+            model.addN(new NoeudAppuiDouble(px,py));
             this.main.redrawAll(); 
             
             
@@ -312,12 +343,12 @@ public class Actionneur {
     }
     void creerBarreA1P(ActionEvent t){
         this.changeEtat(345);
-        this.changeEtatSecondaire(2);
+        //this.changeEtatSecondaire(2);
         //état 346: ajouter barre partie 2
     }
     void creerBarreA2P(ActionEvent t){
         this.changeEtat(347);
-        this.changeEtatSecondaire(3);
+        //this.changeEtatSecondaire(3);
         //état 348: ajouter barre partie 2
     }
     
