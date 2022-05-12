@@ -20,9 +20,13 @@ import javafx.scene.paint.Color;
 public class Groupe extends Trellis{
     
     private List<Trellis> contient;
+    private List<Noeud> contientNoeud;
+    private List<Barres> contientBarres;
     
     public Groupe(){
         this.contient = new ArrayList<Trellis>();
+        this.contientNoeud = new ArrayList<Noeud>();
+        this.contientBarres = new ArrayList<Barres>();
     }
     
     public void add(Trellis t){
@@ -34,6 +38,25 @@ public class Groupe extends Trellis{
             t.setGroupe(this);
         }
     }
+    public void addN(Noeud t){
+        if(t.getGroupe() != this){
+            if(t.getGroupe() != null){
+                throw new Error("figure déjà dans un autre groupe");
+            }
+            this.contientNoeud.add(t);
+            t.setGroupe(this);
+        }
+    }
+    public void addB(Barres t){
+        if(t.getGroupe() != this){
+            if(t.getGroupe() != null){
+                throw new Error("figure déjà dans un autre groupe");
+            }
+            this.contientBarres.add(t);
+            t.setGroupe(this);
+        }
+    }
+    
     public void remove(Trellis f) {
         if (f.getGroupe() != this) {
             throw new Error("la figure n'est pas dans le groupe");
@@ -323,7 +346,50 @@ public class Groupe extends Trellis{
             }
         }
     }
-    public Trellis noeudPlusProche(Noeud p, double distMax) {
+    public Noeud noeudPlusProche(Noeud p, double distMax) {
+        if (this.contientNoeud.isEmpty()) {
+            return null;
+        } else {
+            Noeud fmin = this.contientNoeud.get(0);
+            double min = fmin.distanceNoeud(p);
+            for (int i = 1; i < this.contientNoeud.size(); i++) {
+                Noeud fcur = this.contientNoeud.get(i);
+                double cur = fcur.distanceNoeud(p);
+                if (cur < min) {
+                    min = cur;
+                    fmin = fcur;
+                }
+            }
+            if (min <= distMax) {
+                return fmin;
+            } else {
+                return null;
+            }
+        }
+    }
+    public Barres barresPlusProche(Noeud p, double distMax) {
+        if (this.contientBarres.isEmpty()) {
+            return null;
+        } else {
+            Barres fmin = this.contientBarres.get(0);
+            double min = fmin.distanceNoeud(p);
+            for (int i = 1; i < this.contientNoeud.size(); i++) {
+                Barres fcur = this.contientBarres.get(i);
+                double cur = fcur.distanceNoeud(p);
+                if (cur < min) {
+                    min = cur;
+                    fmin = fcur;
+                }
+            }
+            if (min <= distMax) {
+                return fmin;
+            } else {
+                return null;
+            }
+        }
+    }
+    
+    /*public Trellis noeudPlusProche(Noeud p, double distMax) {
         int a = 0;
         double test = MAX_VALUE;
         //la il peut y avoir un problème si la liste est vide
@@ -354,12 +420,13 @@ public class Groupe extends Trellis{
                 }
             }
             if (test <= distMax) {
+                double u = NoeudInitial.maxX();
                 return NoeudInitial;
             } else {
                 return null;
             }
         }
-    }
+    }*/
     
     @Override
     public void dessine(GraphicsContext context) {

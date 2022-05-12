@@ -87,6 +87,7 @@ public class Actionneur {
             //création Noeud
             Groupe model = this.main.getModel();
             model.add(new NoeudSimple(px,py));
+            model.addN(new NoeudSimple(px,py));
             this.main.redrawAll(); 
             
         }else if (this.etat == 100){
@@ -121,10 +122,11 @@ public class Actionneur {
             // selectionPoint
             Noeud pclic = new NoeudSimple(t.getX(),t.getY());
             //max value est peut etre trop grand ici
-            Trellis proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);  
+            Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);  
            
             this.getSelection().clear();
             this.getSelection().add(proche);
+            System.out.println(proche);
             this.activeBoutonsSuivantSelection();
             this.main.redrawAll();
                 
@@ -140,6 +142,9 @@ public class Actionneur {
             this.main.getModel().add(new Barres (new NoeudSimple(this.pos1[0],this.pos1[1]),new NoeudSimple(px2,py2)));
             this.main.getModel().add(new NoeudSimple(this.pos1[0],this.pos1[1]));
             this.main.getModel().add(new NoeudSimple(px2,py2));
+            this.main.getModel().addB(new Barres (new NoeudSimple(this.pos1[0],this.pos1[1]),new NoeudSimple(px2,py2)));
+            this.main.getModel().addN(new NoeudSimple(this.pos1[0],this.pos1[1]));
+            this.main.getModel().addN(new NoeudSimple(px2,py2));
             this.main.redrawAll();
             this.changeEtat(343);
             
