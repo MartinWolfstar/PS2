@@ -99,6 +99,7 @@ public class Actionneur {
            
             //play
             System.out.println(main.getModel());
+            System.out.println("terrain : \n" + this.main.getTerrain().toString());
             this.changeEtat(350);
             
         }else if (this.etat == 150){

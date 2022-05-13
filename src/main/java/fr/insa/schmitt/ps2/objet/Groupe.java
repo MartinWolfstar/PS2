@@ -39,9 +39,6 @@ public class Groupe extends Trellis{
             t.setGroupe(this);
         }
     }
-    public void add(GlobalObject t){
-        //jamais utilisé, il sert à la sauvegarde
-    }
     
     public void addN(Noeud t){
         if(t.getGroupe() != this){

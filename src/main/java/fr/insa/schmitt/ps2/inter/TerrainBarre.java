@@ -92,7 +92,7 @@ public class TerrainBarre {
     }
     private void buildDefAppuiButton(){
         this.defAppui = new BoutonIcon("icon/appui2.png",32,32);
-        this.defAppui.setText("définir appuis");
+        this.defAppui.setText("définir appuis fixe");
         this.defAppui.setContentDisplay(ContentDisplay.TOP);
 
         this.defAppui.setOnAction((t) ->{

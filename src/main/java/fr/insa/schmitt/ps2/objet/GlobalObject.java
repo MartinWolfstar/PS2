@@ -55,22 +55,9 @@ public abstract class GlobalObject {
             this.save(bout, num);
         }
     }
-    /*public void sauvegarde2(File fout) throws IOException {
-        Numeroteur<GlobalObject> num = new Numeroteur<>();
-        try (BufferedReader buf1 = new BufferedReader(new FileReader(fout))) {
-            String all = "";
-            String line;
-            while ((line = buf1.readLine()) != null && line.length() != 0) {
-                all = all + "\n" + line;
-        }
-        try (BufferedWriter bout = new BufferedWriter(new FileWriter(fout))) {
-            this.save(bout, num);
-            bout.append("\n" + all + "\n");
-        }
-    }*/
     
     public  static GlobalObject[] lecture(File fin) throws IOException {
-        Numeroteur<GlobalObject> num = new Numeroteur<>();
+        Numeroteur<Trellis> num = new Numeroteur<>();
         GlobalObject derniere = null;
         Terrain ter = new Terrain(5);
         try (BufferedReader bin = new BufferedReader(new FileReader(fin))) {
@@ -78,6 +65,7 @@ public abstract class GlobalObject {
             while ((line = bin.readLine()) != null && line.length() != 0) {
                 String[] bouts = line.split(";");
                 //System.out.println(line);
+                System.out.println("test1");
                 if (bouts[0].equals("NoeudSimple")) {
                     int id = Integer.parseInt(bouts[1]);
                     double px = Double.parseDouble(bouts[2]);
@@ -88,6 +76,18 @@ public abstract class GlobalObject {
                     NoeudSimple np = new NoeudSimple(px, py, col);
                     num.associe(id, np);
                     derniere = np;
+                    System.out.println("test2");
+                } else if (bouts[0].equals("NoeudAppuiDouble")) {
+                    int id = Integer.parseInt(bouts[1]);
+                    double px = Double.parseDouble(bouts[2]);
+                    //System.out.println(px);
+                    double py = Double.parseDouble(bouts[3]);
+                    Color col = Forme.parseColor(bouts[4], bouts[5], bouts[6]);
+                    //System.out.println(px + ";" + py + ";" + col);
+                    NoeudSimple np = new NoeudSimple(px, py, col);
+                    num.associe(id, np);
+                    derniere = np;
+                    System.out.println("test2");
                 } else if (bouts[0].equals("Barres")) {
                     int id = Integer.parseInt(bouts[1]);
                     int idP1 = Integer.parseInt(bouts[2]);
@@ -98,52 +98,19 @@ public abstract class GlobalObject {
                     Barres ns = new Barres(p1, p2, col);
                     num.associe(id, ns);
                     derniere = ns;
-                } else if (bouts[0].equals("Groupe")) {
+                    System.out.println("test3");
+                }else if (bouts[0].equals("Groupe")) {
                     int id = Integer.parseInt(bouts[1]);
                     Groupe ng = new Groupe();
                     num.associe(id, ng);
                     for (int i = 2; i < bouts.length; i++) {
                         int idSous = Integer.parseInt(bouts[i]);
-                        GlobalObject fig = num.getObject(idSous);
+                        Trellis fig = num.getObject(idSous);
                         ng.add(fig);
                     }
+                    //erreur par ici lors de la lecture
                     derniere = ng;
                 }else if (bouts[0].equals("Terrain")) {
-                    /*for (int i = 2; i < bouts.length; i++) {
-                        int idSous = Integer.parseInt(bouts[i]);
-                        GlobalObject fig = num.getObject(idSous);
-                        ng.add(fig);
-                    }
-                    derniere = ng;*/
-                    //System.out.println("test1");
-                    /*int max =(bouts.length-1)/2;
-                    System.out.println(max);
-                    for(int i = 1; i < 2 ; i++) {
-                        System.out.println("test2 " + i);
-                        double x = Double.parseDouble(bouts[i]);
-                        System.out.println(x);
-                        ter.getXi().set(i, x);
-                    }
-                    if (max >= 3){
-                        for(int i = 3; i < max ; i++) {
-                            System.out.println("test3");
-                            double x = Double.parseDouble(bouts[i]);
-                            System.out.println(x);
-                            ter.getXi().add(x);
-                        }
-                    }
-                    for(int i = max; i < max + 1 ; i++) {
-                        System.out.println("test4 " + i);
-                        double y = Double.parseDouble(bouts[i]);
-                        System.out.println(y);
-                        ter.getXi().set(i, y);
-                    }
-                    System.out.println("test2.5");
-                    for(int i = max + 1; i < bouts.length; i++) {
-                        System.out.println("test5");
-                        double y = Double.parseDouble(bouts[i]);
-                        ter.getYi().add(y);
-                    }*/
                     List<Double> x = new ArrayList<>();
                     int taille;
                     for(int i = 1; i < bouts.length ; i++) {

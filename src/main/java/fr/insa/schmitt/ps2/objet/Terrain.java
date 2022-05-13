@@ -64,7 +64,14 @@ public class Terrain extends GlobalObject{
     }
     
     public String toString() {
-        return "(" + this.xi.get(0) + ")" ;
+        
+        String valx = "";
+        String valy = "";
+        for (int i = 0 ; i < this.xi.size(); i++){
+            valx = valx + this.xi.get(i) + ";";
+            valy = valy + this.yi.get(i) + ";";
+        }
+        return "xi:" + valx + "\n" + "yi:" + valy ;
     }
     
     public void dessine(GraphicsContext context) {
