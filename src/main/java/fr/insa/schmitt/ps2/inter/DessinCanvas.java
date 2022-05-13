@@ -70,11 +70,11 @@ public class DessinCanvas extends Pane{
         //context.fillRect(0,0, this.realCanvas.getWidth(), this.realCanvas.getHeight());    
         
         //gestion des zooms/:
-        /*context.setTransform(new Affine());
+        context.setTransform(new Affine());
         context.clearRect(0,0,this.realCanvas.getWidth(),this.realCanvas.getHeight());
         this.zoneVue.setxMax(this.realCanvas.getWidth());
         this.zoneVue.setyMax(this.realCanvas.getHeight());
-        Transform curTrans = this.main.getZoneVue().fitTransform(this.zoneVue);
+        /*Transform curTrans = this.main.getZoneVue().fitTransform(this.zoneVue);
         this.setTransform(curTrans);*/
         //System.out.println(zoneVue);
         

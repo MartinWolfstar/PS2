@@ -8,6 +8,7 @@ import fr.insa.schmitt.ps2.*;
 import java.io.IOException;
 import java.io.Writer;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
 import javafx.scene.paint.Color;
 
 /**
@@ -66,11 +67,26 @@ public class NoeudSimple extends Noeud{
     }
     
     @Override
-    public void save(Writer w, Numeroteur<Trellis> num)throws IOException{
+    public void save(Writer w, Numeroteur<GlobalObject> num)throws IOException{
         if(! num.objExiste(this)){
             int id = num.add(this);
             w.append("NoeudSimple;"+id+";"+this.getPx()+";"+this.getPy()+
                     ";" + Forme.saveColor(this.getCouleur()) + "\n");
         }
     }
+    
+    @Override
+    public void afficheResume() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Ceci est un Noeud Simple");
+                alert.setHeaderText(null);
+                alert.setContentText("px = " + this.getPx() + "\n"
+                        + "py = " + this.getPy() + " \n" 
+                        + "forces appliqués à ce noeud " + this.getForce() + " \n"
+                        + "° \n" 
+                );
+
+                alert.showAndWait();
+    }
+    
 }

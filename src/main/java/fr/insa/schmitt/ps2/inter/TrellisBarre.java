@@ -25,7 +25,7 @@ public class TrellisBarre {
     private Tab tab;
     private Button retrecir;
     private Button agrandir;
-    private Button remplir;
+    private Button informer;
     private Button creerPivot;
     private Button insererNoeud;
     private Button angle;
@@ -96,7 +96,7 @@ public class TrellisBarre {
         //Create all Button
         buildRetButton();
         buildAgrandirButton();
-        buildRemplirButton();
+        buildInformerButton();
         buildCPButton();
         buildINButton();
         buildAngleButton();
@@ -112,7 +112,7 @@ public class TrellisBarre {
         //Esthetique
         agrandir.setMaxWidth(Double.MAX_VALUE);
         retrecir.setMaxWidth(Double.MAX_VALUE);
-        remplir.setMaxWidth(Double.MAX_VALUE);
+        informer.setMaxWidth(Double.MAX_VALUE);
         creerPivot.setMaxWidth(Double.MAX_VALUE);
         insererNoeud.setMaxWidth(Double.MAX_VALUE);
         angle.setMaxWidth(Double.MAX_VALUE);
@@ -139,7 +139,7 @@ public class TrellisBarre {
         OutilsFx.setSimpleBorder(ssContainer4, Color.GRAY, 2);
         ssContainer5.getChildren().addAll(defForme,defCouleur);
         OutilsFx.setSimpleBorder(ssContainer5, Color.GRAY, 2);
-        ssContainer6.getChildren().addAll(angle, remplir);
+        ssContainer6.getChildren().addAll(angle, informer);
         OutilsFx.setSimpleBorder(ssContainer6, Color.GRAY, 2);
         ssContainer7.getChildren().addAll(uniformiserBarreTaille, ajouterBarres);
         OutilsFx.setSimpleBorder(ssContainer7, Color.GRAY, 2);
@@ -173,13 +173,13 @@ public class TrellisBarre {
             System.out.println("agrandir Clicked.");
         });
     }
-    private void buildRemplirButton(){
-        this.remplir = new Button("remplir");
+    private void buildInformerButton(){
+        this.informer = new Button("recevoir information");
         
-        this.remplir.setOnAction((t) ->{
-            this.main.getActionneur().boutonRemplir(t);
+        this.informer.setOnAction((t) ->{
+            this.main.getActionneur().boutonInformer(t);
             //this.main.getActionneur().MiseAJour(t);
-            System.out.println("remplir Clicked.");
+            System.out.println("informer Clicked.");
         });
     }
     

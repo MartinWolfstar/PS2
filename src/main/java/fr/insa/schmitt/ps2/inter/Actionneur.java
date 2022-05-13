@@ -6,10 +6,12 @@ package fr.insa.schmitt.ps2.inter;
 
 import static fr.insa.schmitt.ps2.inter.OutilsFx.Lagrange;
 import fr.insa.schmitt.ps2.objet.Barres;
+import fr.insa.schmitt.ps2.objet.GlobalObject;
 import fr.insa.schmitt.ps2.objet.Groupe;
 import fr.insa.schmitt.ps2.objet.Noeud;
 import fr.insa.schmitt.ps2.objet.NoeudAppuiDouble;
 import fr.insa.schmitt.ps2.objet.NoeudSimple;
+import fr.insa.schmitt.ps2.objet.Terrain;
 import fr.insa.schmitt.ps2.objet.Trellis;
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +20,6 @@ import java.util.List;
 import javafx.event.ActionEvent; 
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
@@ -227,7 +228,7 @@ public class Actionneur {
             
         }else if (this.etat == 346){
 
-            //TODO il selectionne un endroit et ça creer la barre
+            //il selectionne un endroit et ça creer la barre
             double px2 = px;
             double py2 = py;
             this.main.getModel().add(new Barres (sauvN,new NoeudSimple(px2,py2)));
@@ -372,9 +373,12 @@ public class Actionneur {
         this.main.setZoneVue(this.main.getZoneVue().scale(0.5));
         this.main.redrawAll();
     }
-    void boutonRemplir(ActionEvent t){
-        this.main.fitAll();
-        this.main.redrawAll();
+    void boutonInformer(ActionEvent t){
+        if(((this.etat == 150)||(this.etat == 151)) && this.selection.size() > 0){
+            for(Trellis obj : this.selection){
+                obj.afficheResume();
+            }
+        }
     }
     void boutonCreerPivot(ActionEvent t){
         this.changeEtat(321);
@@ -466,7 +470,7 @@ public class Actionneur {
     void boutonExitItem(ActionEvent t){
         System.exit(0);
     }
-    void boutonOpenFilesItem(ActionEvent t){
+    /*void boutonOpenFilesItem(ActionEvent t){
         FileChooser chooser = new FileChooser();
         File f = chooser.showOpenDialog(this.main.getInStage());
         if (f != null) {
@@ -483,6 +487,39 @@ public class Actionneur {
                 alert.setTitle("Erreur");
                 alert.setHeaderText("Problème durant la sauvegarde");
                 alert.setContentText(ex.getLocalizedMessage());
+
+                alert.showAndWait();
+            } finally {
+                this.changeEtat(350);
+            }
+        }
+    }*/
+    void boutonOpenFilesItem(ActionEvent t){
+        FileChooser chooser = new FileChooser();
+        File f = chooser.showOpenDialog(this.main.getInStage());
+        if (f != null) {
+            try {
+                //System.out.println("test1");
+                GlobalObject[] lue = GlobalObject.lecture(f);
+                //System.out.println("test2");
+                Groupe glu = (Groupe) lue[0];
+                //System.out.println("test3");
+                Terrain terrain = (Terrain) lue[1];
+                //System.out.println("test4");
+                Stage nouveau = new Stage();
+                //System.out.println("test5");
+                nouveau.setTitle(f.getName());
+                //System.out.println("test6");
+                Scene sc = new Scene(new MainPanel(nouveau, f, glu, terrain), 1000, 700);
+                //System.out.println("test7");
+                nouveau.setScene(sc);
+                nouveau.show();
+            } catch (Exception ex) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur");
+                alert.setHeaderText("Problème durant la sauvegarde");
+                alert.setContentText(ex.getLocalizedMessage());
+                System.out.println(ex.getLocalizedMessage());
 
                 alert.showAndWait();
             } finally {
@@ -506,7 +543,8 @@ public class Actionneur {
     }
     private void realSave(File f) {
         try {
-            this.main.getModel().sauvegarde(f);
+            this.main.getModel().sauvegarde(f,false);
+            this.main.getTerrain().sauvegarde(f,true);
             this.main.setCurFile(f);
             this.main.getInStage().setTitle(f.getName());
         } catch (IOException ex) {
@@ -542,6 +580,7 @@ public class Actionneur {
         if(((this.etat == 150)||(this.etat == 151)) && this.selection.size() > 0){
             for(Trellis t : this.selection){
                 t.changeCouleur(value);
+                //t.afficheResume();
             }
             this.main.redrawAll();
         }

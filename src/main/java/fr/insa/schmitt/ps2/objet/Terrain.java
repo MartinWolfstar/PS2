@@ -5,6 +5,8 @@
 package fr.insa.schmitt.ps2.objet;
 
 import static fr.insa.schmitt.ps2.inter.OutilsFx.Lagrange;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
@@ -15,7 +17,7 @@ import static javafx.scene.paint.Color.RED;
  *
  * @author schmi
  */
-public class Terrain {
+public class Terrain extends GlobalObject{
     
     private List<Double> xi;
     private List<Double> yi;
@@ -39,10 +41,25 @@ public class Terrain {
         this.xi.add(120.0);
         this.yi.add(220.0);*/
         
-
+    }
+    public Terrain (double rayon){
+        
+        this.xi = new ArrayList<>();
+        this.yi = new ArrayList<>();
+        this.RAYON_IN_DRAW = rayon;
+        
+        this.xi.add(0.0);
+        this.yi.add(0.0);
+        
+        this.xi.add(100.0);
+        this.yi.add(0.0);
         
         
+        /*this.xi.add(150.0);
+        this.yi.add(100.0);
         
+        this.xi.add(120.0);
+        this.yi.add(220.0);*/
         
     }
     
@@ -100,6 +117,25 @@ public class Terrain {
         this.yi = yi;
     }
     
+    @Override
+    public void save(Writer w, Numeroteur<GlobalObject> num)throws IOException{
+        if(! num.objExiste(this)){
+            int id = num.add(this);
+            
+            w.append("Terrain;");
+            for (int i = 0; i < xi.size(); i++){
+                w.append(xi.get(i)+ ";");
+                w.append(yi.get(i) + ";");
+            }
+            w.append("\n");
+        }
+
+        
+    }
     
+    public static Terrain ini(){
+        Terrain ter = new Terrain();
+        return ter;
+    }
     
 }

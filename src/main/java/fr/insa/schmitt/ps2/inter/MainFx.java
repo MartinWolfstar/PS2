@@ -5,6 +5,7 @@
 package fr.insa.schmitt.ps2.inter;
 
 import fr.insa.schmitt.ps2.objet.Groupe;
+import fr.insa.schmitt.ps2.objet.Terrain;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -18,7 +19,7 @@ public class MainFx extends Application{
     @Override
     public void start (Stage fen){
         
-        MainPanel main = new MainPanel(fen, Groupe.groupeTest1());
+        MainPanel main = new MainPanel(fen, Groupe.groupeTest1(), Terrain.ini());
         
         fen.getIcons().setAll(new Image(getClass().getResource("icon/icons8-robot-50.png").toExternalForm()));
         //voici le lien pour les droits d'utilisation de l'icon: https://icons8.com/icon/115633/robot

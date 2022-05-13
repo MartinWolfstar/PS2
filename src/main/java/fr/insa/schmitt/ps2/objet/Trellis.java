@@ -20,7 +20,7 @@ import javafx.scene.paint.Color;
  *
  * @author schmi
  */
-public abstract class Trellis {
+public abstract class Trellis extends GlobalObject{
     
     private List<Barres> barres;
     private List<Noeud> noeud;
@@ -150,20 +150,20 @@ public abstract class Trellis {
     public abstract double distanceNoeud(Noeud p);
     
     public abstract void dessine(GraphicsContext context);
-    //public abstract void afficheResume();
+    public abstract void afficheResume();
     public abstract void dessineSelection(GraphicsContext context);
     public abstract void changeCouleur(Color value);
     
-    public abstract void save(Writer w, Numeroteur<Trellis> num)throws IOException;
+    //public abstract void save(Writer w, Numeroteur<Trellis> num)throws IOException;
 
-    public void sauvegarde(File fout) throws IOException {
+    /*public void sauvegarde(File fout) throws IOException {
         Numeroteur<Trellis> num = new Numeroteur<>();
         try (BufferedWriter bout = new BufferedWriter(new FileWriter(fout))) {
             this.save(bout, num);
         }
-    }   
+    }   */
     
-    public static Trellis lecture(File fin) throws IOException {
+    /*public static Trellis lecture(File fin) throws IOException {
         Numeroteur<Trellis> num = new Numeroteur<>();
         Trellis derniere = null;
         try (BufferedReader bin = new BufferedReader(new FileReader(fin))) {
@@ -181,7 +181,7 @@ public abstract class Trellis {
                     NoeudSimple np = new NoeudSimple(px, py, col);
                     num.associe(id, np);
                     derniere = np;
-                } else if (bouts[0].equals("Segment")) {
+                } else if (bouts[0].equals("Barres")) {
                     int id = Integer.parseInt(bouts[1]);
                     int idP1 = Integer.parseInt(bouts[2]);
                     int idP2 = Integer.parseInt(bouts[3]);
@@ -206,6 +206,6 @@ public abstract class Trellis {
 
         }
         return derniere;
-    }
+    }*/
         
 }

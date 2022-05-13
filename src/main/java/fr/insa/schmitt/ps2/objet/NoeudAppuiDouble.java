@@ -9,6 +9,7 @@ import static fr.insa.schmitt.ps2.objet.Noeud.RAYON_IN_DRAW;
 import java.io.IOException;
 import java.io.Writer;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
 
 /**
  *
@@ -59,12 +60,26 @@ public class NoeudAppuiDouble extends NoeudAppui{
     }
     
     @Override
-    public void save(Writer w, Numeroteur<Trellis> num)throws IOException{
+    public void save(Writer w, Numeroteur<GlobalObject> num)throws IOException{
         if(! num.objExiste(this)){
             int id = num.add(this);
             w.append("NoeudAppuiDouble;"+id+";"+this.getPx()+";"+this.getPy()+
                     ";" + Forme.saveColor(this.getCouleur()) + "\n");
         }
+    }
+    
+    @Override
+    public void afficheResume() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Ceci est un Noeud appui double");
+                alert.setHeaderText(null);
+                alert.setContentText("px = " + this.getPx() + "\n"
+                        + "py = " + this.getPy() + " \n" 
+                        + "forces appliqués à ce noeud " + this.getForce() + " \n"
+                        + "° \n" 
+                );
+
+                alert.showAndWait();
     }
 }
 

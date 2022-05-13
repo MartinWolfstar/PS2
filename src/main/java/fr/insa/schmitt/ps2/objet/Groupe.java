@@ -11,6 +11,7 @@ import static java.lang.Double.MAX_VALUE;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
 import javafx.scene.paint.Color;
 
 /**
@@ -38,6 +39,10 @@ public class Groupe extends Trellis{
             t.setGroupe(this);
         }
     }
+    public void add(GlobalObject t){
+        //jamais utilisé, il sert à la sauvegarde
+    }
+    
     public void addN(Noeud t){
         if(t.getGroupe() != this){
             if(t.getGroupe() != null){
@@ -449,7 +454,7 @@ public class Groupe extends Trellis{
     }
 
     @Override
-    public void save(Writer w, Numeroteur<Trellis> num) throws IOException {
+    public void save(Writer w, Numeroteur<GlobalObject> num) throws IOException {
         if (!num.objExiste(this)) {
             int id = num.add(this);
             for (Trellis f : this.contient) {
@@ -462,6 +467,20 @@ public class Groupe extends Trellis{
             w.append("\n");
         }
         //rajouter les deux autres listes
+    }
+    
+    @Override
+    public void afficheResume() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Ceci est une Barre");
+                alert.setHeaderText(null);
+                alert.setContentText("info \n"
+                        + "info \n"
+                        + "info \n"
+                        + "° \n" 
+                );
+
+                alert.showAndWait();
     }
     
 }

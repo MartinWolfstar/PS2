@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.Writer;
 import static java.lang.Math.sqrt;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
 import javafx.scene.paint.Color;
 
 /**
@@ -22,7 +23,7 @@ public class Barres extends Forme{
     private int identificateur;
     private int TC;
     private int CM;
-    private int prix;
+    private int prix; //prix au mètre
 
     /**
      * @return the nd
@@ -71,7 +72,7 @@ public class Barres extends Forme{
         this.CM = 0;
         this.TC = 0;
         this.identificateur = -1;
-        this.prix = 0;
+        this.prix = 4;
         this.na = narrive;
         this.nd = ndepart;
         this.na.getBarresDepart().add(this);
@@ -84,7 +85,7 @@ public class Barres extends Forme{
         this.CM = 0;
         this.TC = 0;
         this.identificateur = -1;
-        this.prix = 0;
+        this.prix = 4;
         this.na = narrive;
         this.nd = ndepart;
         this.na.getBarresDepart().add(this);
@@ -210,15 +211,28 @@ public class Barres extends Forme{
     }
     
     @Override
-    public void save(Writer w, Numeroteur<Trellis> num) throws IOException {
+    public void save(Writer w, Numeroteur<GlobalObject> num) throws IOException {
         if (!num.objExiste(this)) {
             int id = num.add(this);
             this.nd.save(w, num);
             this.na.save(w, num);
-            w.append("Segment;" + id + ";" +
+            w.append("Barres;" + id + ";" +
                     num.getIndex(this.nd) + ";" + num.getIndex(this.na) +
                     ";" + Forme.saveColor(this.getCouleur())+"\n");
         }
     }
     
+    @Override
+    public void afficheResume() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Ceci est une Barre");
+                alert.setHeaderText(null);
+                alert.setContentText("Noeud 1 : (" + this.getNd().getPx() + "," + this.getNd().getPy() + ") \n"
+                        + "Noeud 2 : (" + this.getNa().getPx() + "," + this.getNa().getPy() + ") \n"
+                        + "le prix de cette barre est de : " + this.getPrix()*this.longeurBarres() + "$ \n"
+                        + "° \n" 
+                );
+
+                alert.showAndWait();
+    }
 } 

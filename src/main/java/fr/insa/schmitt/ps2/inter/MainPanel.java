@@ -34,18 +34,18 @@ public class MainPanel extends BorderPane {
     private static double MULT_POUR_FIT_ALL = 1.1;
     
     public MainPanel(Stage inStage) {
-        this(inStage, new Groupe());
+        this(inStage, new Groupe(), new Terrain());
     }
 
-    public MainPanel(Stage inStage, Groupe model) {
-        this(inStage, null, model);
+    public MainPanel(Stage inStage, Groupe model, Terrain terrain) {
+        this(inStage, null, model, terrain);
     }
-    public MainPanel(Stage inStage,File fromFile, Groupe model) {
+    public MainPanel(Stage inStage,File fromFile, Groupe model, Terrain terrain) {
         this.inStage = inStage;
         this.actionneur = new Actionneur(this);
         this.curFile = fromFile;
         this.model = model;
-        this.terrain = new Terrain();
+        this.terrain = terrain;
         this.fitAll();
         this.BarreOutilshaut = new BarreOutilshaut(this);
         this.BarreOutilsGauche = new BarreOutilsGauche(this);
