@@ -82,6 +82,16 @@ public abstract class Noeud extends Forme{
         this.force = v2d;
         this.barresDepart = new ArrayList<>();
         this.barresArrivee = new ArrayList<>();
+        this.barresIncidente = new ArrayList<>(); 
+    }
+    public Noeud (double px, double py, int id, Vecteur2D v2d){
+        
+        this.px = px;
+        this.py = py;
+        this.identificateur = id;
+        this.force = v2d;
+        this.barresDepart = new ArrayList<>();
+        this.barresArrivee = new ArrayList<>();
         this.barresIncidente = new ArrayList<>();
     }
     public Noeud (double px, double py, Color couleur){
@@ -89,6 +99,7 @@ public abstract class Noeud extends Forme{
         super(couleur);
         this.px = px;
         this.py = py;
+        this.force = new Vecteur2D(0,0);
         this.barresDepart = new ArrayList<>();
         this.barresArrivee = new ArrayList<>();
         this.barresIncidente = new ArrayList<>();
@@ -141,7 +152,7 @@ public abstract class Noeud extends Forme{
         double lc = c.longeurBarres();
         
         double r = lb*lb - la*la - lc*lc;
-        angle = Math.acos(r/(-2)*la*lb);
+        angle = Math.acos(r/(-2)*la*lc);
         
         System.out.println(r);
         return angle;

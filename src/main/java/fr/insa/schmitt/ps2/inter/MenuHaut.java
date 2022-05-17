@@ -8,7 +8,6 @@ package fr.insa.schmitt.ps2.inter;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -129,7 +128,9 @@ public class MenuHaut extends MenuBar{
 
             @Override
             public void handle(ActionEvent event) {
-                getHostServices().showDocument("https://XXXXXXXXXXXXXX.org");
+                //getHostServices().showDocument("https://XXXXXXXXXXXXXX.org");
+                this.
+                
             }
         });*/
         

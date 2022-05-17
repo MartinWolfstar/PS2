@@ -17,7 +17,7 @@ public class Matrice {
     double[][] coeffs;
     
     // Constructeurs avec arguments
-    Matrice(int nl, int nc)
+    public Matrice(int nl, int nc)
     {
         this.nbrLign = nl;
         this.nbrCol = nc;

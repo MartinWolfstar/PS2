@@ -84,7 +84,18 @@ public abstract class GlobalObject {
                     double py = Double.parseDouble(bouts[3]);
                     Color col = Forme.parseColor(bouts[4], bouts[5], bouts[6]);
                     //System.out.println(px + ";" + py + ";" + col);
-                    NoeudSimple np = new NoeudSimple(px, py, col);
+                    NoeudAppuiDouble np = new NoeudAppuiDouble(px, py, col);
+                    num.associe(id, np);
+                    derniere = np;
+                    System.out.println("test2");
+                }else if (bouts[0].equals("NoeudAppuiSimple")) {
+                    int id = Integer.parseInt(bouts[1]);
+                    double px = Double.parseDouble(bouts[2]);
+                    //System.out.println(px);
+                    double py = Double.parseDouble(bouts[3]);
+                    Color col = Forme.parseColor(bouts[4], bouts[5], bouts[6]);
+                    //System.out.println(px + ";" + py + ";" + col);
+                    NoeudAppuiSimple np = new NoeudAppuiSimple(px, py, col);
                     num.associe(id, np);
                     derniere = np;
                     System.out.println("test2");

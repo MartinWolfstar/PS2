@@ -91,7 +91,7 @@ public class Accueil {
         this.stop.setToggleGroup(toggle1);
         
         //Add Button
-        container.getChildren().addAll(play,stop,retour,avance,sauv,select,delete,direction);
+        container.getChildren().addAll(play,stop,retour,avance,sauv,select,selectPoint,delete,direction);
         
         //Add Container.
         tab.setContent(container); 
@@ -118,7 +118,7 @@ public class Accueil {
 
         this.play.setOnAction((t) ->{
             this.main.getActionneur().boutonPlay(t);
-            this.main.getActionneur().MiseAJour(t);
+            //this.main.getActionneur().MiseAJour(t);
             System.out.println("play Clicked.");
         });
         
@@ -185,7 +185,7 @@ public class Accueil {
         });
     }
     private void buildSelecPButton(){
-        this.selectPoint = new BoutonIcon("icon/selec.png",32,32);
+        this.selectPoint = new BoutonIcon("icon/selecp.png",32,32);
         this.selectPoint.setText("selectioner B");
         this.selectPoint.setContentDisplay(ContentDisplay.TOP);
 

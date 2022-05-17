@@ -7,6 +7,7 @@ package fr.insa.schmitt.ps2.objet;
 import static fr.insa.schmitt.ps2.objet.Noeud.RAYON_IN_DRAW;
 import java.io.IOException;
 import java.io.Writer;
+import static java.lang.Math.atan;
 import static java.lang.Math.sqrt;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
@@ -21,8 +22,9 @@ public class Barres extends Forme{
     private Noeud nd;
     private Noeud na;
     private int identificateur;
-    private int TC;
-    private int CM;
+    
+    private int TC;// traction max
+    private int CM;//compression max
     private int prix; //prix au mètre
 
     /**
@@ -138,6 +140,31 @@ public class Barres extends Forme{
         
         return angle;
     }
+    public double anglex (){
+        
+        double angle = 0;
+
+        //faire arctan en fonction des signes de xb-xa et yb-ya
+        double x1 = this.getNd().getPx();
+        double x2 = this.getNa().getPx();
+        double y1 = this.getNd().getPy();
+        double y2 = this.getNa().getPy();
+        
+        double Dx = x2 - x1;
+        double Dy = y2 - y1;
+        
+        if((Dx > 0)&&(Dy > 0)){
+            angle = atan(Dy/Dx);
+        }else if((Dx > 0)&&(Dy < 0)){
+            angle = atan(-Dy/Dx);
+        }else if((Dx < 0)&&(Dy > 0)){
+            angle = atan(-Dy/Dx);
+        }else{
+            angle = atan(Dy/Dx);
+        }
+        
+        return angle;
+    }
     
     @Override
     public void dessine(GraphicsContext context) {
@@ -184,6 +211,17 @@ public class Barres extends Forme{
     public double minY() {
         return Math.min(this.getNd().getPy(), this.getNa().getPy());
     }
+    @Override
+    public void setForce(Vecteur2D v) {
+        //inutile, les vérifications sont effectuées avant
+    }
+    @Override
+    public Vecteur2D getForce() {
+        //inutile, les vérifications sont effectuées avant
+        Vecteur2D v = new Vecteur2D(0,0);
+        return v;
+    }
+    
     @Override
     public double distanceNoeud(Noeud p) {
         double x1 = this.nd.getPx();

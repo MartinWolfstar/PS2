@@ -13,7 +13,7 @@ il y a des partis du cours du prof
 
 reste à faire:
 
-
+mettre des try/catch pour eviter les erreurs
 
 
 

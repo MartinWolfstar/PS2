@@ -10,6 +10,7 @@ import java.io.Writer;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 
 /**
  *
@@ -23,6 +24,11 @@ public class NoeudAppuiSimple extends NoeudAppui {
         super(px,py);
         this.nbrInconnu = 1;
     }
+    public NoeudAppuiSimple (double px, double py, Color couleur){ 
+        super(px,py,couleur);
+        this.nbrInconnu = 1;
+    }
+    
     @Override
     public String toString() {
         return "(" + this.getPx() + "," + this.getPy() + ")" + " id:" + getIdentificateur() + " force:" + getForce() + " inconnu :" + nbrInconnu;

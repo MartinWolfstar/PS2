@@ -4,6 +4,8 @@
  */
 package fr.insa.schmitt.ps2.objet;
 
+import javafx.scene.paint.Color;
+
 /**
  *
  * @author schmi
@@ -12,6 +14,9 @@ public abstract class NoeudAppui extends Noeud{
     
     public NoeudAppui (double px, double py){ 
         super(px,py);
+    }
+    public NoeudAppui (double px, double py, Color couleur){ 
+        super(px,py,couleur);
     }
     @Override
     public String toString() {

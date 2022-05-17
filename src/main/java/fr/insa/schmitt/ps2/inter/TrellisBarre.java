@@ -213,8 +213,8 @@ public class TrellisBarre {
         this.ajouterForce = new Button("ajouter Force");
         
         this.ajouterForce.setOnAction((t) ->{
-            //this.main.getActionneur().boutonAjouterForce(t);
-            this.main.getActionneur().MiseAJour(t);
+            this.main.getActionneur().boutonAjouterForce(t);
+            //this.main.getActionneur().MiseAJour(t);
             System.out.println("ajouterForce Clicked.");
         });
     }

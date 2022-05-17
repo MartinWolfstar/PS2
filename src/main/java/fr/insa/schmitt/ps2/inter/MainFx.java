@@ -7,7 +7,10 @@ package fr.insa.schmitt.ps2.inter;
 import fr.insa.schmitt.ps2.objet.Groupe;
 import fr.insa.schmitt.ps2.objet.Terrain;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
@@ -18,6 +21,8 @@ import javafx.stage.Stage;
 public class MainFx extends Application{
     @Override
     public void start (Stage fen){
+        
+       //appelHyp();
         
         MainPanel main = new MainPanel(fen, Groupe.groupeTest1(), Terrain.ini());
         
@@ -32,6 +37,21 @@ public class MainFx extends Application{
     }
     public static void main(String[]args){
         launch();
+    }
+    public void appelHyp (){
+        
+        Hyperlink hyperlink = new Hyperlink("page d'aide");
+
+        hyperlink.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                getHostServices().showDocument("https://XXXXXXXXXXXXXX.org");
+                
+            }
+        });
+        
+        
     }
     
 }

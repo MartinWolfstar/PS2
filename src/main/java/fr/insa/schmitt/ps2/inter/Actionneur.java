@@ -10,18 +10,25 @@ import fr.insa.schmitt.ps2.objet.GlobalObject;
 import fr.insa.schmitt.ps2.objet.Groupe;
 import fr.insa.schmitt.ps2.objet.Noeud;
 import fr.insa.schmitt.ps2.objet.NoeudAppuiDouble;
+import fr.insa.schmitt.ps2.objet.NoeudAppuiSimple;
 import fr.insa.schmitt.ps2.objet.NoeudSimple;
 import fr.insa.schmitt.ps2.objet.Terrain;
 import fr.insa.schmitt.ps2.objet.Trellis;
+import fr.insa.schmitt.ps2.objet.Vecteur2D;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import javafx.event.ActionEvent; 
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import static javafx.scene.paint.Color.RED;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -38,6 +45,7 @@ public class Actionneur {
     private double[] pos2 = new double[2];
     private Noeud sauvN;
     private Noeud sauvN2;
+    private Trellis trel1;
     private Barres sauvB;
     private List<Double> pos3x;
     private List<Double> pos3y;
@@ -125,26 +133,32 @@ public class Actionneur {
             }
                 
         }else if (this.etat == 151){
-            // selectionPoint
+            /*// selectionPoint
             Noeud pclic = new NoeudSimple(t.getX(),t.getY());
             //max value est peut etre trop grand ici
-            Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);  
+            Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);  */
            
+            selectRealpoint(t);
+            
             this.getSelection().clear();
-            this.getSelection().add(proche);
-            System.out.println(proche);
+            this.getSelection().add(trel1);
+            //System.out.println(trel1);
             this.activeBoutonsSuivantSelection();
             this.main.redrawAll();
+            
+            selectRealpoint(t);
                 
         }else if (this.etat == 152){
-            // selectionBarres
+            /*// selectionBarres
             Noeud pclic = new NoeudSimple(t.getX(),t.getY());
             //max value est peut etre trop grand ici
-            Barres proche = this.main.getModel().barresPlusProche(pclic, Double.MAX_VALUE);  
+            Barres proche = this.main.getModel().barresPlusProche(pclic, Double.MAX_VALUE);  */
            
+            selectRealBarres(t);
+            
             this.getSelection().clear();
-            this.getSelection().add(proche);
-            System.out.println(proche);
+            this.getSelection().add(trel1);
+            //System.out.println(trel1);
             this.activeBoutonsSuivantSelection();
             this.main.redrawAll();
                 
@@ -183,6 +197,74 @@ public class Actionneur {
                         + angle + "° \n");
 
                 alert.showAndWait();
+            this.changeEtat(323);
+            
+        }else if (this.etat == 330){
+            
+            /*Noeud pclic = new NoeudSimple(t.getX(),t.getY());
+            //max value est peut etre trop grand ici
+            Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);  
+            //il y a un petite erreur dans le programme donc ce passage sert à le compenser:
+            for (int i = 0; i < this.main.getModel().getContient().size(); i++ ){
+                if ((proche.getPx() == this.main.getModel().getContient().get(i).maxX())&&(proche.getPx() == this.main.getModel().getContient().get(i).minX())){
+                    this.trel1 = this.main.getModel().getContient().get(i);
+                    //System.out.println(trel1 + "donc c'est bon");
+                }
+            }*/
+            this.selectRealpoint(t);
+            //sauvN = proche;
+            //this.sauvN.setCouleur(RED);
+            //this.trel1.setCouleur(RED);
+            
+            String entrerUtilisateur = "";   
+            Vecteur2D v = new Vecteur2D(50,50);
+        
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("A propos");
+                alert.setHeaderText(null);
+                VBox box = new VBox();
+                TextArea entrer = new TextArea();
+                box.getChildren().add(entrer);
+                alert.getDialogPane().setContent(box);
+                //il n'affiche pas le texte, problème
+                alert.setContentText("entrer les forces qui s'exercent sur ce point\n"
+                        + "forme : double;double\n");
+
+                Optional<ButtonType> option = alert.showAndWait();
+
+                if (option.get() == null) {
+                    //System.out.println("test1");
+                } else if (option.get() == ButtonType.OK) {
+                    //System.out.println("test2");
+                    try{
+                        entrerUtilisateur = entrer.getText();
+                        String[] bouts = entrerUtilisateur.split(";");
+                        //System.out.println(bouts[0]);
+                        double fx = Double.parseDouble(bouts[0]);
+                        double fy = Double.parseDouble(bouts[1]);
+                        //System.out.println("fx:" + fx + "fy:" + fy);
+                        v = new Vecteur2D(fx,fy);
+                        /*sauvN.setForce(v);
+                        System.out.println(sauvN);*/
+                        //proche.setForce(v);
+                        //trel1.setForce(v);
+                        //proche.setIdentificateur(6);
+                        //System.out.println(trel1);
+                        
+                    }catch(Exception E){
+                        //System.out.println(E);
+                    }
+                    this.trel1.setForce(v);
+                    //this.sauvN.setIdentificateur(4856);
+                    System.out.println(this.trel1);
+   
+                } else if (option.get() == ButtonType.CANCEL) {
+                    //System.out.println("test3");
+                } else {
+                    //System.out.println("test4");
+                }
+                //alert.showAndWait();
+            
             this.changeEtat(323);
             
         }else if (this.etat == 341){
@@ -295,6 +377,16 @@ public class Actionneur {
             this.main.redrawAll(); 
             
             
+        }else if (this.etat == 430){
+
+            Groupe model = this.main.getModel();
+            py = Lagrange(px, this.main.getTerrain().getXi(), this.main.getTerrain().getYi());
+            System.out.println(px + ";" + py);
+            model.add(new NoeudAppuiSimple(px,py));
+            model.addN(new NoeudAppuiSimple(px,py));
+            this.main.redrawAll(); 
+            
+            
         }else{
             System.out.println("clic"); 
         }
@@ -304,11 +396,14 @@ public class Actionneur {
     
     //bouton provenant d'acceuil:
     void boutonPlay(ActionEvent t){
-        this.changeEtat(100);
+        Groupe model = this.main.getModel();
+        main.getModel().gestionForce2test();
+        //this.changeEtat(100);
     }
     void boutonStop(ActionEvent t){
-        System.out.println(this.selection);
-        this.changeEtat(110);
+        //System.out.println(this.selection);
+        //this.changeEtat(110);
+        this.changeEtat(100);
     }
     void boutonRetour(ActionEvent t){
         this.changeEtat(120);
@@ -392,7 +487,7 @@ public class Actionneur {
         //324 : angle partie 2
         //325 : angle partie 3
     }
-    void boutonAjouterForce(ActionEvent t){
+    void boutonAjouterForce(ActionEvent t){   
         this.changeEtat(330);
     }
     void boutonModifierForce(ActionEvent t){
@@ -453,6 +548,9 @@ public class Actionneur {
     }
     void boutonDefAppui(ActionEvent t){
         this.changeEtat(420);
+    }
+    void boutonDefAppuiSimple(ActionEvent t){
+        this.changeEtat(430);
     }
     
     private void activeBoutonsSuivantSelection(){
@@ -586,4 +684,32 @@ public class Actionneur {
             this.main.redrawAll();
         }
     }
+    
+    private void selectRealpoint (MouseEvent t){
+        
+        Noeud pclic = new NoeudSimple(t.getX(),t.getY());
+            //max value est peut etre trop grand ici
+            Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);  
+            //il y a un petite erreur dans le programme donc ce passage sert à le compenser:
+            for (int i = 0; i < this.main.getModel().getContient().size(); i++ ){
+                if ((proche.getPx() == this.main.getModel().getContient().get(i).maxX())&&(proche.getPx() == this.main.getModel().getContient().get(i).minX())){
+                    this.trel1 = this.main.getModel().getContient().get(i);
+                    //System.out.println(trel1 + "donc c'est bon");
+                }
+            }
+    }
+    private void selectRealBarres (MouseEvent t){
+        
+        Noeud pclic = new NoeudSimple(t.getX(),t.getY());
+            //max value est peut etre trop grand ici
+            Barres proche = this.main.getModel().barresPlusProche(pclic, Double.MAX_VALUE); 
+            //il y a un petite erreur dans le programme donc ce passage sert à le compenser:
+            for (int i = 0; i < this.main.getModel().getContient().size(); i++ ){
+                if ((proche.maxX() == this.main.getModel().getContient().get(i).maxX())&&(proche.minX() == this.main.getModel().getContient().get(i).minX())){
+                    this.trel1 = this.main.getModel().getContient().get(i);
+                    //System.out.println(trel1 + "donc c'est bon");
+                }
+            }
+    }
+    
 }

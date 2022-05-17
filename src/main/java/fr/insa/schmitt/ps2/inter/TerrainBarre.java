@@ -22,6 +22,7 @@ public class TerrainBarre {
     private Button valider;
     private Button modifier;
     private Button defAppui;
+    private Button defAppuiSimple;
     
        private MainPanel main;
 
@@ -50,8 +51,10 @@ public class TerrainBarre {
         buildValButton();
         buildModifierButton();
         buildDefAppuiButton();
+        buildDefAppuiButtonSimple();
 
-        container.getChildren().addAll(ajouter,valider,modifier,defAppui);
+        container.getChildren().addAll(ajouter,valider,modifier,defAppui,defAppuiSimple);
+        //container.getChildren().addAll(ajouter,valider,modifier,defAppui);
         //Add Container.
         tab.setContent(container);
 
@@ -92,13 +95,24 @@ public class TerrainBarre {
     }
     private void buildDefAppuiButton(){
         this.defAppui = new BoutonIcon("icon/appui2.png",32,32);
-        this.defAppui.setText("définir appuis fixe");
+        this.defAppui.setText("définir appuis Double");
         this.defAppui.setContentDisplay(ContentDisplay.TOP);
 
         this.defAppui.setOnAction((t) ->{
             this.main.getActionneur().boutonDefAppui(t);
             //this.main.getActionneur().MiseAJour(t);
             System.out.println("defAppui Clicked.");
+        });
+    }
+    private void buildDefAppuiButtonSimple(){
+        this.defAppuiSimple = new BoutonIcon("icon/appui2.png",32,32);
+        this.defAppuiSimple.setText("définir appuis Simple");
+        this.defAppuiSimple.setContentDisplay(ContentDisplay.TOP);
+
+        this.defAppuiSimple.setOnAction((t) ->{
+            this.main.getActionneur().boutonDefAppuiSimple(t);
+            //this.main.getActionneur().MiseAJour(t);
+            System.out.println("defAppuiSimple Clicked.");
         });
     }
 }

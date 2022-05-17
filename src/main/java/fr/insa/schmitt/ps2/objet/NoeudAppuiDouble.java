@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.Writer;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
+import javafx.scene.paint.Color;
 
 /**
  *
@@ -21,6 +22,10 @@ public class NoeudAppuiDouble extends NoeudAppui{
     
     public NoeudAppuiDouble (double px, double py){ 
         super(px,py);
+        this.nbrInconnu = 2;
+    }
+    public NoeudAppuiDouble (double px, double py, Color couleur){ 
+        super(px,py,couleur);
         this.nbrInconnu = 2;
     }
     

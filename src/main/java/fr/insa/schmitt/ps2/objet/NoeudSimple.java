@@ -28,6 +28,10 @@ public class NoeudSimple extends Noeud{
         super(px,py,couleur);
         this.nbrInconnu = 0;
     }
+    public NoeudSimple (double px, double py, int id, Vecteur2D vc){ 
+        super(px,py,id,vc);
+        this.nbrInconnu = 0;
+    }
     @Override
     public String toString() {
         return "(" + this.getPx() + "," + this.getPy() + ")" + " id:" + getIdentificateur() + " force:" + getForce() + " inconnu :" + nbrInconnu;
