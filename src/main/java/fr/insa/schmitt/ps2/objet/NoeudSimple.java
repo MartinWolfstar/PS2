@@ -87,10 +87,19 @@ public class NoeudSimple extends Noeud{
                 alert.setContentText("px = " + this.getPx() + "\n"
                         + "py = " + this.getPy() + " \n" 
                         + "forces appliqués à ce noeud " + this.getForce() + " \n"
+                        + "barres incidentes: " + affListe() + " \n"
                         + "° \n" 
                 );
 
                 alert.showAndWait();
     }
+    public String affListe() {
+        String str = "liste des barres incidentes: \n";
+        for (int i = 0; i < getBarresIncidente().size(); i++){
+            str = str + getBarresIncidente().get(i) + "|";
+        }
+        return str;
+    }
+    
     
 }

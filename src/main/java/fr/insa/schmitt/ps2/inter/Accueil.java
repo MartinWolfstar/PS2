@@ -34,6 +34,7 @@ public class Accueil {
    private Button sauv;
    private Button select;
    private Button selectPoint;
+   private Button selctBarres;
    private Button delete;
    private SplitMenuButton direction;
    private MenuItem haut;
@@ -82,6 +83,7 @@ public class Accueil {
         buildSauvButton();
         buildSelecButton();
         buildSelecPButton();
+        buildSelectBButton();
         buildDeleteButton();
         buildDirectionMenuButton();
         
@@ -91,6 +93,7 @@ public class Accueil {
         this.stop.setToggleGroup(toggle1);
         
         //Add Button
+        //container.getChildren().addAll(play,stop,retour,avance,sauv,select,selectPoint,selctBarres,delete,direction);
         container.getChildren().addAll(play,stop,retour,avance,sauv,select,selectPoint,delete,direction);
         
         //Add Container.
@@ -186,12 +189,22 @@ public class Accueil {
     }
     private void buildSelecPButton(){
         this.selectPoint = new BoutonIcon("icon/selecp.png",32,32);
-        this.selectPoint.setText("selectioner B");
+        this.selectPoint.setText("selectioner P");
         this.selectPoint.setContentDisplay(ContentDisplay.TOP);
 
         this.selectPoint.setOnAction((t) ->{
             this.main.getActionneur().boutonSelectPoint(t);
             System.out.println("selectP Clicked.");
+        });
+    }
+    private void buildSelectBButton(){
+        this.selctBarres = new BoutonIcon("icon/selecb.png",32,32);
+        this.selctBarres.setText("selectioner B");
+        this.selctBarres.setContentDisplay(ContentDisplay.TOP);
+
+        this.selctBarres.setOnAction((t) ->{
+            this.main.getActionneur().boutonSelectBarres(t);
+            System.out.println("selctBarres Clicked.");
         });
     }
     private void buildDeleteButton(){

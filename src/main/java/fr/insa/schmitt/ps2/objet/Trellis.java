@@ -155,6 +155,7 @@ public abstract class Trellis extends GlobalObject{
     public abstract void changeCouleur(Color value);
     public abstract void setForce(Vecteur2D v);
     public abstract Vecteur2D getForce();
+    public abstract String affListe();
     
     //public abstract void save(Writer w, Numeroteur<Trellis> num)throws IOException;
 

@@ -483,6 +483,11 @@ public class Groupe extends Trellis{
         Vecteur2D v = new Vecteur2D(0,0);
         return v;
     }
+    public String affListe() {
+        String str = "";
+        
+        return str;
+    }
 
     @Override
     public void save(Writer w, Numeroteur<GlobalObject> num) throws IOException {
@@ -647,41 +652,52 @@ public class Groupe extends Trellis{
             testinversible = false;
         }
         //System.out.println(testinversible); 
-        testinversible = true;
+        //testinversible = true;
         if (testinversible == true){
-            //on créer les matrices:
+            
+            //------on créer les matrices:
+            
+            /*Mat test1 = new Mat(3,3);
+            Mat test2 = new Mat(3,3);
+            Mat test3 = new Mat(3,3);
+            
+            double [][] test1tab = {{ 1, 2, 3 },{ 2, 3, 4 },{ 12, 8, 9}};
+            double [][] test2tab = {{ 1, 2, 3 },{ 2, 3, 4 },{ 12, 8, 9}};
+            
+            test1.setCoeffs(test1tab);
+            test2.setCoeffs(test2tab);*/
+
             Mat matfinale = new Mat (nbrN * 2, nbrN * 2+1);
+            Mat matAinv = new Mat (nbrN * 2, nbrN * 2);
+            Mat matInv = new Mat (nbrN * 2, nbrN * 2);
             Mat mat1 = new Mat (nbrN*2, nbrNB);
             //System.out.println(mat1);
             Mat mat2 = new Mat (nbrN*2, 2);
             Mat mat3 = new Mat (nbrN*2, nbrNAS);
             Mat mat4 = new Mat (nbrN*2, 1);
             
-            //on les préremplis:
+            //------on les préremplis:
             mat1.remplir0();
-            //System.out.println(mat1);
             mat2.remplir0();
-            //System.out.println(mat2);
             mat3.remplir0();
-            //System.out.println(mat3);
             mat4.remplir0();
-            //System.out.println(mat4);
-            //on les remplis:
-            //mat1:
+            
+            //------on les remplis:
+            //------mat1:
             int indice = 0;
             for (int i = 0; i < this.contientNoeud.size(); i++) {
                 Noeud n = this.contientNoeud.get(i);
-                System.out.println("noeud" + i);
+                //System.out.println("noeud" + i + "  " + this.contientNoeud.get(i).getClass().getName());
                 
 
                 for (int k = 0; k < n.getBarresIncidente().size() ; k++){
                     Barres b2 = n.getBarresIncidente().get(k);    
-
+                    //System.out.println(k+"ième barre incidente:");
                     for (int j = 0; j < this.contientBarres.size() ; j++){
                         Barres b1 = this.contientBarres.get(j);
-                        //System.out.println("b1: " + b1 + "b2: " + b2);
+                        //System.out.println("b1: " + b1 + "   b2: " + b2 + " test" +(b1==b2));
                         if (b1 == b2 ){
-                            System.out.println("je rajoute la barre" + (j+1));
+                            //System.out.println("je rajoute la barre" + (j+1));
                             mat1.setOneCoeff(indice, j, cos(b1.anglex())); 
                             mat1.setOneCoeff(indice + 1 , j, sin(b1.anglex()));
                             
@@ -690,8 +706,7 @@ public class Groupe extends Trellis{
                 }
                 indice +=2;
             }
-            System.out.println(mat1);
-            //mat2:
+            //------mat2:
             indice = 0;
             for (int i = 0; i < this.contientNoeud.size(); i ++) {
                 Noeud n = this.contientNoeud.get(i);
@@ -702,8 +717,7 @@ public class Groupe extends Trellis{
                 }
                 indice += 2;
             }
-            //System.out.println(mat2);
-            //mat3:
+            //------mat3:
             indice = 0;
             int indice2 = 0;
             for (int i = 0; i < this.contientNoeud.size(); i ++) {
@@ -716,8 +730,7 @@ public class Groupe extends Trellis{
                 }
                 indice += 2;
             }
-            //System.out.println(mat3);
-            //mat4:
+            //------mat4:
             indice = 0;
             for (int i = 0; i < this.contientNoeud.size(); i ++) {
                 Noeud n = this.contientNoeud.get(i);
@@ -726,31 +739,43 @@ public class Groupe extends Trellis{
                 mat4.setOneCoeff(indice + 1,0,trel1.getForce().getVy());
                 indice += 2;
             }
-            //System.out.println(mat4);
             
-            //on les concat:
-            //mat1.concat(mat1,mat1);
-            //System.out.println(mat1);
+            //------on les concat:
             matfinale = mat1;
             if (nbrNAD > 0){
-                
                 matfinale = matfinale.concat(matfinale,mat2);
-                //System.out.println(matfinale);
             }
             if (nbrNAS > 0){
                 matfinale = matfinale.concat(matfinale,mat3);
-                //System.out.println(matfinale);
             }
+            matAinv = matfinale;
+            
             matfinale = matfinale.concat(matfinale,mat4);
-            //et on obtient la matrice à inverser:
-            //verifier qu'elle a quand meme la bonne taille!!
-            //System.out.println(matfinale);
+            
+            //------et on obtient la matrice à inverser:
+            
+            System.out.println(matfinale);
+            
+            matAinv.descenteGauss();
+            matAinv.remonteeGauss();
+            matAinv.unitaire();
+            matAinv.setInverse();
+            
+            System.out.println("la matrice inverse est:\n" + matAinv);
+            matInv = matAinv;
+            
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Matrice du système:");
                 alert.setHeaderText(null);
-                alert.setContentText(matfinale.toString());
+                //alert.setContentText(matAinv.toString());
+                alert.setContentText(matInv.toString());
 
                 alert.showAndWait();
+                
+            
+                
+                
+                
         }else{
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Matrice du système:");

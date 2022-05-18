@@ -106,6 +106,7 @@ public class Actionneur {
         }else if (this.etat == 100){
            
             //play
+            
             System.out.println(main.getModel());
             System.out.println("terrain : \n" + this.main.getTerrain().toString());
             this.changeEtat(350);
@@ -292,6 +293,7 @@ public class Actionneur {
             //creer segment.2
             double px2 = px;
             double py2 = py;
+            
             this.main.getModel().add(new Barres (new NoeudSimple(this.pos1[0],this.pos1[1]),new NoeudSimple(px2,py2)));
             this.main.getModel().add(new NoeudSimple(this.pos1[0],this.pos1[1]));
             this.main.getModel().add(new NoeudSimple(px2,py2));
@@ -310,7 +312,7 @@ public class Actionneur {
             this.changeEtat(346);
             
         }else if (this.etat == 346){
-
+            //creer segment à partie d'un point partie 1
             //il selectionne un endroit et ça creer la barre
             double px2 = px;
             double py2 = py;
@@ -324,7 +326,7 @@ public class Actionneur {
             this.changeEtat(345);
             
         }else if (this.etat == 347){
-            //creer segment à partie d'un point partie 1
+            //creer segment entre deux points partie 1
             Noeud pclic = new NoeudSimple(t.getX(),t.getY());
             //max value est peut etre trop grand ici
             Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);  
@@ -332,7 +334,7 @@ public class Actionneur {
             this.changeEtat(348);
             
         }else if (this.etat == 348){
-
+            //creer segment entre deux points partie 2
             Noeud pclic = new NoeudSimple(t.getX(),t.getY());
             //max value est peut etre trop grand ici
             //il selectionne un autre noeud et ça creer la barre
@@ -407,6 +409,7 @@ public class Actionneur {
     }
     void boutonRetour(ActionEvent t){
         this.changeEtat(120);
+        
     }
     void boutonAvance(ActionEvent t){
         this.changeEtat(130);
@@ -420,6 +423,10 @@ public class Actionneur {
     void boutonSelectPoint(ActionEvent t){
         this.changeEtat(151);
         this.changeEtatSecondaire(1);
+    }
+    void boutonSelectBarres(ActionEvent t){
+        this.changeEtat(152);
+        //this.changeEtatSecondaire(1);
     }
     void boutonDelete(ActionEvent t){
         if (((this.etat == 150)||(this.etat == 151)) && !this.selection.isEmpty()) {
@@ -473,6 +480,7 @@ public class Actionneur {
         if(((this.etat == 150)||(this.etat == 151)) && this.selection.size() > 0){
             for(Trellis obj : this.selection){
                 obj.afficheResume();
+                System.out.println(obj.affListe());
             }
         }
     }

@@ -89,4 +89,11 @@ public class NoeudAppuiSimple extends NoeudAppui {
 
                 alert.showAndWait();
     }
+    public String affListe() {
+        String str = "";
+        for (int i = 0; i < getBarresIncidente().size(); i++){
+            str = str + getBarresIncidente().get(i) + "|";
+        }
+        return str;
+    }
 }

@@ -77,8 +77,9 @@ public class Barres extends Forme{
         this.prix = 4;
         this.na = narrive;
         this.nd = ndepart;
-        this.na.getBarresDepart().add(this);
+        this.nd.getBarresDepart().add(this);
         this.na.getBarresArrivee().add(this);
+        this.nd.getBarresIncidente().add(this);
         this.na.getBarresIncidente().add(this);
     }
     public Barres (Noeud ndepart, Noeud narrive, Color couleur){
@@ -90,7 +91,11 @@ public class Barres extends Forme{
         this.prix = 4;
         this.na = narrive;
         this.nd = ndepart;
-        this.na.getBarresDepart().add(this);
+        /*narrive.getBarresDepart().add(this);
+        narrive.getBarresArrivee().add(this);
+        narrive.getBarresIncidente().add(this);*/
+        this.nd.getBarresDepart().add(this);
+        this.nd.getBarresIncidente().add(this);
         this.na.getBarresArrivee().add(this);
         this.na.getBarresIncidente().add(this);
     }
@@ -103,8 +108,9 @@ public class Barres extends Forme{
         this.prix = cout ;
         this.na = narrive;
         this.nd = ndepart;
-        this.na.getBarresDepart().add(this);
+        this.nd.getBarresDepart().add(this);
         this.na.getBarresArrivee().add(this);
+        this.nd.getBarresIncidente().add(this);
         this.na.getBarresIncidente().add(this);
     }
     private Barres() {
@@ -273,4 +279,10 @@ public class Barres extends Forme{
 
                 alert.showAndWait();
     }
+    public String affListe() {
+        String str = "";
+        
+        return str;
+    }
+
 } 
