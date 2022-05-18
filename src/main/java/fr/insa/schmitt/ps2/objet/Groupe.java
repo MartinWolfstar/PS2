@@ -670,6 +670,8 @@ public class Groupe extends Trellis{
             Mat matfinale = new Mat (nbrN * 2, nbrN * 2+1);
             Mat matAinv = new Mat (nbrN * 2, nbrN * 2);
             Mat matInv = new Mat (nbrN * 2, nbrN * 2);
+            Mat matRes = new Mat (nbrN * 2,1);
+            
             Mat mat1 = new Mat (nbrN*2, nbrNB);
             //System.out.println(mat1);
             Mat mat2 = new Mat (nbrN*2, 2);
@@ -772,9 +774,14 @@ public class Groupe extends Trellis{
 
                 alert.showAndWait();
                 
-            
+            matRes = matRes.mult(matInv, mat4);
                 
-                
+            Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Solutions du système:");
+                alert.setHeaderText(null);
+                alert.setContentText(matRes.toString());
+
+                alert.showAndWait();    
                 
         }else{
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
