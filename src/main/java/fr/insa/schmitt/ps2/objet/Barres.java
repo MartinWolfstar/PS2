@@ -81,6 +81,12 @@ public class Barres extends Forme{
         this.na.getBarresArrivee().add(this);
         this.nd.getBarresIncidente().add(this);
         this.na.getBarresIncidente().add(this);
+        /*String str = "";
+        for(int i = 0; i < this.na.getBarresIncidente().size();i++){
+            str = str + this.na.getBarresIncidente().get(i);
+            
+        }
+        System.out.println(str);*/
     }
     public Barres (Noeud ndepart, Noeud narrive, Color couleur){
         

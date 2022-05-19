@@ -94,7 +94,7 @@ public class Accueil {
         
         //Add Button
         //container.getChildren().addAll(play,stop,retour,avance,sauv,select,selectPoint,selctBarres,delete,direction);
-        container.getChildren().addAll(play,stop,retour,avance,sauv,select,selectPoint,delete,direction);
+        container.getChildren().addAll(play,stop,sauv,select,selectPoint,delete,direction);
         
         //Add Container.
         tab.setContent(container); 

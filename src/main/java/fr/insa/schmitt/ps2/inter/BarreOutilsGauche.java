@@ -38,7 +38,7 @@ public class BarreOutilsGauche extends VBox{
         
         bSelect.setMaxWidth(Double.MAX_VALUE);
         
-        this.getChildren().addAll(new Label("Search something:"),textArea,this.bSelect,this.bLabel);
+        this.getChildren().addAll(new Label("Search something:"),textArea,this.bSelect);
         OutilsFx.setSimpleBorder(this, Color.GRAY, 2);
         
     }
@@ -86,7 +86,16 @@ public class BarreOutilsGauche extends VBox{
         if (commande.equalsIgnoreCase("/import model2")) {
             main.setModel(Groupe.groupeTest2());
             main.redrawAll();
+        }if (commande.equalsIgnoreCase("/create Noeud")) {
+            
+            main.redrawAll();
         }
+        if (commande.equalsIgnoreCase("/create")) {
+            
+            main.redrawAll();
+        }
+        
+        
     }
 
     /**

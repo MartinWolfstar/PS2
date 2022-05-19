@@ -131,21 +131,25 @@ public class TrellisBarre {
         //Add all Things
         ssContainer1.getChildren().addAll(retrecir,agrandir);
         OutilsFx.setSimpleBorder(ssContainer1, Color.GRAY, 2);
-        ssContainer2.getChildren().addAll(creerPivot,insererNoeud);
+        ssContainer2.getChildren().addAll(insererNoeud);
         OutilsFx.setSimpleBorder(ssContainer2, Color.GRAY, 2);
+        //ssContainer2.getChildren().addAll(creerPivot,insererNoeud);
+        //OutilsFx.setSimpleBorder(ssContainer2, Color.GRAY, 2);
         ssContainer3.getChildren().addAll(ajouterForce,modifierForce);
         OutilsFx.setSimpleBorder(ssContainer3, Color.GRAY, 2);
-        ssContainer4.getChildren().addAll(agrandirBarre,mesurerBarre);
+        ssContainer4.getChildren().addAll(mesurerBarre);
         OutilsFx.setSimpleBorder(ssContainer4, Color.GRAY, 2);
+        //ssContainer4.getChildren().addAll(agrandirBarre,mesurerBarre);
+        //OutilsFx.setSimpleBorder(ssContainer4, Color.GRAY, 2);
         ssContainer5.getChildren().addAll(defForme,defCouleur);
         OutilsFx.setSimpleBorder(ssContainer5, Color.GRAY, 2);
         ssContainer6.getChildren().addAll(angle, informer);
         OutilsFx.setSimpleBorder(ssContainer6, Color.GRAY, 2);
-        ssContainer7.getChildren().addAll(uniformiserBarreTaille, ajouterBarres);
-        OutilsFx.setSimpleBorder(ssContainer7, Color.GRAY, 2);
+        //ssContainer7.getChildren().addAll(uniformiserBarreTaille, ajouterBarres);
+        //OutilsFx.setSimpleBorder(ssContainer7, Color.GRAY, 2);
         
         
-        scontainer.getChildren().addAll(ssContainer1,ssContainer2,ssContainer6,ssContainer3,ssContainer4,ssContainer7,ssContainer5);
+        scontainer.getChildren().addAll(ssContainer1,ssContainer2,ssContainer6,ssContainer3,ssContainer4,ssContainer5);
         //container.getChildren().add(play);
         
         container.getChildren().add(scontainer);

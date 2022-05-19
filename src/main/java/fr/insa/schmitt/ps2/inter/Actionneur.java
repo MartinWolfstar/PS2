@@ -97,7 +97,7 @@ public class Actionneur {
         
         if (this.etat == 322){
             
-            //création Noeud
+            ///----------création Noeud
             Groupe model = this.main.getModel();
             model.add(new NoeudSimple(px,py));
             model.addN(new NoeudSimple(px,py));
@@ -105,14 +105,14 @@ public class Actionneur {
             
         }else if (this.etat == 100){
            
-            //play
+            ///----------play
             
             System.out.println(main.getModel());
             System.out.println("terrain : \n" + this.main.getTerrain().toString());
             this.changeEtat(350);
             
         }else if (this.etat == 150){
-            // selection
+            ///----------selection
             Noeud pclic = new NoeudSimple(t.getX(),t.getY());
             //max value est peut etre trop grand ici
             Trellis proche = this.main.getModel().plusProche(pclic, Double.MAX_VALUE);
@@ -134,7 +134,7 @@ public class Actionneur {
             }
                 
         }else if (this.etat == 151){
-            /*// selectionPoint
+            /*----------selectionPoint
             Noeud pclic = new NoeudSimple(t.getX(),t.getY());
             //max value est peut etre trop grand ici
             Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);  */
@@ -150,7 +150,7 @@ public class Actionneur {
             selectRealpoint(t);
                 
         }else if (this.etat == 152){
-            /*// selectionBarres
+            /*----------selectionBarres
             Noeud pclic = new NoeudSimple(t.getX(),t.getY());
             //max value est peut etre trop grand ici
             Barres proche = this.main.getModel().barresPlusProche(pclic, Double.MAX_VALUE);  */
@@ -164,7 +164,7 @@ public class Actionneur {
             this.main.redrawAll();
                 
         }else if (this.etat == 323){
-            //mesure de l'angle entre 3 Noeud (le centre est saisi en 2)
+            //----------mesure de l'angle entre 3 Noeud (le centre est saisi en 2)
             Noeud pclic = new NoeudSimple(t.getX(),t.getY());
             //max value est peut etre trop grand ici
             Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);
@@ -172,7 +172,7 @@ public class Actionneur {
             this.changeEtat(324);
             
         }else if (this.etat == 324){
-            //mesure de l'angle
+            //----------mesure de l'angle
             Noeud pclic = new NoeudSimple(t.getX(),t.getY());
             //max value est peut etre trop grand ici
             Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);
@@ -180,7 +180,7 @@ public class Actionneur {
             this.changeEtat(325);
             
         }else if (this.etat == 325){
-            //mesure de l'angle
+            //----------mesure de l'angle
             Noeud pclic = new NoeudSimple(t.getX(),t.getY());
             //max value est peut etre trop grand ici
             Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);
@@ -202,16 +202,6 @@ public class Actionneur {
             
         }else if (this.etat == 330){
             
-            /*Noeud pclic = new NoeudSimple(t.getX(),t.getY());
-            //max value est peut etre trop grand ici
-            Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);  
-            //il y a un petite erreur dans le programme donc ce passage sert à le compenser:
-            for (int i = 0; i < this.main.getModel().getContient().size(); i++ ){
-                if ((proche.getPx() == this.main.getModel().getContient().get(i).maxX())&&(proche.getPx() == this.main.getModel().getContient().get(i).minX())){
-                    this.trel1 = this.main.getModel().getContient().get(i);
-                    //System.out.println(trel1 + "donc c'est bon");
-                }
-            }*/
             this.selectRealpoint(t);
             //sauvN = proche;
             //this.sauvN.setCouleur(RED);
@@ -269,7 +259,7 @@ public class Actionneur {
             this.changeEtat(323);
             
         }else if (this.etat == 341){
-            //mesurer barres
+            //----------mesurer barres
             Noeud pclic = new NoeudSimple(t.getX(),t.getY());
             //max value est peut etre trop grand ici
             Barres proche = this.main.getModel().barresPlusProche(pclic, Double.MAX_VALUE);
@@ -285,12 +275,12 @@ public class Actionneur {
                 alert.showAndWait();
             
         }else if (this.etat == 343){
-            //creer segment
+            //----------creer segment
             this.pos1[0] = px;
             this.pos1[1] = py;
             this.changeEtat(344);
         }else if (this.etat == 344){
-            //creer segment.2
+            //----------creer segment.2
             double px2 = px;
             double py2 = py;
             
@@ -301,10 +291,24 @@ public class Actionneur {
             this.main.getModel().addN(new NoeudSimple(this.pos1[0],this.pos1[1]));
             this.main.getModel().addN(new NoeudSimple(px2,py2));
             this.main.redrawAll();
-            this.changeEtat(343);
             
+            /*Groupe model = this.main.getModel();
+            
+            NoeudSimple ns = new NoeudSimple(this.pos1[0],this.pos1[1]);
+            NoeudSimple ns2 = new NoeudSimple(px2,py2);
+            model.add(ns);
+            model.addN(ns);
+            model.add(ns2);
+            model.addN(ns2);
+            
+            model.add(new Barres (ns,ns2));
+            model.addB(new Barres (ns,ns2));
+            
+            this.main.redrawAll();*/
+            this.changeEtat(343);
+ 
         }else if (this.etat == 345){
-            //creer segment à partie d'un point partie 1
+            //----------creer segment à partie d'un point partie 1
             Noeud pclic = new NoeudSimple(t.getX(),t.getY());
             //max value est peut etre trop grand ici
             Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);  
@@ -312,7 +316,7 @@ public class Actionneur {
             this.changeEtat(346);
             
         }else if (this.etat == 346){
-            //creer segment à partie d'un point partie 1
+            //----------creer segment à partie d'un point partie 1
             //il selectionne un endroit et ça creer la barre
             double px2 = px;
             double py2 = py;
@@ -326,7 +330,7 @@ public class Actionneur {
             this.changeEtat(345);
             
         }else if (this.etat == 347){
-            //creer segment entre deux points partie 1
+            //----------creer segment entre deux points partie 1
             Noeud pclic = new NoeudSimple(t.getX(),t.getY());
             //max value est peut etre trop grand ici
             Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);  
@@ -334,7 +338,7 @@ public class Actionneur {
             this.changeEtat(348);
             
         }else if (this.etat == 348){
-            //creer segment entre deux points partie 2
+            //----------creer segment entre deux points partie 2
             Noeud pclic = new NoeudSimple(t.getX(),t.getY());
             //max value est peut etre trop grand ici
             //il selectionne un autre noeud et ça creer la barre
@@ -342,7 +346,6 @@ public class Actionneur {
             
             this.main.getModel().add(new Barres (sauvN,proche));
             this.main.getModel().addB(new Barres (sauvN,proche));
-            this.main.redrawAll();
             
             this.main.redrawAll();
             this.changeEtat(347);
@@ -396,7 +399,7 @@ public class Actionneur {
     }
 
     
-    //bouton provenant d'acceuil:
+    //----------bouton provenant d'acceuil:
     void boutonPlay(ActionEvent t){
         Groupe model = this.main.getModel();
         main.getModel().gestionForce2test();
@@ -457,7 +460,7 @@ public class Actionneur {
         this.main.redrawAll();
     }
     
-    //bouton provenant de ZC:
+    //----------bouton provenant de ZC:
     
     void boutonAjouterZC(ActionEvent t){
         this.changeEtat(200);
@@ -466,7 +469,7 @@ public class Actionneur {
         this.changeEtat(210);
     }
     
-    //bouton provenant de TrellisBarre:
+    //----------bouton provenant de TrellisBarre:
     
     void boutonRetrecir(ActionEvent t){
         this.main.setZoneVue(this.main.getZoneVue().scale(2));
@@ -529,7 +532,7 @@ public class Actionneur {
         //état 348: ajouter barre partie 2
     }
     
-    //bouton provenant de TerrainBarre:
+    //----------bouton provenant de TerrainBarre:
     
     void boutonAjouterAppui(ActionEvent t){
         this.changeEtat(400);
@@ -565,7 +568,7 @@ public class Actionneur {
         //si on veut désactiver un bouton quand select est activée
     }
 
-    //bouton provenant du menu:
+    //----------bouton provenant du menu:
     
     void boutonNewItem(ActionEvent t){
         Stage nouveau = new Stage();
@@ -577,30 +580,6 @@ public class Actionneur {
     void boutonExitItem(ActionEvent t){
         System.exit(0);
     }
-    /*void boutonOpenFilesItem(ActionEvent t){
-        FileChooser chooser = new FileChooser();
-        File f = chooser.showOpenDialog(this.main.getInStage());
-        if (f != null) {
-            try {
-                Trellis lue = Trellis.lecture(f);
-                Groupe glu = (Groupe) lue;
-                Stage nouveau = new Stage();
-                nouveau.setTitle(f.getName());
-                Scene sc = new Scene(new MainPanel(nouveau, f, glu), 1000, 700);
-                nouveau.setScene(sc);
-                nouveau.show();
-            } catch (Exception ex) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Erreur");
-                alert.setHeaderText("Problème durant la sauvegarde");
-                alert.setContentText(ex.getLocalizedMessage());
-
-                alert.showAndWait();
-            } finally {
-                this.changeEtat(350);
-            }
-        }
-    }*/
     void boutonOpenFilesItem(ActionEvent t){
         FileChooser chooser = new FileChooser();
         File f = chooser.showOpenDialog(this.main.getInStage());
@@ -682,6 +661,8 @@ public class Actionneur {
     public List<Trellis> getSelection() {
         return selection;
     }
+    
+    //----------Autre:
     
     void changeColor(Color value){
         if(((this.etat == 150)||(this.etat == 151)) && this.selection.size() > 0){

@@ -519,106 +519,6 @@ public class Groupe extends Trellis{
                 alert.showAndWait();
     }
     
-    public void gestionForce(){
-        
-        
-        int nbrNS = 0;
-        int nbrNAD = 0;
-        int nbrNAS = 0;
-        int nbrNB = 0;
-        int nbrN = 0;
-        
-        for(int i = 0; i < this.contient.size() ; i++){
-            if(this.contient.get(i).getClass().equals("NoeudSimple")){
-                nbrNS +=1;
-            }else if(this.contient.get(i).getClass().equals("NoeudAppuiDouble")){
-                nbrNAD +=1;
-            }else if(this.contient.get(i).getClass().equals("NoeudAppuiSimple")){
-                nbrNAS +=1;
-            }else if(this.contient.get(i).getClass().equals("Barres")){
-                nbrNB +=1;
-            }
-        }
-        System.out.println("je passe par ici");
-        nbrN = nbrNS + nbrNAD + nbrNAS;
-        
-        boolean testinversible = (2*nbrN == nbrNB + nbrNAS + 2*nbrNAD);
-        
-        if (nbrNAD > 1){
-            testinversible = false;
-        }
-        
-        if (testinversible == true){
-            Mat mat = new Mat (nbrN * 2, nbrN * 2+1);
-            
-            int indice = 0;
-            for (int i = 0; i < this.contientNoeud.size(); i++) {
-                Noeud n = this.contientNoeud.get(i);
-                for (int j = 0; j < this.contientBarres.size() ; j++){
-                    Barres b1 = this.contientBarres.get(j);
-                    for (int k = 0; k < n.getBarresIncidente().size() ; k++){
-                        Barres b2 = n.getBarresIncidente().get(k);
-                        if (b1 == b2 ){
-                            mat.setOneCoeff(indice, j, cos(b2.anglex())); 
-                            mat.setOneCoeff(indice + 1 , j, sin(b2.anglex()));
-                        }else{
-                            mat.setOneCoeff(indice , j, 0); 
-                            mat.setOneCoeff(indice + 1 , j, 0);
-                        }
-                    }
-                }
-                if(n.getClass().equals("NoeudAppuiDouble")){
-                    for (int a = this.contientBarres.size(); a < nbrN * 2; a++){
-                        mat.setOneCoeff(indice , a , 0);
-                        mat.setOneCoeff(indice + 1 , a , 0);
-                    }
-                }else if(n.getClass().equals("NoeudAppuiSimple")){
-                    for (int a = this.contientBarres.size(); a < nbrN * 2; a++){
-                        mat.setOneCoeff(indice , a , 0);
-                        mat.setOneCoeff(indice + 1 ,a , 0); //tangeante TODO
-                    }
-                }else{
-                    for (int a = this.contientBarres.size(); a < nbrN * 2; a++){
-                        mat.setOneCoeff(indice , a , 0);
-                        mat.setOneCoeff(indice + 1, a , 0);
-                    }
-                }
-                
-                mat.setOneCoeff(i , nbrN * 2 , 0);
-                indice +=2;
-            }
-            System.out.println(mat);
-        }else{
-            System.out.println("Matrice non inversible");
-        }
-        System.out.println("je passe par la");
-        
-        /*public void solve(){
-        Matrice mat =new Matrice(barres.size()+3,barres.size()+4);
-        for (int i = 0; i < this.contient.size(); i++) {
-            if (this.contientNoeud.get(i).getClass().equals("Noeud Appui Simple")){
-                mat.set(2*i, contientBarres.size()+2 ,0);//Rbx=0
-                mat.set((2*i)+1, contientBarres.size()+2,1);//Rby=1
-            }
-            else if (noeuds.get(i).getType().equals("Noeud Appui Double")) {
-                mat.set(2*i, barres.size(),1);//Rax=1
-                mat.set((2*i)+1, barres.size()+1,1);//Ray=1
-            }
-            for (int j = 0; j < barres.size(); j++) {
-                if(noeuds.get(i).barresIncidentes().contains(barres.get(j))){
-                    mat.set(2*i, j,Math.cos(barres.get(j).angle(noeuds.get(i))));
-                    mat.set((2*i)+1, j,Math.sin(barres.get(j).angle(noeuds.get(i))));
-                }
-            }
-            mat.set(2*i, barres.size()+3 ,-noeuds.get(i).getF));//Rbx=0
-            mat.set((2*i)+1, barres.size()+3,-noeuds.get(i).getF));
-        }
-        System.out.println(mat);
-        mat.gauss();
-        System.out.println(mat);*/
-        
-        
-    }
     public void gestionForce2test(){
         int nbrNS = 0;
         int nbrNAD = 0;
@@ -766,17 +666,17 @@ public class Groupe extends Trellis{
             System.out.println("la matrice inverse est:\n" + matAinv);
             matInv = matAinv;
             
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            /*Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Matrice du système:");
                 alert.setHeaderText(null);
                 //alert.setContentText(matAinv.toString());
                 alert.setContentText(matInv.toString());
 
-                alert.showAndWait();
+                alert.showAndWait();*/
                 
             matRes = matRes.mult(matInv, mat4);
                 
-            Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Solutions du système:");
                 alert.setHeaderText(null);
                 alert.setContentText(matRes.toString());

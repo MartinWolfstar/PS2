@@ -53,7 +53,7 @@ public class TerrainBarre {
         buildDefAppuiButton();
         buildDefAppuiButtonSimple();
 
-        container.getChildren().addAll(ajouter,valider,modifier,defAppui,defAppuiSimple);
+        container.getChildren().addAll(ajouter,valider,defAppui,defAppuiSimple);
         //container.getChildren().addAll(ajouter,valider,modifier,defAppui);
         //Add Container.
         tab.setContent(container);
