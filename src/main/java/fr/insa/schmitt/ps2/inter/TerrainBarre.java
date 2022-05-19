@@ -54,8 +54,6 @@ public class TerrainBarre {
         buildDefAppuiButtonSimple();
 
         container.getChildren().addAll(ajouter,valider,defAppui,defAppuiSimple);
-        //container.getChildren().addAll(ajouter,valider,modifier,defAppui);
-        //Add Container.
         tab.setContent(container);
 
     }

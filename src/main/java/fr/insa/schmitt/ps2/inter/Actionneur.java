@@ -58,42 +58,16 @@ public class Actionneur {
         this.pos3y = new ArrayList<>();
     }
    
-    public void changeEtat(int nouvelEtat){
-        
+    public void changeEtat(int nouvelEtat){    
         etat = nouvelEtat;
         System.out.println(etat);
-        
-        if (nouvelEtat == 100) {
-            
-        }
-        if (nouvelEtat == 200) {
-            
-        }
-        if (nouvelEtat == 300) {
-            
-        }
-        if (nouvelEtat == 400) {
-            
-        }
-        if (nouvelEtat == 500) {
-            
-        }
     }
     
-    public void changeEtatSecondaire(int nouvelEtat){
-        etatSecondaire = nouvelEtat;
-        System.out.println(etatSecondaire);
-    }
-
     void clicDansZoneDessin(MouseEvent t) {
         double px = t.getX();
         double py =t.getY();
-        /*px = px + (main.getWidth()/10);
-        py = py + (main.getHeight()/10);*/
-        /*px = px -100;
-        py = py -100;*/
-        /*px = px + (main.GetZoneVue().getxMax());
-        py = py + (main.getHeight()/10);*/
+
+        //problème direction
         
         if (this.etat == 322){
             
@@ -114,7 +88,7 @@ public class Actionneur {
         }else if (this.etat == 150){
             ///----------selection
             Noeud pclic = new NoeudSimple(t.getX(),t.getY());
-            //max value est peut etre trop grand ici
+            //on peut regler la distance du clic avec max value
             Trellis proche = this.main.getModel().plusProche(pclic, Double.MAX_VALUE);
             if (proche != null) {
                 if (t.isShiftDown()) {
@@ -134,55 +108,47 @@ public class Actionneur {
             }
                 
         }else if (this.etat == 151){
-            /*----------selectionPoint
-            Noeud pclic = new NoeudSimple(t.getX(),t.getY());
-            //max value est peut etre trop grand ici
-            Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);  */
-           
+            //----------selectionPoint
+            
             selectRealpoint(t);
             
             this.getSelection().clear();
             this.getSelection().add(trel1);
-            //System.out.println(trel1);
             this.activeBoutonsSuivantSelection();
             this.main.redrawAll();
             
             selectRealpoint(t);
                 
         }else if (this.etat == 152){
-            /*----------selectionBarres
-            Noeud pclic = new NoeudSimple(t.getX(),t.getY());
-            //max value est peut etre trop grand ici
-            Barres proche = this.main.getModel().barresPlusProche(pclic, Double.MAX_VALUE);  */
+            //----------selectionBarres
            
             selectRealBarres(t);
             
             this.getSelection().clear();
             this.getSelection().add(trel1);
-            //System.out.println(trel1);
             this.activeBoutonsSuivantSelection();
             this.main.redrawAll();
                 
         }else if (this.etat == 323){
             //----------mesure de l'angle entre 3 Noeud (le centre est saisi en 2)
+            
             Noeud pclic = new NoeudSimple(t.getX(),t.getY());
-            //max value est peut etre trop grand ici
             Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);
             sauvN = proche;
             this.changeEtat(324);
             
         }else if (this.etat == 324){
             //----------mesure de l'angle
+            
             Noeud pclic = new NoeudSimple(t.getX(),t.getY());
-            //max value est peut etre trop grand ici
             Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);
             sauvN2 = proche;
             this.changeEtat(325);
             
         }else if (this.etat == 325){
             //----------mesure de l'angle
+            
             Noeud pclic = new NoeudSimple(t.getX(),t.getY());
-            //max value est peut etre trop grand ici
             Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);
             
             double angle = sauvN2.angle(sauvN,proche);
@@ -201,14 +167,11 @@ public class Actionneur {
             this.changeEtat(323);
             
         }else if (this.etat == 330){
-            
+            //----------set force
             this.selectRealpoint(t);
-            //sauvN = proche;
-            //this.sauvN.setCouleur(RED);
-            //this.trel1.setCouleur(RED);
             
             String entrerUtilisateur = "";   
-            Vecteur2D v = new Vecteur2D(50,50);
+            Vecteur2D v = new Vecteur2D(0,0);
         
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("A propos");
@@ -217,54 +180,36 @@ public class Actionneur {
                 TextArea entrer = new TextArea();
                 box.getChildren().add(entrer);
                 alert.getDialogPane().setContent(box);
-                //il n'affiche pas le texte, problème
-                alert.setContentText("entrer les forces qui s'exercent sur ce point\n"
-                        + "forme : double;double\n");
 
                 Optional<ButtonType> option = alert.showAndWait();
 
                 if (option.get() == null) {
-                    //System.out.println("test1");
                 } else if (option.get() == ButtonType.OK) {
-                    //System.out.println("test2");
                     try{
                         entrerUtilisateur = entrer.getText();
                         String[] bouts = entrerUtilisateur.split(";");
-                        //System.out.println(bouts[0]);
                         double fx = Double.parseDouble(bouts[0]);
                         double fy = Double.parseDouble(bouts[1]);
-                        //System.out.println("fx:" + fx + "fy:" + fy);
                         v = new Vecteur2D(fx,fy);
-                        /*sauvN.setForce(v);
-                        System.out.println(sauvN);*/
-                        //proche.setForce(v);
-                        //trel1.setForce(v);
-                        //proche.setIdentificateur(6);
-                        //System.out.println(trel1);
                         
                     }catch(Exception E){
-                        //System.out.println(E);
+                        System.out.println(E);
                     }
                     this.trel1.setForce(v);
-                    //this.sauvN.setIdentificateur(4856);
-                    System.out.println(this.trel1);
+                    //System.out.println(this.trel1);
    
                 } else if (option.get() == ButtonType.CANCEL) {
-                    //System.out.println("test3");
                 } else {
-                    //System.out.println("test4");
                 }
-                //alert.showAndWait();
             
             this.changeEtat(323);
             
         }else if (this.etat == 341){
             //----------mesurer barres
+            
             Noeud pclic = new NoeudSimple(t.getX(),t.getY());
-            //max value est peut etre trop grand ici
             Barres proche = this.main.getModel().barresPlusProche(pclic, Double.MAX_VALUE);
             double distance = proche.longeurBarres();
-            //System.out.println(distance);
             
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Mesure de la barre");
@@ -276,11 +221,13 @@ public class Actionneur {
             
         }else if (this.etat == 343){
             //----------creer segment
+            
             this.pos1[0] = px;
             this.pos1[1] = py;
             this.changeEtat(344);
         }else if (this.etat == 344){
             //----------creer segment.2
+            
             double px2 = px;
             double py2 = py;
             
@@ -291,33 +238,20 @@ public class Actionneur {
             this.main.getModel().addN(new NoeudSimple(this.pos1[0],this.pos1[1]));
             this.main.getModel().addN(new NoeudSimple(px2,py2));
             this.main.redrawAll();
-            
-            /*Groupe model = this.main.getModel();
-            
-            NoeudSimple ns = new NoeudSimple(this.pos1[0],this.pos1[1]);
-            NoeudSimple ns2 = new NoeudSimple(px2,py2);
-            model.add(ns);
-            model.addN(ns);
-            model.add(ns2);
-            model.addN(ns2);
-            
-            model.add(new Barres (ns,ns2));
-            model.addB(new Barres (ns,ns2));
-            
-            this.main.redrawAll();*/
+
             this.changeEtat(343);
  
         }else if (this.etat == 345){
             //----------creer segment à partie d'un point partie 1
+            
             Noeud pclic = new NoeudSimple(t.getX(),t.getY());
-            //max value est peut etre trop grand ici
             Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);  
             sauvN = proche;
             this.changeEtat(346);
             
         }else if (this.etat == 346){
             //----------creer segment à partie d'un point partie 1
-            //il selectionne un endroit et ça creer la barre
+            //il selectionne un endroit et ça créer la barre
             double px2 = px;
             double py2 = py;
             this.main.getModel().add(new Barres (sauvN,new NoeudSimple(px2,py2)));
@@ -331,16 +265,16 @@ public class Actionneur {
             
         }else if (this.etat == 347){
             //----------creer segment entre deux points partie 1
+            
             Noeud pclic = new NoeudSimple(t.getX(),t.getY());
-            //max value est peut etre trop grand ici
             Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);  
             sauvN = proche;
             this.changeEtat(348);
             
         }else if (this.etat == 348){
             //----------creer segment entre deux points partie 2
+            
             Noeud pclic = new NoeudSimple(t.getX(),t.getY());
-            //max value est peut etre trop grand ici
             //il selectionne un autre noeud et ça creer la barre
             Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);
             
@@ -351,20 +285,22 @@ public class Actionneur {
             this.changeEtat(347);
             
         }else if (this.etat == 400){
-
+            //----------création Terrain partie 1
+            
             this.pos1[0] = px;
             this.pos1[1] = py;
             this.changeEtat(401);
             
         }else if (this.etat == 401){
-
+            //----------création Terrain partie 2
+            
             this.pos2[0] = px;
             this.pos2[1] = py;
-            //main.getTerrain().getXi().clear();
             this.changeEtat(402);
                     
         }else if (this.etat == 402){
-
+            //----------création Terrain partie 3
+            
             if (main.getTerrain().getXi().size() <= 10){
                 this.pos3x.add(px);
                 this.pos3y.add(py);
@@ -373,7 +309,8 @@ public class Actionneur {
             
             
         }else if (this.etat == 420){
-
+            //----------création Terrain partie 4
+            
             Groupe model = this.main.getModel();
             py = Lagrange(px, this.main.getTerrain().getXi(), this.main.getTerrain().getYi());
             System.out.println(px + ";" + py);
@@ -383,7 +320,8 @@ public class Actionneur {
             
             
         }else if (this.etat == 430){
-
+            //----------création Terrain partie 5
+            
             Groupe model = this.main.getModel();
             py = Lagrange(px, this.main.getTerrain().getXi(), this.main.getTerrain().getYi());
             System.out.println(px + ";" + py);
@@ -394,10 +332,8 @@ public class Actionneur {
             
         }else{
             System.out.println("clic"); 
-        }
-        
-    }
-
+        }  
+    } 
     
     //----------bouton provenant d'acceuil:
     void boutonPlay(ActionEvent t){
@@ -406,7 +342,6 @@ public class Actionneur {
         //this.changeEtat(100);
     }
     void boutonStop(ActionEvent t){
-        //System.out.println(this.selection);
         //this.changeEtat(110);
         this.changeEtat(100);
     }
@@ -425,11 +360,9 @@ public class Actionneur {
     }
     void boutonSelectPoint(ActionEvent t){
         this.changeEtat(151);
-        this.changeEtatSecondaire(1);
     }
     void boutonSelectBarres(ActionEvent t){
         this.changeEtat(152);
-        //this.changeEtatSecondaire(1);
     }
     void boutonDelete(ActionEvent t){
         if (((this.etat == 150)||(this.etat == 151)) && !this.selection.isEmpty()) {
@@ -523,12 +456,10 @@ public class Actionneur {
     }
     void creerBarreA1P(ActionEvent t){
         this.changeEtat(345);
-        //this.changeEtatSecondaire(2);
         //état 346: ajouter barre partie 2
     }
     void creerBarreA2P(ActionEvent t){
         this.changeEtat(347);
-        //this.changeEtatSecondaire(3);
         //état 348: ajouter barre partie 2
     }
     
@@ -668,7 +599,6 @@ public class Actionneur {
         if(((this.etat == 150)||(this.etat == 151)) && this.selection.size() > 0){
             for(Trellis t : this.selection){
                 t.changeCouleur(value);
-                //t.afficheResume();
             }
             this.main.redrawAll();
         }
@@ -677,26 +607,22 @@ public class Actionneur {
     private void selectRealpoint (MouseEvent t){
         
         Noeud pclic = new NoeudSimple(t.getX(),t.getY());
-            //max value est peut etre trop grand ici
             Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);  
-            //il y a un petite erreur dans le programme donc ce passage sert à le compenser:
+            //il y a un petite erreur dans le programme donc ce passage sert à la compenser:
             for (int i = 0; i < this.main.getModel().getContient().size(); i++ ){
                 if ((proche.getPx() == this.main.getModel().getContient().get(i).maxX())&&(proche.getPx() == this.main.getModel().getContient().get(i).minX())){
                     this.trel1 = this.main.getModel().getContient().get(i);
-                    //System.out.println(trel1 + "donc c'est bon");
                 }
             }
     }
     private void selectRealBarres (MouseEvent t){
         
         Noeud pclic = new NoeudSimple(t.getX(),t.getY());
-            //max value est peut etre trop grand ici
             Barres proche = this.main.getModel().barresPlusProche(pclic, Double.MAX_VALUE); 
-            //il y a un petite erreur dans le programme donc ce passage sert à le compenser:
+            //il y a un petite erreur dans le programme donc ce passage sert à la compenser:
             for (int i = 0; i < this.main.getModel().getContient().size(); i++ ){
                 if ((proche.maxX() == this.main.getModel().getContient().get(i).maxX())&&(proche.minX() == this.main.getModel().getContient().get(i).minX())){
                     this.trel1 = this.main.getModel().getContient().get(i);
-                    //System.out.println(trel1 + "donc c'est bon");
                 }
             }
     }

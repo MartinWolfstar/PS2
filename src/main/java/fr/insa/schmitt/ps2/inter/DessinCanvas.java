@@ -27,18 +27,14 @@ public class DessinCanvas extends Pane{
     public DessinCanvas(MainPanel main){
         this.main = main;
         this.realCanvas = new Canvas(this.getWidth(), this.getHeight());
-        //this.zoneVue = new RectangleVue(0, 0, this.getWidth(), this.getHeight());
         this.zoneVue = new RectangleVue(0, 0, this.getWidth(),this.getHeight());
         this.getChildren().add(this.realCanvas);
-        //System.out.println("w = " + this.getWidth() + "h = " + this.getHeight());
         this.realCanvas.heightProperty().bind(this.heightProperty());
         this.realCanvas.heightProperty().addListener((o) -> {
-            //System.out.println("w = " + this.realCanvas.getWidth() + "h = " + this.realCanvas.getHeight());
             this.redrawAll();
         });
         this.realCanvas.widthProperty().bind(this.widthProperty());
         this.realCanvas.widthProperty().addListener((o) -> {
-            //System.out.println("w = " + this.realCanvas.getWidth() + "h = " + this.realCanvas.getHeight());
             this.redrawAll();
         });
         this.realCanvas.setOnMouseClicked(t ->{
@@ -47,7 +43,6 @@ public class DessinCanvas extends Pane{
         });
         
         this.redrawAll();
-        //System.out.println(zoneVue);
     }
     
     public void concatenateTransform(Transform trans) {
@@ -69,11 +64,12 @@ public class DessinCanvas extends Pane{
         //context.setFill(Color.LIGHTGRAY);
         //context.fillRect(0,0, this.realCanvas.getWidth(), this.realCanvas.getHeight());    
         
-        //gestion des zooms/:
+        //----------gestion des zooms:
         context.setTransform(new Affine());
         context.clearRect(0,0,this.realCanvas.getWidth(),this.realCanvas.getHeight());
         this.zoneVue.setxMax(this.realCanvas.getWidth());
         this.zoneVue.setyMax(this.realCanvas.getHeight());
+        //activer cette partie permet d'ajouter la direction (et son beug)
         /*Transform curTrans = this.main.getZoneVue().fitTransform(this.zoneVue);
         this.setTransform(curTrans);*/
         //System.out.println(zoneVue);

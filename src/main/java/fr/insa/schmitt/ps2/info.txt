@@ -17,7 +17,7 @@ mettre des try/catch pour eviter les erreurs
 
 pour delet une barre il faut utiliser select normal et pas select barre
 
-
+oter zc
 
 
 

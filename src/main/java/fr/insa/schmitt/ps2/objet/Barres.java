@@ -81,12 +81,6 @@ public class Barres extends Forme{
         this.na.getBarresArrivee().add(this);
         this.nd.getBarresIncidente().add(this);
         this.na.getBarresIncidente().add(this);
-        /*String str = "";
-        for(int i = 0; i < this.na.getBarresIncidente().size();i++){
-            str = str + this.na.getBarresIncidente().get(i);
-            
-        }
-        System.out.println(str);*/
     }
     public Barres (Noeud ndepart, Noeud narrive, Color couleur){
         
@@ -97,9 +91,6 @@ public class Barres extends Forme{
         this.prix = 4;
         this.na = narrive;
         this.nd = ndepart;
-        /*narrive.getBarresDepart().add(this);
-        narrive.getBarresArrivee().add(this);
-        narrive.getBarresIncidente().add(this);*/
         this.nd.getBarresDepart().add(this);
         this.nd.getBarresIncidente().add(this);
         this.na.getBarresArrivee().add(this);
@@ -225,11 +216,11 @@ public class Barres extends Forme{
     }
     @Override
     public void setForce(Vecteur2D v) {
-        //inutile, les vérifications sont effectuées avant
+        //inutilisé, les vérifications sont effectuées avant
     }
     @Override
     public Vecteur2D getForce() {
-        //inutile, les vérifications sont effectuées avant
+        //inutilisé, les vérifications sont effectuées avant
         Vecteur2D v = new Vecteur2D(0,0);
         return v;
     }

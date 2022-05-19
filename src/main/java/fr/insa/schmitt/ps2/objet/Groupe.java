@@ -58,7 +58,7 @@ public class Groupe extends Trellis{
             if(t.getGroupe() != null){
                 throw new Error("figure déjà dans un autre groupe");
             }
-            this.getContient().add(t);
+            this.contient.add(t);
             t.setGroupe(this);
         }
     }
@@ -68,7 +68,7 @@ public class Groupe extends Trellis{
             if(t.getGroupe() != null){
                 throw new Error("figure déjà dans un autre groupe");
             }
-            this.getContientNoeud().add(t);
+            this.contientNoeud.add(t);
             t.setGroupe(this);
         }
     }
@@ -77,7 +77,7 @@ public class Groupe extends Trellis{
             if(t.getGroupe() != null){
                 throw new Error("figure déjà dans un autre groupe");
             }
-            this.getContientBarres().add(t);
+            this.contientBarres.add(t);
             t.setGroupe(this);
         }
     }
@@ -165,7 +165,6 @@ public class Groupe extends Trellis{
     }
     
     public static void testMenu() {
-//        Groupe g = groupeTest();
         Groupe g = new Groupe();
         g.menuTexte();
     }
@@ -415,46 +414,7 @@ public class Groupe extends Trellis{
             }
         }
     }
-    
-    /*public Trellis noeudPlusProche(Noeud p, double distMax) {
-        int a = 0;
-        double test = MAX_VALUE;
-        //la il peut y avoir un problème si la liste est vide
-        Trellis NoeudInitial = this.contient.get(0);
-        
-        for (int i = 0; i < this.contient.size(); i++) {
-            if (this.contient.get(i).getClass() == NoeudSimple.class){
-                test = this.contient.get(i).distanceNoeud(p);
-                NoeudInitial = this.contient.get(i);
-                a += 1;
-            }
-        }
-        //
-        System.out.println(a);
-        //
-        if (a == 0) {
-            return null;
-        } else {
-            
-            for (int i = 0; i < this.contient.size(); i++) {
-                if (this.contient.get(i).getClass() == NoeudSimple.class){
-                    Trellis fcur = this.contient.get(i);
-                    double cur = fcur.distanceNoeud(p);
-                    if (cur < test) {
-                        test = cur;
-                        NoeudInitial = fcur;
-                    }
-                }
-            }
-            if (test <= distMax) {
-                double u = NoeudInitial.maxX();
-                return NoeudInitial;
-            } else {
-                return null;
-            }
-        }
-    }*/
-    
+
     @Override
     public void dessine(GraphicsContext context) {
         for (Trellis t : this.getContient()) {
@@ -508,7 +468,7 @@ public class Groupe extends Trellis{
     @Override
     public void afficheResume() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Ceci est une Barre");
+                alert.setTitle("Ceci est un Groupe");
                 alert.setHeaderText(null);
                 alert.setContentText("info \n"
                         + "info \n"
@@ -528,7 +488,6 @@ public class Groupe extends Trellis{
         
         for(int i = 0; i < this.contient.size() ; i++){
             String str = this.contient.get(i).getClass().getName();
-            //System.out.println(str);
             if(str.equals("fr.insa.schmitt.ps2.objet.NoeudSimple")){
                 nbrNS +=1;
             }else if(str.equals("fr.insa.schmitt.ps2.objet.NoeudAppuiDouble")){
@@ -551,8 +510,7 @@ public class Groupe extends Trellis{
         if (nbrNAD > 1){
             testinversible = false;
         }
-        //System.out.println(testinversible); 
-        //testinversible = true;
+
         if (testinversible == true){
             
             //------on créer les matrices:
@@ -589,20 +547,14 @@ public class Groupe extends Trellis{
             int indice = 0;
             for (int i = 0; i < this.contientNoeud.size(); i++) {
                 Noeud n = this.contientNoeud.get(i);
-                //System.out.println("noeud" + i + "  " + this.contientNoeud.get(i).getClass().getName());
-                
 
                 for (int k = 0; k < n.getBarresIncidente().size() ; k++){
                     Barres b2 = n.getBarresIncidente().get(k);    
-                    //System.out.println(k+"ième barre incidente:");
                     for (int j = 0; j < this.contientBarres.size() ; j++){
                         Barres b1 = this.contientBarres.get(j);
-                        //System.out.println("b1: " + b1 + "   b2: " + b2 + " test" +(b1==b2));
                         if (b1 == b2 ){
-                            //System.out.println("je rajoute la barre" + (j+1));
                             mat1.setOneCoeff(indice, j, cos(b1.anglex())); 
                             mat1.setOneCoeff(indice + 1 , j, sin(b1.anglex()));
-                            
                         }
                     }
                 }
@@ -696,14 +648,11 @@ public class Groupe extends Trellis{
     private void getRealpoint (double x,double y){
         
         Noeud pclic = new NoeudSimple(x,y);
-            //max value est peut etre trop grand ici
             Noeud proche = this.noeudPlusProche(pclic, Double.MAX_VALUE);  
             //il y a un petite erreur dans le programme donc ce passage sert à le compenser:
             for (int i = 0; i < this.getContient().size(); i++ ){
                 if ((proche.getPx() == this.getContient().get(i).maxX())&&(proche.getPx() == this.getContient().get(i).minX())){
-                    //System.out.println(this.getContient().get(i).getClass().getName());
                     this.trel1 = this.getContient().get(i);
-                    //System.out.println(trel1 + "donc c'est bon");
                 }
             }
     }

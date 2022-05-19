@@ -150,7 +150,6 @@ public class TrellisBarre {
         
         
         scontainer.getChildren().addAll(ssContainer1,ssContainer2,ssContainer6,ssContainer3,ssContainer4,ssContainer5);
-        //container.getChildren().add(play);
         
         container.getChildren().add(scontainer);
         

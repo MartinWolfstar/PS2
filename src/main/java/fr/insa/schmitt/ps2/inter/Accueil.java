@@ -93,7 +93,6 @@ public class Accueil {
         this.stop.setToggleGroup(toggle1);
         
         //Add Button
-        //container.getChildren().addAll(play,stop,retour,avance,sauv,select,selectPoint,selctBarres,delete,direction);
         container.getChildren().addAll(play,stop,sauv,select,selectPoint,delete,direction);
         
         //Add Container.
@@ -126,6 +125,7 @@ public class Accueil {
         });
         
     }
+    
     private void buildStopButton(){
         this.stop = new ToggleButton();
         this.stop.setText("stop");

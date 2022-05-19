@@ -53,11 +53,10 @@ public class MainPanel extends BorderPane {
         this.menuBar = new MenuHaut(this);
         this.ruban = new Ruban(this);
         
-        //this.setTop(ruban.get());
         this.setTop(this.BarreOutilshaut);
         this.setLeft(this.BarreOutilsGauche);
         this.setCenter(this.dessin);
-        //this.setTop(menuBar);
+
         this.actionneur.changeEtat(000);
     }
 

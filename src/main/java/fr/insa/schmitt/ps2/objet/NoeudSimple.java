@@ -87,7 +87,6 @@ public class NoeudSimple extends Noeud{
                 alert.setContentText("px = " + this.getPx() + "\n"
                         + "py = " + this.getPy() + " \n" 
                         + "forces appliqués à ce noeud " + this.getForce() + " \n"
-                        + "barres incidentes: " + affListe() + " \n"
                         + "° \n" 
                 );
 

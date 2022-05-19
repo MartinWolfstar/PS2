@@ -22,8 +22,6 @@ public class MainFx extends Application{
     @Override
     public void start (Stage fen){
         
-       //appelHyp();
-        
         MainPanel main = new MainPanel(fen, Groupe.groupeTest1(), Terrain.ini());
         
         fen.getIcons().setAll(new Image(getClass().getResource("icon/icons8-robot-50.png").toExternalForm()));
@@ -38,20 +36,4 @@ public class MainFx extends Application{
     public static void main(String[]args){
         launch();
     }
-    public void appelHyp (){
-        
-        Hyperlink hyperlink = new Hyperlink("page d'aide");
-
-        hyperlink.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                getHostServices().showDocument("https://XXXXXXXXXXXXXX.org");
-                
-            }
-        });
-        
-        
-    }
-    
 }

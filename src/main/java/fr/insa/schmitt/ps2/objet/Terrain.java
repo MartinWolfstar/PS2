@@ -34,13 +34,6 @@ public class Terrain extends GlobalObject{
         this.xi.add(100.0);
         this.yi.add(0.0);
         
-        
-        /*this.xi.add(150.0);
-        this.yi.add(100.0);
-        
-        this.xi.add(120.0);
-        this.yi.add(220.0);*/
-        
     }
     public Terrain (double rayon){
         
@@ -53,14 +46,7 @@ public class Terrain extends GlobalObject{
         
         this.xi.add(100.0);
         this.yi.add(0.0);
-        
-        
-        /*this.xi.add(150.0);
-        this.yi.add(100.0);
-        
-        this.xi.add(120.0);
-        this.yi.add(220.0);*/
-        
+
     }
     
     public String toString() {
@@ -78,9 +64,7 @@ public class Terrain extends GlobalObject{
         double pas = -400;
         double y;
         if (!xi.isEmpty()){
-            //System.out.println(xi.size());
             for (int i = 0; i < 400000; i++){
-                //System.out.println(i);
                 y = Lagrange(pas, xi, yi);
                 context.setFill(GREEN);
                 context.fillOval(pas-RAYON_IN_DRAW,y-RAYON_IN_DRAW, RAYON_IN_DRAW/2, RAYON_IN_DRAW/2);
@@ -90,9 +74,6 @@ public class Terrain extends GlobalObject{
             context.setFill(GREEN);
             context.fillOval(1000,1000, 2*RAYON_IN_DRAW, 2*RAYON_IN_DRAW);
         }
-        /*context.setFill(BLACK);
-        context.fillOval(10,10, 2*RAYON_IN_DRAW, 2*RAYON_IN_DRAW);*/
-
     }
     
     

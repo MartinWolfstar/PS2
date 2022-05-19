@@ -64,26 +64,19 @@ public abstract class GlobalObject {
             String line;
             while ((line = bin.readLine()) != null && line.length() != 0) {
                 String[] bouts = line.split(";");
-                //System.out.println(line);
-                System.out.println("test1");
                 if (bouts[0].equals("NoeudSimple")) {
                     int id = Integer.parseInt(bouts[1]);
                     double px = Double.parseDouble(bouts[2]);
-                    //System.out.println(px);
                     double py = Double.parseDouble(bouts[3]);
                     Color col = Forme.parseColor(bouts[4], bouts[5], bouts[6]);
-                    //System.out.println(px + ";" + py + ";" + col);
                     NoeudSimple np = new NoeudSimple(px, py, col);
                     num.associe(id, np);
                     derniere = np;
-                    System.out.println("test2");
                 } else if (bouts[0].equals("NoeudAppuiDouble")) {
                     int id = Integer.parseInt(bouts[1]);
                     double px = Double.parseDouble(bouts[2]);
-                    //System.out.println(px);
                     double py = Double.parseDouble(bouts[3]);
                     Color col = Forme.parseColor(bouts[4], bouts[5], bouts[6]);
-                    //System.out.println(px + ";" + py + ";" + col);
                     NoeudAppuiDouble np = new NoeudAppuiDouble(px, py, col);
                     num.associe(id, np);
                     derniere = np;
@@ -91,10 +84,8 @@ public abstract class GlobalObject {
                 }else if (bouts[0].equals("NoeudAppuiSimple")) {
                     int id = Integer.parseInt(bouts[1]);
                     double px = Double.parseDouble(bouts[2]);
-                    //System.out.println(px);
                     double py = Double.parseDouble(bouts[3]);
                     Color col = Forme.parseColor(bouts[4], bouts[5], bouts[6]);
-                    //System.out.println(px + ";" + py + ";" + col);
                     NoeudAppuiSimple np = new NoeudAppuiSimple(px, py, col);
                     num.associe(id, np);
                     derniere = np;
@@ -129,20 +120,14 @@ public abstract class GlobalObject {
                     }
                     System.out.println(x.size());
                     System.out.println(ter.getXi().get(0));
-                    //System.out.println("test1");
                     ter.getXi().set(0, x.get(0));
                     ter.getYi().set(0, x.get(1));
                     ter.getXi().set(1, x.get(2));
                     ter.getYi().set(1, x.get(3));
-                    //System.out.println("test2");
                     x.remove(0);
-                    //System.out.println("test2");
                     x.remove(0);
-                    //System.out.println("test2");
                     x.remove(0);
-                    //System.out.println("test2");
                     x.remove(0);
-                    //System.out.println("test3");
                     taille = x.size();
                     System.out.println(taille);
                     if (taille > 1){

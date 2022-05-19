@@ -73,14 +73,6 @@ public class Mat {
                 tab3[i][mat1.nbrCol + j] = tab2[i][j];
             }
         }
-        /*String str = "";
-        for (int i = 0; i< l ; i++){
-            for (int j = 0; j < c ; j++){
-                str = str + tab3[i][j] + "|";
-            }
-            str = str +"\n";
-        }
-        System.out.println(str);*/
         
         Mat mat3 = new Mat(l,c);
         mat3.coeffs = tab3;
@@ -159,24 +151,20 @@ public class Mat {
     }
     
     public void descenteGauss(){
-    int lignepivot;
-    for(int i=0; i<Math.min(this.getNbrLigne(),this.getNbrCol()); i++){
-        lignepivot = this.lignePlusGrandPivot(i);
-        if(lignepivot!=-1){
-            this.permuteLigne(i, lignepivot);
-            //System.out.println(lignepivot);
-            for (int i2=i+1; i2<this.getNbrLigne(); i2++){
-                //System.out.println("mat:\n"+this);
-                this.transvection(i, i2);
+        int lignepivot;
+        for(int i=0; i<Math.min(this.getNbrLigne(),this.getNbrCol()); i++){
+            lignepivot = this.lignePlusGrandPivot(i);
+            if(lignepivot!=-1){
+                this.permuteLigne(i, lignepivot);
+                for (int i2=i+1; i2<this.getNbrLigne(); i2++){
+                    this.transvection(i, i2);
                
+                }
+            }
+            else{
+                System.out.println("la matrice n'est pas inversible");
             }
         }
-        else{
-           System.out.println("la matrice n'est pas inversible");
-        }
-    }
-    /*System.out.println(matAinv.toString());
-    System.out.println();*/
     }
     public Mat remonteeGauss(){
         for(int i=this.getNbrLigne()-1; i>0; i--){
@@ -204,7 +192,7 @@ public class Mat {
     public Mat mult(Mat mat1, Mat mat2) {
         int m1ColLength = mat1.nbrCol; // m1 columns length
         int m2RowLength = mat2.nbrLigne;    // m2 rows length
-        if(m1ColLength != m2RowLength) return null; // matrix multiplication is not possible
+        if(m1ColLength != m2RowLength) return null; // mat multiplication is not possible
         int mRRowLength = mat1.nbrLigne;    // m result rows length
         int mRColLength = mat2.nbrCol; // m result columns length
         double[][] mResult = new double[mRRowLength][mRColLength];

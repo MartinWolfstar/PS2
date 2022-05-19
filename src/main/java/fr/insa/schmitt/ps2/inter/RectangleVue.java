@@ -8,6 +8,7 @@ import javafx.scene.transform.Transform;
 
 /**
  *
+ * Cette classe n'est pas utilisé pour l'instant
  * @author schmi
  */
 public class RectangleVue {

@@ -5,14 +5,15 @@
 package fr.insa.schmitt.ps2.inter;
 
 import fr.insa.schmitt.ps2.objet.Groupe;
+import fr.insa.schmitt.ps2.objet.NoeudAppuiDouble;
+import fr.insa.schmitt.ps2.objet.NoeudAppuiSimple;
+import fr.insa.schmitt.ps2.objet.NoeudSimple;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
@@ -61,6 +62,7 @@ public class BarreOutilsGauche extends VBox{
         });
     } 
     private void defCommande(String commande){
+        String[] bouts = commande.split(" ");
         if (commande.equalsIgnoreCase("rule1")) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("rule 1");
@@ -86,14 +88,45 @@ public class BarreOutilsGauche extends VBox{
         if (commande.equalsIgnoreCase("/import model2")) {
             main.setModel(Groupe.groupeTest2());
             main.redrawAll();
-        }if (commande.equalsIgnoreCase("/create Noeud")) {
-            
-            main.redrawAll();
         }
-        if (commande.equalsIgnoreCase("/create")) {
-            
-            main.redrawAll();
+        if (bouts[0].equalsIgnoreCase("/createNoeudSimple")) {
+            try{
+                double px = Double.parseDouble(bouts[1]);
+                double py = Double.parseDouble(bouts[2]);
+                Groupe model = main.getModel();
+                model.add(new NoeudSimple(px,py));
+                model.addN(new NoeudSimple(px,py));
+                this.main.redrawAll();
+            }catch(Exception e){
+                System.out.println(e);
+            }
         }
+        if (bouts[0].equalsIgnoreCase("/createNoeudAppuiSimple")) {
+            try{
+                double px = Double.parseDouble(bouts[1]);
+                double py = Double.parseDouble(bouts[2]);
+                Groupe model = main.getModel();
+                model.add(new NoeudAppuiSimple(px,py));
+                model.addN(new NoeudAppuiSimple(px,py));
+                this.main.redrawAll();
+            }catch(Exception e){
+                System.out.println(e);
+            }
+        }
+        if (bouts[0].equalsIgnoreCase("/createNoeudAppuiDouble")) {
+            try{
+                double px = Double.parseDouble(bouts[1]);
+                double py = Double.parseDouble(bouts[2]);
+                Groupe model = main.getModel();
+                model.add(new NoeudAppuiDouble(px,py));
+                model.addN(new NoeudAppuiDouble(px,py));
+                this.main.redrawAll();
+            }catch(Exception e){
+                System.out.println(e);
+            }
+        }
+
+        
         
         
     }

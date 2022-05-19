@@ -118,21 +118,17 @@ public class MenuHaut extends MenuBar{
 
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("help Clicked.");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Help");
+                alert.setHeaderText(null);
+                alert.setContentText("Application Tréllis\n"
+                        +"Pour tout aide, vous pouvez vous référer à ce site:\n\n"
+                        +"https://applicationtrellis.carrd.co\n"
+                        +"°\n");
+
+                alert.showAndWait();
             }
         });
-        
-        /*Hyperlink hyperlink = new Hyperlink("page d'aide");
-
-        hyperlink.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                //getHostServices().showDocument("https://XXXXXXXXXXXXXX.org");
-                this.
-                
-            }
-        });*/
         
         aproposItem.setOnAction(new EventHandler<ActionEvent>() {
         
@@ -143,7 +139,9 @@ public class MenuHaut extends MenuBar{
                 alert.setTitle("A propos");
                 alert.setHeaderText(null);
                 alert.setContentText("Application Tréllis\n"
-                        + "blablabla\n");
+                        +"Application créée par Maëlle Pernot, Antoine et Théo Schmitt\n\n"
+                        +"lien pour les droits d'utilisation de l'icon: https://icons8.com/icon/115633/robot"
+                        + "°\n");
 
                 alert.showAndWait();
             }
