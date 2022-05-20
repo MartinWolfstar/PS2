@@ -25,6 +25,7 @@ public class Barres extends Forme{
     
     private int TC;// traction max
     private int CM;//compression max
+    private double forceSubie;
     private int prix; //prix au mètre
 
     /**
@@ -75,6 +76,7 @@ public class Barres extends Forme{
         this.TC = 0;
         this.identificateur = -1;
         this.prix = 4;
+        this.forceSubie = 0;
         this.na = narrive;
         this.nd = ndepart;
         this.nd.getBarresDepart().add(this);
@@ -88,6 +90,7 @@ public class Barres extends Forme{
         this.CM = 0;
         this.TC = 0;
         this.identificateur = -1;
+        this.forceSubie = 0;
         this.prix = 4;
         this.na = narrive;
         this.nd = ndepart;
@@ -102,6 +105,7 @@ public class Barres extends Forme{
         this.CM = compressionMax;
         this.TC = tractionMax;
         this.identificateur = id ;
+        this.forceSubie = 0;
         this.prix = cout ;
         this.na = narrive;
         this.nd = ndepart;
@@ -270,7 +274,8 @@ public class Barres extends Forme{
                 alert.setHeaderText(null);
                 alert.setContentText("Noeud 1 : (" + this.getNd().getPx() + "," + this.getNd().getPy() + ") \n"
                         + "Noeud 2 : (" + this.getNa().getPx() + "," + this.getNa().getPy() + ") \n"
-                        + "le prix de cette barre est de : " + this.getPrix()*this.longeurBarres() + "$ \n"
+                        + "la force exercée sur cette barre est de : \n" + this.getForceSubie() + " \n"
+                        + comparForce() + "\n"
                         + "° \n" 
                 );
 
@@ -280,6 +285,42 @@ public class Barres extends Forme{
         String str = "";
         
         return str;
+    }
+    public String comparForce(){
+        String str = "";
+        
+        if (this.getForceSubie() < 0){
+            if((-this.getForceSubie()) < this.CM){
+                str = "la barre est légèrement compressée mais resiste";
+            }else{
+                str = "la barre est trop compressée et risque de casser";
+            }
+        }else if(this.getForceSubie() == 0){
+            str = "";
+        }else{
+            if(this.getForceSubie() < this.TC){
+                str = "la barre est légèrement étirée mais resiste";
+            }else{
+                str = "la barre est trop étirée et risque de casser";
+            }
+        }
+        
+        
+        return str;
+    }
+
+    /**
+     * @return the forceSubie
+     */
+    public double getForceSubie() {
+        return forceSubie;
+    }
+
+    /**
+     * @param forceSubie the forceSubie to set
+     */
+    public void setForceSubie(double forceSubie) {
+        this.forceSubie = forceSubie;
     }
 
 } 

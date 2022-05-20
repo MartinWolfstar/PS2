@@ -157,6 +157,7 @@ public abstract class Trellis extends GlobalObject{
     public abstract Vecteur2D getForce();
     public abstract String affListe();
     
+    
     //public abstract void save(Writer w, Numeroteur<Trellis> num)throws IOException;
 
     /*public void sauvegarde(File fout) throws IOException {
@@ -210,5 +211,6 @@ public abstract class Trellis extends GlobalObject{
         }
         return derniere;
     }*/
+
         
 }

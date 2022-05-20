@@ -11,6 +11,7 @@ import java.util.List;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.transform.Affine;
 import javafx.scene.transform.Transform;
 
@@ -41,7 +42,7 @@ public class DessinCanvas extends Pane{
             Actionneur actionneur = this.main.getActionneur();
             actionneur.clicDansZoneDessin(t);
         });
-        
+        this.drawCadrillage();
         this.redrawAll();
     }
     
@@ -87,6 +88,25 @@ public class DessinCanvas extends Pane{
             }
         }
         
+        context.setStroke(Color.ORCHID);
+        context.setGlobalAlpha(0.4);
+        for(int i = 0; i < 5000; i+=50){
+           context.strokeLine(i,0,i,5000); 
+           context.strokeLine(0,i,5000,i);
+        }
+        context.setGlobalAlpha(1);
+        
+    }
+    public void drawCadrillage(){
+        GraphicsContext context = this.realCanvas.getGraphicsContext2D();
+        context.setStroke(Color.BLUE);
+        //ORCHID
+        context.setGlobalAlpha(1);
+        context.strokeLine(0,0,100,100); 
+        for(int i = 0; i < 5000; i+=100){
+           context.strokeLine(i,0,i,5000); 
+           context.strokeLine(0,i,5000,i);
+        }
     }
 
 }

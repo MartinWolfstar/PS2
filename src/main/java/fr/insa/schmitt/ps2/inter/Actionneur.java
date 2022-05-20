@@ -28,7 +28,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import static javafx.scene.paint.Color.RED;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -415,11 +414,23 @@ public class Actionneur {
     void boutonInformer(ActionEvent t){
         if(((this.etat == 150)||(this.etat == 151)) && this.selection.size() > 0){
             for(Trellis obj : this.selection){
-                obj.afficheResume();
-                System.out.println(obj.affListe());
+                //obj.afficheResume();
+                //System.out.println(obj.affListe());
+                String str = obj.getClass().getName();
+                if (str.equalsIgnoreCase("fr.insa.schmitt.ps2.objet.Barres")){
+                    for (int i = 0; i < this.main.getModel().getContientBarres().size();i++){
+                        Barres b1 = this.main.getModel().getContientBarres().get(i);
+                        if((b1.maxX() == obj.maxX())&&(b1.minX() == obj.minX())&&(b1.maxY() == obj.maxY())&&(b1.minY() == obj.minY())){
+                            b1.afficheResume();
+                        }
+                    }
+                }else{
+                    obj.afficheResume();
+                }
             }
         }
     }
+    
     void boutonCreerPivot(ActionEvent t){
         this.changeEtat(321);
     }
@@ -469,6 +480,12 @@ public class Actionneur {
         this.changeEtat(400);
     }
     void boutonValider(ActionEvent t){
+        if(main.getTerrain().getXi().size() > 2){
+            for(int i = 0; i < main.getTerrain().getXi().size() - 2 ; i++){
+                main.getTerrain().getXi().remove(main.getTerrain().getXi().size()-1);
+                main.getTerrain().getYi().remove(main.getTerrain().getXi().size() - 1);
+            }
+        }
         main.getTerrain().RAYON_IN_DRAW = 5;
         main.getTerrain().getXi().set(0, pos1[0]);
         main.getTerrain().getYi().set(0, pos1[1]);

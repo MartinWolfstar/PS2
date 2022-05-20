@@ -548,10 +548,11 @@ public class Groupe extends Trellis{
             for (int i = 0; i < this.contientNoeud.size(); i++) {
                 Noeud n = this.contientNoeud.get(i);
 
-                for (int k = 0; k < n.getBarresIncidente().size() ; k++){
-                    Barres b2 = n.getBarresIncidente().get(k);    
-                    for (int j = 0; j < this.contientBarres.size() ; j++){
-                        Barres b1 = this.contientBarres.get(j);
+                for (int j = 0; j < this.contientBarres.size() ; j++){
+                    Barres b1 = this.contientBarres.get(j);
+                    for (int k = 0; k < n.getBarresIncidente().size() ; k++){
+                        Barres b2 = n.getBarresIncidente().get(k);    
+
                         if (b1 == b2 ){
                             mat1.setOneCoeff(indice, j, cos(b1.anglex())); 
                             mat1.setOneCoeff(indice + 1 , j, sin(b1.anglex()));
@@ -578,6 +579,9 @@ public class Groupe extends Trellis{
                 Noeud n = this.contientNoeud.get(i);
                 String str = this.contient.get(i).getClass().getName();
                 if (str.equals("fr.insa.schmitt.ps2.objet.NoeudAppuiSimple")){
+                    //recouperer l'abscisse du point
+                    //creer une barre (entre x+- 0.1) sans l'ajouter a contient
+                    //l'angle de cette barre (sin et cos) +90]
                     mat3.setOneCoeff(indice,indice2,0);
                     mat3.setOneCoeff(indice + 1,indice2,1);
                     indice2 += 1;
@@ -632,12 +636,39 @@ public class Groupe extends Trellis{
                 
             matRes = matRes.mult(matInv, mat4);
                 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            /*Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Solutions du système:");
                 alert.setHeaderText(null);
                 alert.setContentText(matRes.toString());
 
-                alert.showAndWait();    
+                alert.showAndWait();    */
+            String str ="";
+            try{
+                for (int i = 0; i < nbrNB; i++){
+                    this.contientBarres.get(i).setForceSubie(matRes.getCoeffs()[i][0]);
+                    str = str + "barre n°"+ (i+1) + " = "+this.contientBarres.get(i).getForceSubie()+"\n";
+                }
+            }catch(Exception e){
+                System.out.println(e);
+            }
+                
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Forces exercées sur les barres:");
+                alert.setHeaderText(null);
+                alert.setContentText(str);
+
+                alert.showAndWait();
+            
+            /*for (int i = 0; i < this.contient.size(); i++){
+                Trellis t1 = this.contient.get(i);
+                for (int j = 0; j < this.contientBarres.size(); j++){
+                    Barres t2 = this.contientBarres.get(j);
+                    if ((t1.maxX() == t2.maxX())&&(t1.minX() == t2.minX())&&(t1.maxY() == t2.maxY())&&(t1.minY() == t2.minY())){
+                        t1 = t2;
+                        System.out.println(t1.getForceSubie());
+                    }
+                }
+            }*/
                 
         }else{
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

@@ -5,24 +5,20 @@ dans le fichier groupe:
 
 il peut y avoir un probleme si le groupe est vide dans la fonction NoeudPlusProche
 
-autre:
-
-il y a des partis du cours du prof
-
 
 
 reste à faire:
 
-mettre des try/catch pour eviter les erreurs
-
+mettre des try/catch pour eviter les erreurs (surtout si groupe est vide)
 
 oter zc
 
 noeud appui direction force
 
-creer barre a2p
+parcourir contient barre et comparer a contient
+si c'est le meme objet alors l'onjet de contient = l'objet de contient barre
 
-
+pareil pour noeud
 
 
 
