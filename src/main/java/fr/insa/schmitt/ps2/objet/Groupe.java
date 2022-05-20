@@ -5,6 +5,7 @@
 package fr.insa.schmitt.ps2.objet;
 
 import fr.insa.schmitt.ps2.Lire;
+import static fr.insa.schmitt.ps2.inter.OutilsFx.Lagrange;
 import java.io.IOException;
 import java.io.Writer;
 import static java.lang.Math.cos;
@@ -45,6 +46,8 @@ public class Groupe extends Trellis{
     private List<Trellis> contient;
     private List<Noeud> contientNoeud;
     private List<Barres> contientBarres;
+    private List<Double> Lxi;
+    private List<Double> Lyi;
     private Trellis trel1;
     
     public Groupe(){
@@ -582,8 +585,16 @@ public class Groupe extends Trellis{
                     //recouperer l'abscisse du point
                     //creer une barre (entre x+- 0.1) sans l'ajouter a contient
                     //l'angle de cette barre (sin et cos) +90]
-                    mat3.setOneCoeff(indice,indice2,0);
-                    mat3.setOneCoeff(indice + 1,indice2,1);
+                    double abs = n.getPx();
+                    double absp1 = abs+0.1;
+                    double absm1 = abs-0.1;
+                    double ordp1 = Lagrange(absp1,Lxi,Lyi);
+                    double ordm1 = Lagrange(absm1,Lxi,Lyi);
+                    NoeudSimple n1 = new NoeudSimple(absp1,ordp1);
+                    NoeudSimple n2 = new NoeudSimple(absm1,ordm1);
+                    Barres b1 = new Barres(n1,n2);
+                    mat3.setOneCoeff(indice,indice2,cos(b1.anglex()+1.57079));
+                    mat3.setOneCoeff(indice + 1,indice2,sin(b1.anglex())+1.57079);
                     indice2 += 1;
                 }
                 indice += 2;
@@ -690,5 +701,19 @@ public class Groupe extends Trellis{
                     this.trel1 = this.getContient().get(i);
                 }
             }
+    }
+
+    /**
+     * @param Lxi the Lxi to set
+     */
+    public void setLxi(List<Double> Lxi) {
+        this.Lxi = Lxi;
+    }
+
+    /**
+     * @param Lyi the Lyi to set
+     */
+    public void setLyi(List<Double> Lyi) {
+        this.Lyi = Lyi;
     }
 }

@@ -4,8 +4,10 @@
  */
 package fr.insa.schmitt.ps2.objet;
 
-import fr.insa.schmitt.ps2.*;
-import java.awt.Color;
+import static java.lang.Math.acos;
+import static java.lang.Math.asin;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 /**
  *
@@ -52,5 +54,18 @@ public class Vecteur2D {
     @Override
     public String toString() {
         return "(" + this.vx + "," + this.vy + ")" ;
+    }
+    
+    public void dessine(GraphicsContext context,double xi,double yi) {
+        if((vx == 0)&&(vy == 0)){
+            context.setGlobalAlpha(0);
+        }else{
+            context.setGlobalAlpha(0.7);
+        }
+        context.setStroke(Color.ORANGE);
+        context.strokeLine(xi,yi,xi + vx,yi + vy);
+        context.strokeLine(xi,yi,xi + vx,yi + vy);
+        context.fillOval(xi + vx,yi + vy, 1/2, 1/2);
+        context.setGlobalAlpha(1);
     }
 }

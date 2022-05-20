@@ -7,6 +7,7 @@ package fr.insa.schmitt.ps2.objet;
 import fr.insa.schmitt.ps2.*;
 import java.io.IOException;
 import java.io.Writer;
+import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;

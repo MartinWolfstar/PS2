@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import javafx.event.ActionEvent; 
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -200,7 +201,7 @@ public class Actionneur {
                 } else if (option.get() == ButtonType.CANCEL) {
                 } else {
                 }
-            
+            this.main.redrawAll();
             this.changeEtat(323);
             
         }else if (this.etat == 341){
@@ -500,6 +501,10 @@ public class Actionneur {
         }
         this.main.getRuban().getTerrainBarre().getAjouter().setDisable(false);
         this.main.getRuban().getTerrainBarre().getValider().setDisable(false);
+        
+        this.main.getModel().setLxi(main.getTerrain().getXi());
+        this.main.getModel().setLyi(main.getTerrain().getYi());
+        
         this.main.redrawAll();
         this.changeEtat(150);
     }

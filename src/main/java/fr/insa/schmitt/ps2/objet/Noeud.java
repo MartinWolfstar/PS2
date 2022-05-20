@@ -128,6 +128,7 @@ public abstract class Noeud extends Forme{
     public void dessine(GraphicsContext context) {
         context.setFill(this.getCouleur());
         context.fillOval(this.px-RAYON_IN_DRAW, this.py-RAYON_IN_DRAW, 2*RAYON_IN_DRAW, 2*RAYON_IN_DRAW);
+        this.force.dessine(context, px, py);
     }
     
     @Override

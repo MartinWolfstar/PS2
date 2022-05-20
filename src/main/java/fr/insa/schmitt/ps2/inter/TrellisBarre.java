@@ -131,14 +131,14 @@ public class TrellisBarre {
         //Add all Things
         ssContainer1.getChildren().addAll(retrecir,agrandir);
         OutilsFx.setSimpleBorder(ssContainer1, Color.GRAY, 2);
-        ssContainer2.getChildren().addAll(insererNoeud);
+        ssContainer2.getChildren().addAll(insererNoeud,mesurerBarre);
         OutilsFx.setSimpleBorder(ssContainer2, Color.GRAY, 2);
         //ssContainer2.getChildren().addAll(creerPivot,insererNoeud);
         //OutilsFx.setSimpleBorder(ssContainer2, Color.GRAY, 2);
         ssContainer3.getChildren().addAll(ajouterForce,modifierForce);
         OutilsFx.setSimpleBorder(ssContainer3, Color.GRAY, 2);
-        ssContainer4.getChildren().addAll(mesurerBarre);
-        OutilsFx.setSimpleBorder(ssContainer4, Color.GRAY, 2);
+        //ssContainer4.getChildren().addAll(mesurerBarre);
+        //OutilsFx.setSimpleBorder(ssContainer4, Color.GRAY, 2);
         //ssContainer4.getChildren().addAll(agrandirBarre,mesurerBarre);
         //OutilsFx.setSimpleBorder(ssContainer4, Color.GRAY, 2);
         ssContainer5.getChildren().addAll(defForme,defCouleur);
@@ -149,7 +149,7 @@ public class TrellisBarre {
         //OutilsFx.setSimpleBorder(ssContainer7, Color.GRAY, 2);
         
         
-        scontainer.getChildren().addAll(ssContainer1,ssContainer2,ssContainer6,ssContainer3,ssContainer4,ssContainer5);
+        scontainer.getChildren().addAll(ssContainer1,ssContainer2,ssContainer6,ssContainer3,ssContainer5);
         
         container.getChildren().add(scontainer);
         
@@ -225,8 +225,8 @@ public class TrellisBarre {
         this.modifierForce = new Button("modifier Force");
         
         this.modifierForce.setOnAction((t) ->{
-            //this.main.getActionneur().boutonModifierForce(t);
-            this.main.getActionneur().MiseAJour(t);
+            this.main.getActionneur().boutonAjouterForce(t);
+            //this.main.getActionneur().MiseAJour(t);
             System.out.println("modifierForce Clicked.");
         });
     }

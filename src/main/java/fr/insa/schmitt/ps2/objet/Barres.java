@@ -72,8 +72,8 @@ public class Barres extends Forme{
     
     public Barres (Noeud ndepart, Noeud narrive){
         
-        this.CM = 0;
-        this.TC = 0;
+        this.CM = 100;
+        this.TC = 100;
         this.identificateur = -1;
         this.prix = 4;
         this.forceSubie = 0;
@@ -87,8 +87,8 @@ public class Barres extends Forme{
     public Barres (Noeud ndepart, Noeud narrive, Color couleur){
         
         super(couleur);
-        this.CM = 0;
-        this.TC = 0;
+        this.CM = 100;
+        this.TC = 100;
         this.identificateur = -1;
         this.forceSubie = 0;
         this.prix = 4;
