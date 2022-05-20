@@ -14,10 +14,18 @@ public class Ruban extends TabPane{
     
     private TabPane ruban;
     private MainPanel main;
+    private Accueil accueil;
+    private ZoneConstBarre zc;
+    private TrellisBarre trellisBarre;
+    private TerrainBarre terrainBarre;
 
     public Ruban(MainPanel main) {
 
         this.main = main;
+        this.accueil = new Accueil(main);
+        this.zc = new ZoneConstBarre(main);
+        this.trellisBarre = new TrellisBarre(main);
+        this.terrainBarre = new TerrainBarre(main);
         ruban = new TabPane();
         buildTabs();
     }
@@ -32,13 +40,47 @@ public class Ruban extends TabPane{
 
     private void buildTabs() {
 
-        Accueil accueil = new Accueil(main);
+        /*Accueil accueil = new Accueil(main);
         ZoneConstBarre zoneConstBarre = new ZoneConstBarre(main);
         TrellisBarre trellis = new TrellisBarre(main);
-        TerrainBarre terrain = new TerrainBarre(main);
+        TerrainBarre terrain = new TerrainBarre(main);*/
         
-        //ruban.getTabs().addAll(accueil.get(), zoneConstBarre.get(), trellis.get(), terrain.get());
-        ruban.getTabs().addAll( terrain.get(), accueil.get(), trellis.get());
+        ruban.getTabs().addAll(getTerrainBarre().get(), getAccueil().get(), getTrellisBarre().get());
         //ruban.getTabs().addAll(accueil.get());
+    }
+
+    /**
+     * @return the main
+     */
+    public MainPanel getMain() {
+        return main;
+    }
+
+    /**
+     * @return the accueil
+     */
+    public Accueil getAccueil() {
+        return accueil;
+    }
+
+    /**
+     * @return the zc
+     */
+    public ZoneConstBarre getZc() {
+        return zc;
+    }
+
+    /**
+     * @return the trellisBarre
+     */
+    public TrellisBarre getTrellisBarre() {
+        return trellisBarre;
+    }
+
+    /**
+     * @return the terrainBarre
+     */
+    public TerrainBarre getTerrainBarre() {
+        return terrainBarre;
     }
 }

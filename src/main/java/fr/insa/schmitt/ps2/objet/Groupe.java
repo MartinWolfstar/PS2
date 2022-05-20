@@ -610,10 +610,14 @@ public class Groupe extends Trellis{
             
             System.out.println(matfinale);
             
-            matAinv.descenteGauss();
-            matAinv.remonteeGauss();
-            matAinv.unitaire();
-            matAinv.setInverse();
+            try{
+                matAinv.descenteGauss();
+                matAinv.remonteeGauss();
+                matAinv.unitaire();
+                matAinv.setInverse();
+            }catch(Exception e){
+                System.out.println(e);
+            }
             
             System.out.println("la matrice inverse est:\n" + matAinv);
             matInv = matAinv;

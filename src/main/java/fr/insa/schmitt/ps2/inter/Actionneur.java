@@ -174,7 +174,7 @@ public class Actionneur {
             Vecteur2D v = new Vecteur2D(0,0);
         
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("A propos");
+                alert.setTitle("Ajouter Force: XX;XX");
                 alert.setHeaderText(null);
                 VBox box = new VBox();
                 TextArea entrer = new TextArea();
@@ -481,9 +481,10 @@ public class Actionneur {
                 main.getTerrain().getYi().add(pos3y.get(i));
             }
         }
-        
-        this.changeEtat(150);
+        this.main.getRuban().getTerrainBarre().getAjouter().setDisable(false);
+        this.main.getRuban().getTerrainBarre().getValider().setDisable(false);
         this.main.redrawAll();
+        this.changeEtat(150);
     }
     void boutonModifierAppui(ActionEvent t){
         this.changeEtat(410);

@@ -53,17 +53,17 @@ public class TerrainBarre {
         buildDefAppuiButton();
         buildDefAppuiButtonSimple();
 
-        container.getChildren().addAll(ajouter,valider,defAppui,defAppuiSimple);
+        container.getChildren().addAll(getAjouter(), getValider(),defAppui,defAppuiSimple);
         tab.setContent(container);
 
     }
     
     private void buildAjouterButton(){
         this.ajouter = new BoutonIcon("icon/ajouter.png",32,32);
-        this.ajouter.setText("ajouter");
-        this.ajouter.setContentDisplay(ContentDisplay.TOP);
+        this.getAjouter().setText("ajouter");
+        this.getAjouter().setContentDisplay(ContentDisplay.TOP);
 
-        this.ajouter.setOnAction((t) ->{
+        this.getAjouter().setOnAction((t) ->{
             this.main.getActionneur().boutonAjouterAppui(t);
             //this.main.getActionneur().MiseAJour(t);
             System.out.println("ajouter Clicked.");
@@ -71,10 +71,10 @@ public class TerrainBarre {
     }
     private void buildValButton(){
         this.valider = new BoutonIcon("icon/ok.png",32,32);
-        this.valider.setText("valider");
-        this.valider.setContentDisplay(ContentDisplay.TOP);
+        this.getValider().setText("valider");
+        this.getValider().setContentDisplay(ContentDisplay.TOP);
 
-        this.valider.setOnAction((t) ->{
+        this.getValider().setOnAction((t) ->{
             this.main.getActionneur().boutonValider(t);
             //this.main.getActionneur().MiseAJour(t);
             System.out.println("valider Clicked.");
@@ -112,5 +112,19 @@ public class TerrainBarre {
             //this.main.getActionneur().MiseAJour(t);
             System.out.println("defAppuiSimple Clicked.");
         });
+    }
+
+    /**
+     * @return the ajouter
+     */
+    public Button getAjouter() {
+        return ajouter;
+    }
+
+    /**
+     * @return the valider
+     */
+    public Button getValider() {
+        return valider;
     }
 }
