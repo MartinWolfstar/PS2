@@ -272,6 +272,11 @@ public class TrellisBarre {
         //Add all MenuItems to the MenuSplitButton's menu options.
         this.defForme.getItems().addAll(creerBarreSP,creerBarreA1P,creerBarreA2P);
         
+        this.defForme.setOnAction((t) ->{
+            this.main.getActionneur().creerBarreA2P(t);
+            //this.main.getActionneur().MiseAJour(t);
+            System.out.println("creerBarreA2P Clicked.");
+        });
         this.creerBarreSP.setOnAction((t) ->{
             this.main.getActionneur().creerBarreSP(t);
             //this.main.getActionneur().MiseAJour(t);
