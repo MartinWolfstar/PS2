@@ -63,9 +63,10 @@ public class Vecteur2D {
             context.setGlobalAlpha(0.7);
         }
         context.setStroke(Color.ORANGE);
+        context.setFill(Color.ORANGE);
         context.strokeLine(xi,yi,xi + vx,yi + vy);
         context.strokeLine(xi,yi,xi + vx,yi + vy);
-        context.fillOval(xi + vx,yi + vy, 1/2, 1/2);
+        context.fillOval(xi + vx-2,yi + vy-2, 4, 4);
         context.setGlobalAlpha(1);
     }
 }

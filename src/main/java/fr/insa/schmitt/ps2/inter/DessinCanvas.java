@@ -93,6 +93,10 @@ public class DessinCanvas extends Pane{
            context.strokeLine(i,0,i,5000); 
            context.strokeLine(0,i,5000,i);
         }
+        //context.setStroke(Color.CHOCOLATE);
+        context.setGlobalAlpha(0.8);
+        context.setFill(Color.CHOCOLATE);
+        context.fillText("1 carreau = 50 unités", 20, 20);
         context.setGlobalAlpha(1);
         
     }

@@ -153,7 +153,8 @@ public abstract class Noeud extends Forme{
         double lc = c.longeurBarres();
         
         double r = lb*lb - la*la - lc*lc;
-        angle = Math.acos(r/(-2)*la*lc);
+        
+        angle = Math.acos(r/((-2)*la*lc));
         
         System.out.println(r);
         return angle;

@@ -13,12 +13,6 @@ mettre des try/catch pour eviter les erreurs (surtout si groupe est vide)
 
 oter zc
 
-noeud appui direction force
-
-parcourir contient barre et comparer a contient
-si c'est le meme objet alors l'onjet de contient = l'objet de contient barre
-
-pareil pour noeud
 
 
 
