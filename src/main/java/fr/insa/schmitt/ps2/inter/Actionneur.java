@@ -87,6 +87,7 @@ public class Actionneur {
             
         }else if (this.etat == 150){
             ///----------selection
+            try{
             Noeud pclic = new NoeudSimple(t.getX(),t.getY());
             //on peut regler la distance du clic avec max value
             Trellis proche = this.main.getModel().plusProche(pclic, Double.MAX_VALUE);
@@ -106,10 +107,13 @@ public class Actionneur {
                 this.activeBoutonsSuivantSelection();
                 this.main.redrawAll();
             }
+            }catch(Exception e){
+                System.out.println(e);
+            }
                 
         }else if (this.etat == 151){
             //----------selectionPoint
-            
+            try{
             selectRealpoint(t);
             
             this.getSelection().clear();
@@ -117,37 +121,52 @@ public class Actionneur {
             this.activeBoutonsSuivantSelection();
             this.main.redrawAll();
             
-            selectRealpoint(t);
+            }catch(Exception e){
+                System.out.println(e);
+            }
                 
         }else if (this.etat == 152){
             //----------selectionBarres
            
+            try{
             selectRealBarres(t);
             
             this.getSelection().clear();
             this.getSelection().add(trel1);
             this.activeBoutonsSuivantSelection();
             this.main.redrawAll();
+            }catch(Exception e){
+                System.out.println(e);
+            }
                 
         }else if (this.etat == 323){
             //----------mesure de l'angle entre 3 Noeud (le centre est saisi en 2)
             
-            Noeud pclic = new NoeudSimple(t.getX(),t.getY());
-            Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);
-            sauvN = proche;
+            try{
+                Noeud pclic = new NoeudSimple(t.getX(),t.getY());
+                Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);
+                sauvN = proche;
+            }catch(Exception e){
+                System.out.println(e);
+            }
             this.changeEtat(324);
             
         }else if (this.etat == 324){
             //----------mesure de l'angle
             
-            Noeud pclic = new NoeudSimple(t.getX(),t.getY());
-            Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);
-            sauvN2 = proche;
+            try{
+                Noeud pclic = new NoeudSimple(t.getX(),t.getY());
+                Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);
+                sauvN2 = proche;
+            }catch(Exception e){
+                System.out.println(e);
+            }
             this.changeEtat(325);
             
         }else if (this.etat == 325){
             //----------mesure de l'angle
             
+            try{
             Noeud pclic = new NoeudSimple(t.getX(),t.getY());
             Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);
             
@@ -164,6 +183,9 @@ public class Actionneur {
                         + angle + "° \n");
 
                 alert.showAndWait();
+            }catch(Exception e){
+                System.out.println(e);
+            }
             this.changeEtat(323);
             
         }else if (this.etat == 330){
@@ -207,6 +229,7 @@ public class Actionneur {
         }else if (this.etat == 341){
             //----------mesurer barres
             
+            try{
             Noeud pclic = new NoeudSimple(t.getX(),t.getY());
             Barres proche = this.main.getModel().barresPlusProche(pclic, Double.MAX_VALUE);
             double distance = proche.longeurBarres();
@@ -218,6 +241,9 @@ public class Actionneur {
                         + distance + "\n");
 
                 alert.showAndWait();
+            }catch(Exception e){
+                System.out.println(e);
+            }
             
         }else if (this.etat == 343){
             //----------creer segment

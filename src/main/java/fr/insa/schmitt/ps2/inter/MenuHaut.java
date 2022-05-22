@@ -123,7 +123,7 @@ public class MenuHaut extends MenuBar{
                 alert.setHeaderText(null);
                 alert.setContentText("Application Tréllis\n"
                         +"Pour tout aide, vous pouvez vous référer à ce site:\n\n"
-                        +"https://applicationtrellis.carrd.co\n"
+                        +"https://applicationtreillis.carrd.co\n"
                         +"°\n");
 
                 alert.showAndWait();
@@ -139,7 +139,7 @@ public class MenuHaut extends MenuBar{
                 alert.setTitle("A propos");
                 alert.setHeaderText(null);
                 alert.setContentText("Application Tréllis\n"
-                        +"Application créée par Maëlle Pernot, Antoine et Théo Schmitt\n\n"
+                        +"Application créée par Maëlle Pernot, Antoine Peere et Théo Schmitt\n"
                         +"lien pour les droits d'utilisation de l'icon: https://icons8.com/icon/115633/robot"
                         + "°\n");
 

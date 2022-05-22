@@ -163,11 +163,11 @@ public class Barres extends Forme{
         if((Dx > 0)&&(Dy > 0)){
             angle = atan(Dy/Dx);
         }else if((Dx > 0)&&(Dy < 0)){
-            angle = atan(-Dy/Dx);
+            angle = atan(-Dy/Dx)+180;
         }else if((Dx < 0)&&(Dy > 0)){
             angle = atan(-Dy/Dx);
         }else{
-            angle = atan(Dy/Dx);
+            angle = atan(Dy/Dx)+180;
         }
         
         return angle;
@@ -176,6 +176,7 @@ public class Barres extends Forme{
     @Override
     public void dessine(GraphicsContext context) {
         context.setStroke(this.getCouleur());
+        
         context.strokeLine(this.getNd().getPx(), this.getNd().getPy(), this.getNa().getPx(), this.getNa().getPy());
         context.setFill(this.getNd().getCouleur());
         context.fillOval(this.getNd().getPx()-RAYON_IN_DRAW, this.getNd().getPy()-RAYON_IN_DRAW, 1.5*RAYON_IN_DRAW, 1.5*RAYON_IN_DRAW);

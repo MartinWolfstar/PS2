@@ -593,8 +593,8 @@ public class Groupe extends Trellis{
                     NoeudSimple n1 = new NoeudSimple(absp1,ordp1);
                     NoeudSimple n2 = new NoeudSimple(absm1,ordm1);
                     Barres b1 = new Barres(n1,n2);
-                    mat3.setOneCoeff(indice,indice2,cos(b1.anglex()+1.57079));
-                    mat3.setOneCoeff(indice + 1,indice2,sin(b1.anglex())+1.57079);
+                    mat3.setOneCoeff(indice,indice2,cos(90-b1.anglex()));
+                    mat3.setOneCoeff(indice + 1,indice2,sin(90-b1.anglex()));
                     indice2 += 1;
                 }
                 indice += 2;
@@ -658,6 +658,7 @@ public class Groupe extends Trellis{
                 for (int i = 0; i < nbrNB; i++){
                     this.contientBarres.get(i).setForceSubie(matRes.getCoeffs()[i][0]);
                     str = str + "barre n°"+ (i+1) + " = "+this.contientBarres.get(i).getForceSubie()+"\n";
+                    //setColorB(this.contientBarres.get(i),this.contientBarres.get(i).getForceSubie());
                 }
             }catch(Exception e){
                 System.out.println(e);
@@ -702,6 +703,13 @@ public class Groupe extends Trellis{
                 }
             }
     }
+    /*public void setColorB (Barres b, double n){
+        if (-n > b.getCM()/10){
+            b.setCouleurspe(Color.TOMATO);
+        }else if (n > b.getTC()/10){
+            b.setCouleurspe(Color.OLIVE);
+        }
+    }*/
 
     /**
      * @param Lxi the Lxi to set
