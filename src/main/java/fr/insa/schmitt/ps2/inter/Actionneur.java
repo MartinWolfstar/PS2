@@ -59,14 +59,12 @@ public class Actionneur {
    
     public void changeEtat(int nouvelEtat){    
         etat = nouvelEtat;
-        System.out.println(etat);
+        //System.out.println(etat);
     }
     
     void clicDansZoneDessin(MouseEvent t) {
         double px = t.getX();
         double py =t.getY();
-        
-        //problème direction
         
         if (this.etat == 322){
             
@@ -80,8 +78,8 @@ public class Actionneur {
            
             ///----------play
             
-            System.out.println(main.getModel());
-            System.out.println("terrain : \n" + this.main.getTerrain().toString());
+            //System.out.println(main.getModel());
+            //System.out.println("terrain : \n" + this.main.getTerrain().toString());
             this.changeEtat(350);
             
         }else if (this.etat == 150){
@@ -170,10 +168,10 @@ public class Actionneur {
             Noeud proche = this.main.getModel().noeudPlusProche(pclic, Double.MAX_VALUE);
             
             double angle = sauvN2.angle(sauvN,proche);
-            System.out.println(angle);
+            //System.out.println(angle);
             angle = angle * 57.2958;
 
-            System.out.println(angle);
+            //System.out.println(angle);
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Mesure de l'angle");
@@ -213,8 +211,8 @@ public class Actionneur {
                         double fy = Double.parseDouble(bouts[1]);
                         v = new Vecteur2D(fx,fy);
                         
-                    }catch(Exception E){
-                        System.out.println(E);
+                    }catch(Exception e){
+                        System.out.println(e);
                     }
                     this.trel1.setForce(v);
                     //System.out.println(this.trel1);
@@ -338,7 +336,7 @@ public class Actionneur {
             
             Groupe model = this.main.getModel();
             py = Lagrange(px, this.main.getTerrain().getXi(), this.main.getTerrain().getYi());
-            System.out.println(px + ";" + py);
+            //System.out.println(px + ";" + py);
             model.add(new NoeudAppuiDouble(px,py));
             model.addN(new NoeudAppuiDouble(px,py));
             this.main.redrawAll(); 
@@ -349,14 +347,14 @@ public class Actionneur {
             
             Groupe model = this.main.getModel();
             py = Lagrange(px, this.main.getTerrain().getXi(), this.main.getTerrain().getYi());
-            System.out.println(px + ";" + py);
+            //System.out.println(px + ";" + py);
             model.add(new NoeudAppuiSimple(px,py));
             model.addN(new NoeudAppuiSimple(px,py));
             this.main.redrawAll(); 
             
             
         }else{
-            System.out.println("clic"); 
+            //System.out.println("clic"); 
         }  
     } 
     
@@ -368,7 +366,7 @@ public class Actionneur {
         //this.changeEtat(100);
     }
     void boutonStop(ActionEvent t){
-        //this.changeEtat(110);
+
         this.changeEtat(100);
     }
     void boutonRetour(ActionEvent t){
@@ -441,8 +439,6 @@ public class Actionneur {
     void boutonInformer(ActionEvent t){
         if(((this.etat == 150)||(this.etat == 151)) && this.selection.size() > 0){
             for(Trellis obj : this.selection){
-                //obj.afficheResume();
-                //System.out.println(obj.affListe());
                 String str = obj.getClass().getName();
                 if (str.equalsIgnoreCase("fr.insa.schmitt.ps2.objet.Barres")){
                     for (int i = 0; i < this.main.getModel().getContientBarres().size();i++){
@@ -565,19 +561,19 @@ public class Actionneur {
         File f = chooser.showOpenDialog(this.main.getInStage());
         if (f != null) {
             try {
-                //System.out.println("test1");
+
                 GlobalObject[] lue = GlobalObject.lecture(f);
-                //System.out.println("test2");
+
                 Groupe glu = (Groupe) lue[0];
-                //System.out.println("test3");
+
                 Terrain terrain = (Terrain) lue[1];
-                //System.out.println("test4");
+
                 Stage nouveau = new Stage();
-                //System.out.println("test5");
+
                 nouveau.setTitle(f.getName());
-                //System.out.println("test6");
+
                 Scene sc = new Scene(new MainPanel(nouveau, f, glu, terrain), 1000, 700);
-                //System.out.println("test7");
+
                 nouveau.setScene(sc);
                 nouveau.show();
             } catch (Exception ex) {

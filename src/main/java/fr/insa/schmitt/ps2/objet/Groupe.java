@@ -432,7 +432,7 @@ public class Groupe extends Trellis{
             System.out.println("force subie: " + b.getForceSubie());
             b.dessineC(context);
         }
-        //this.base.get(0).dessine(context);
+
     }
     @Override
     public void dessineSelection(GraphicsContext context) {
@@ -592,9 +592,6 @@ public class Groupe extends Trellis{
                 Noeud n = this.contientNoeud.get(i);
                 String str = this.contient.get(i).getClass().getName();
                 if (str.equals("fr.insa.schmitt.ps2.objet.NoeudAppuiSimple")){
-                    //recouperer l'abscisse du point
-                    //creer une barre (entre x+- 0.1) sans l'ajouter a contient
-                    //l'angle de cette barre (sin et cos) +90]
                     double abs = n.getPx();
                     double absp1 = abs+0.1;
                     double absm1 = abs-0.1;

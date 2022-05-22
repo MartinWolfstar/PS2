@@ -95,12 +95,12 @@ public class MenuHaut extends MenuBar{
         edit1Item.setAccelerator(KeyCombination.keyCombination("Ctrl+E"));
         this.edit1Item.setOnAction((t) ->{
             this.main.getActionneur().MiseAJour(t);
-            System.out.println("edit1 Clicked.");
+            //System.out.println("edit1 Clicked.");
         });
         edit2Item.setAccelerator(KeyCombination.keyCombination("Ctrl+F"));
         this.edit2Item.setOnAction((t) ->{
             this.main.getActionneur().MiseAJour(t);
-            System.out.println("edit2 Clicked.");
+            //System.out.println("edit2 Clicked.");
         });
         
     }

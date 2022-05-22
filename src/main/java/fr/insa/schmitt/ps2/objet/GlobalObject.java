@@ -80,7 +80,7 @@ public abstract class GlobalObject {
                     NoeudAppuiDouble np = new NoeudAppuiDouble(px, py, col);
                     num.associe(id, np);
                     derniere = np;
-                    System.out.println("test2");
+                    //System.out.println("test2");
                 }else if (bouts[0].equals("NoeudAppuiSimple")) {
                     int id = Integer.parseInt(bouts[1]);
                     double px = Double.parseDouble(bouts[2]);
@@ -89,7 +89,7 @@ public abstract class GlobalObject {
                     NoeudAppuiSimple np = new NoeudAppuiSimple(px, py, col);
                     num.associe(id, np);
                     derniere = np;
-                    System.out.println("test2");
+                    //System.out.println("test2");
                 } else if (bouts[0].equals("Barres")) {
                     int id = Integer.parseInt(bouts[1]);
                     int idP1 = Integer.parseInt(bouts[2]);
@@ -100,7 +100,7 @@ public abstract class GlobalObject {
                     Barres ns = new Barres(p1, p2, col);
                     num.associe(id, ns);
                     derniere = ns;
-                    System.out.println("test3");
+                    //System.out.println("test3");
                 }else if (bouts[0].equals("Groupe")) {
                     int id = Integer.parseInt(bouts[1]);
                     Groupe ng = new Groupe();

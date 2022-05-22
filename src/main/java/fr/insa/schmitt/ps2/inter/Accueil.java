@@ -229,7 +229,7 @@ public class Accueil {
         //Set alignment of button to text. This puts btn text below the image icon.
         this.direction.setContentDisplay(ContentDisplay.TOP);
 
-        //Retrieve and set image of clipboard. I will set image size to 24x24,
+        //Retrieve and set image of clipboard.
         //preserve the ratio and enable smoothing in the Image constructor.
         String imgPath = "icon/deplacer.png";
         Image clipboard = new Image(this.getClass().getResourceAsStream(imgPath),

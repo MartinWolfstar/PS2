@@ -80,14 +80,14 @@ public class Mat {
         
         return mat3;
     }
-    public Mat inv(){
+    /*public Mat inv(){
         double[][] tab1 = this.coeffs;
         
         
         
         
         return this;
-    }
+    }*/
     public int lignePlusGrandPivot(int e){
         int ligMax=e;
         //pow = puissance
