@@ -183,6 +183,23 @@ public class Barres extends Forme{
         context.setFill(this.getNa().getCouleur());
         context.fillOval(this.getNa().getPx()-RAYON_IN_DRAW, this.getNa().getPy()-RAYON_IN_DRAW, 1.5*RAYON_IN_DRAW, 1.5*RAYON_IN_DRAW);
     }
+    /*public void setColorB (Barres b, double n){
+        if (-n > b.getCM()/10){
+            b.setCouleurspe(Color.TOMATO);
+        }else if (n > b.getTC()/10){
+            b.setCouleurspe(Color.OLIVE);
+        }
+    }*/
+    public void dessineC(GraphicsContext context) {
+        context.setStroke(this.getCouleur());
+        if (-this.forceSubie > this.getCM()/10){
+            context.setStroke(Color.CYAN);
+        }else if (this.forceSubie > this.getTC()/10){
+            context.setStroke(Color.GOLD);
+        }
+        context.strokeLine(this.getNd().getPx(), this.getNd().getPy(), this.getNa().getPx(), this.getNa().getPy());
+
+    }
     
     public static Barres demandeBarres() {
         System.out.println("point debut :");

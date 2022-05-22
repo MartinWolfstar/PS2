@@ -5,6 +5,7 @@
 package fr.insa.schmitt.ps2.inter;
 
 import fr.insa.schmitt.ps2.objet.Groupe;
+import fr.insa.schmitt.ps2.objet.NoeudSimple;
 import fr.insa.schmitt.ps2.objet.Terrain;
 import java.io.File;
 import javafx.scene.layout.BorderPane;
@@ -45,6 +46,7 @@ public class MainPanel extends BorderPane {
         this.actionneur = new Actionneur(this);
         this.curFile = fromFile;
         this.model = model;
+        this.model.getBase().add(new NoeudSimple(0,0));
         this.terrain = terrain;
         this.fitAll();
         this.BarreOutilshaut = new BarreOutilshaut(this);

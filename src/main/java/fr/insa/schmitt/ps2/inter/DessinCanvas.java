@@ -46,36 +46,43 @@ public class DessinCanvas extends Pane{
     }
     
     public void concatenateTransform(Transform trans) {
-        Transform oldTrans = this.realCanvas.getGraphicsContext2D().getTransform();
+        Transform oldTrans = this.getRealCanvas().getGraphicsContext2D().getTransform();
         Transform newTrans = oldTrans.createConcatenation(trans);
         this.setTransform(newTrans);
     }
 
     public void setTransform(Transform trans) {
-        this.realCanvas.getGraphicsContext2D().setTransform(new Affine(trans));
+        this.getRealCanvas().getGraphicsContext2D().setTransform(new Affine(trans));
     }
 
     public Transform getTransform() {
-        return this.realCanvas.getGraphicsContext2D().getTransform();
+        return this.getRealCanvas().getGraphicsContext2D().getTransform();
     }
     
     public void redrawAll(){
-        GraphicsContext context = this.realCanvas.getGraphicsContext2D();
+        GraphicsContext context = this.getRealCanvas().getGraphicsContext2D();
         //context.setFill(Color.LIGHTGRAY);
         //context.fillRect(0,0, this.realCanvas.getWidth(), this.realCanvas.getHeight());    
         
         //----------gestion des zooms:
         context.setTransform(new Affine());
-        context.clearRect(0,0,this.realCanvas.getWidth(),this.realCanvas.getHeight());
-        this.zoneVue.setxMax(this.realCanvas.getWidth());
-        this.zoneVue.setyMax(this.realCanvas.getHeight());
+        context.clearRect(0,0,this.getRealCanvas().getWidth(),this.getRealCanvas().getHeight());
+        this.zoneVue.setxMax(this.getRealCanvas().getWidth());
+        this.zoneVue.setyMax(this.getRealCanvas().getHeight());
+        
+        context.setGlobalAlpha(0.8);
+        context.setFill(Color.CHOCOLATE);
+        context.fillText("1 carreau = 50 unités", 20, 20);
+        context.setGlobalAlpha(1);
+        
         //activer cette partie permet d'ajouter la direction (et son beug)
-        /*Transform curTrans = this.main.getZoneVue().fitTransform(this.zoneVue);
-        this.setTransform(curTrans);*/
+        //Transform curTrans = this.main.getZoneVue().fitTransform(this.zoneVue);
+        //this.setTransform(curTrans);
         //System.out.println(zoneVue);
         
         Groupe model = this.main.getModel();
         model.dessine(context);
+        model.dessineC(context);
         Terrain terrain = this.main.getTerrain();
         terrain.dessine(context);
         
@@ -93,12 +100,15 @@ public class DessinCanvas extends Pane{
            context.strokeLine(i,0,i,5000); 
            context.strokeLine(0,i,5000,i);
         }
-        //context.setStroke(Color.CHOCOLATE);
-        context.setGlobalAlpha(0.8);
-        context.setFill(Color.CHOCOLATE);
-        context.fillText("1 carreau = 50 unités", 20, 20);
         context.setGlobalAlpha(1);
         
+    }
+
+    /**
+     * @return the realCanvas
+     */
+    public Canvas getRealCanvas() {
+        return realCanvas;
     }
 
 }

@@ -20,7 +20,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import javafx.event.ActionEvent; 
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -66,7 +65,7 @@ public class Actionneur {
     void clicDansZoneDessin(MouseEvent t) {
         double px = t.getX();
         double py =t.getY();
-
+        
         //problème direction
         
         if (this.etat == 322){
@@ -365,6 +364,7 @@ public class Actionneur {
     void boutonPlay(ActionEvent t){
         Groupe model = this.main.getModel();
         main.getModel().gestionForce2test();
+        this.main.redrawAll(); 
         //this.changeEtat(100);
     }
     void boutonStop(ActionEvent t){

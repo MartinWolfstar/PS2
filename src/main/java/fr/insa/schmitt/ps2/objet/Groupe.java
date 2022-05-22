@@ -48,12 +48,14 @@ public class Groupe extends Trellis{
     private List<Barres> contientBarres;
     private List<Double> Lxi;
     private List<Double> Lyi;
+    private List<Noeud> base;
     private Trellis trel1;
     
     public Groupe(){
         this.contient = new ArrayList<Trellis>();
         this.contientNoeud = new ArrayList<Noeud>();
         this.contientBarres = new ArrayList<Barres>();
+        this.base = new ArrayList<Noeud>();
     }
     
     public void add(Trellis t){
@@ -423,6 +425,14 @@ public class Groupe extends Trellis{
         for (Trellis t : this.getContient()) {
             t.dessine(context);
         }
+        //this.base.get(0).dessine(context);
+    }
+    public void dessineC(GraphicsContext context) {
+        for (Barres b : this.getContientBarres()) {
+            System.out.println("force subie: " + b.getForceSubie());
+            b.dessineC(context);
+        }
+        //this.base.get(0).dessine(context);
     }
     @Override
     public void dessineSelection(GraphicsContext context) {
@@ -723,5 +733,19 @@ public class Groupe extends Trellis{
      */
     public void setLyi(List<Double> Lyi) {
         this.Lyi = Lyi;
+    }
+
+    /**
+     * @return the base
+     */
+    public List<Noeud> getBase() {
+        return base;
+    }
+
+    /**
+     * @param base the base to set
+     */
+    public void setBase(List<Noeud> base) {
+        this.base = base;
     }
 }
